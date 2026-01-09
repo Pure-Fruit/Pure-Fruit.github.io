@@ -10,7 +10,7 @@
 <body>
     <!-- 头部横幅 -->
     <header class="hero">
-        <h1 class="site-title">你的名字</h1>
+        <h1 class="site-title">Pure</h1>
         
         <!-- 导航 -->
         <nav class="nav-links">
@@ -19,7 +19,7 @@
             <a href="#blog">Blog</a>
         </nav>
         
-        <p class="tagline">欢迎来到我的主页，一个关于创造、分享和探索的数字空间。</p>
+        <p class="tagline">欢迎来到我的世界，一个关于创造、探索与想象的空间。</p>
         
         <!-- 社交图标 -->
         <div class="social-icons">
