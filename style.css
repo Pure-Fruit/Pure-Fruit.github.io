@@ -1,0 +1,147 @@
+/* 基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.8;
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+
+/* 头部横幅 - 全部居中 */
+.hero {
+    text-align: center;
+    padding: 80px 20px 60px;
+}
+
+.site-title {
+    font-size: 4rem;
+    color: #e8758f;
+    margin-bottom: 30px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+}
+
+/* 导航链接 */
+.nav-links {
+    margin-bottom: 60px;
+}
+
+.nav-links a {
+    color: #e8758f;
+    text-decoration: none;
+    font-size: 1.3rem;
+    margin: 0 20px;
+    transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+    opacity: 0.7;
+}
+
+/* 标语 */
+.tagline {
+    font-size: 1.1rem;
+    color: #a0a0a0;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 社交图标 */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.social-icons a {
+    color: #a0a0a0;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #e8758f;
+}
+
+/* 分隔线 */
+.divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #3a3a5a, transparent);
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+/* 内容区块 */
+.section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.section h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #e8758f;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+/* 文章/项目卡片 */
+.post-card {
+    background: #252540;
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.post-card h3 {
+    margin-bottom: 10px;
+}
+
+.post-card h3 a {
+    color: #e8758f;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.post-card h3 a:hover {
+    text-decoration: underline;
+}
+
+.post-meta {
+    color: #808080;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.post-card p {
+    color: #b0b0b0;
+}
+
+/* 页脚 */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: #606060;
+    font-size: 0.9rem;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .site-title {
+        font-size: 2.5rem;
+    }
+    
+    .nav-links a {
+        font-size: 1.1rem;
+        margin: 0 12px;
+    }
+}
