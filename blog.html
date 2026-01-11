@@ -3,49 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pure Tao - 博客</title>
+    <title>博客 - Pure Tao</title>
     <link rel="icon" href="Icon.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- 头部横幅 -->
     <header class="hero">
         <img src="Icon.png" alt="Pure Tao Logo" class="site-logo">
         <h1 class="site-title">Pure Tao</h1>
-        
-        <!-- 导航 -->
         <nav class="nav-links">
             <a href="index.html">首页</a>
-            <a href="blog.html">博客</a>
+            <a href="blog.html" class="active">博客</a>
             <a href="about.html">关于我们</a>
         </nav>
-        
-        <p class="tagline">分享想法与学习成果，记录成长的每一步。</p>
-        
-        <!-- 社交图标 -->
-        <div class="social-icons">
-            <a href="https://github.com/Pure-Fruit" target="_blank" title="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="mailto:contact@puretao.icu" title="Email">
-                <i class="fas fa-envelope"></i>
-            </a>
-        </div>
     </header>
 
-    <!-- 分隔线 -->
     <div class="divider"></div>
 
-    <!-- 最新文章 -->
-    <section id="latest" class="section">
-        <h2>最新文章</h2>
+    <section class="section">
+        <h2>全部文章</h2>
         
         <article class="post-card">
             <span class="post-tag">学习笔记</span>
             <h3><a href="posts/hello-world.html">你好，世界！</a></h3>
             <div class="post-meta">2026-01-12 • Pure Tao Team</div>
-            <p>这是我们博客的第一篇文章，欢迎来到 Pure Tao！在这里我们将分享技术学习心得、项目经验和一些有趣的想法。</p>
+            <p>这是我们博客的第一篇文章，欢迎来到 Pure Tao！</p>
             <a href="posts/hello-world.html" class="read-more">阅读全文 →</a>
         </article>
         
@@ -53,12 +36,11 @@
             <span class="post-tag">技术分享</span>
             <h3><a href="posts/sample-post.html">示例文章：如何搭建 GitHub Pages 博客</a></h3>
             <div class="post-meta">2026-01-12 • Pure Tao Team</div>
-            <p>本文将介绍如何使用 GitHub Pages 搭建一个简单的静态博客网站，包括自定义域名配置。</p>
+            <p>本文将介绍如何使用 GitHub Pages 搭建一个简单的静态博客网站。</p>
             <a href="posts/sample-post.html" class="read-more">阅读全文 →</a>
         </article>
     </section>
 
-    <!-- 页脚 -->
     <footer>
         <p>&copy; 2026 Pure Tao. All rights reserved.</p>
     </footer>

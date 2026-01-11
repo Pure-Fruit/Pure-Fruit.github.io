@@ -15,39 +15,52 @@ body {
 /* 头部横幅 - 全部居中 */
 .hero {
     text-align: center;
-    padding: 80px 20px 60px;
+    padding: 60px 20px 40px;
+}
+
+.site-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    object-fit: cover;
 }
 
 .site-title {
-    font-size: 4rem;
+    font-size: 3rem;
     color: #e8758f;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     font-weight: 400;
     letter-spacing: 0.1em;
 }
 
 /* 导航链接 */
 .nav-links {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
 .nav-links a {
     color: #e8758f;
     text-decoration: none;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin: 0 20px;
     transition: opacity 0.3s;
+    padding-bottom: 5px;
 }
 
 .nav-links a:hover {
     opacity: 0.7;
 }
 
+.nav-links a.active {
+    border-bottom: 2px solid #e8758f;
+}
+
 /* 标语 */
 .tagline {
     font-size: 1.1rem;
     color: #a0a0a0;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -82,23 +95,40 @@ body {
 .section {
     max-width: 800px;
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 50px 20px;
 }
 
 .section h2 {
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #e8758f;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
     font-weight: 400;
+}
+
+/* 文章标签 */
+.post-tag {
+    display: inline-block;
+    background: #3a3a5a;
+    color: #e8758f;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
 }
 
 /* 文章/项目卡片 */
 .post-card {
     background: #252540;
-    padding: 30px;
-    border-radius: 8px;
+    padding: 28px;
+    border-radius: 10px;
     margin-bottom: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .post-card h3 {
@@ -108,7 +138,7 @@ body {
 .post-card h3 a {
     color: #e8758f;
     text-decoration: none;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 500;
 }
 
@@ -118,12 +148,117 @@ body {
 
 .post-meta {
     color: #808080;
-    font-size: 0.9rem;
-    margin-bottom: 15px;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
 }
 
 .post-card p {
     color: #b0b0b0;
+    margin-bottom: 15px;
+}
+
+.read-more {
+    color: #e8758f;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+/* 文章页面样式 */
+.article-container {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+.article-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.article-header h1 {
+    color: #e8758f;
+    font-size: 2.2rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.article-content {
+    background: #252540;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.article-content h2 {
+    color: #e8758f;
+    font-size: 1.5rem;
+    margin: 30px 0 15px;
+    font-weight: 500;
+}
+
+.article-content p {
+    color: #c0c0c0;
+    margin-bottom: 18px;
+}
+
+.article-content code {
+    background: #1a1a2e;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    color: #e8758f;
+}
+
+.article-content pre {
+    background: #1a1a2e;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+.article-content pre code {
+    background: none;
+    padding: 0;
+}
+
+.article-content ul, .article-content ol {
+    margin: 15px 0 15px 25px;
+    color: #c0c0c0;
+}
+
+.article-content li {
+    margin-bottom: 8px;
+}
+
+.back-link {
+    display: inline-block;
+    color: #e8758f;
+    text-decoration: none;
+    margin-bottom: 30px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* 关于页面 */
+.about-content {
+    background: #252540;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.about-content p {
+    color: #b0b0b0;
+    margin-bottom: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* 页脚 */
@@ -137,11 +272,15 @@ footer {
 /* 响应式 */
 @media (max-width: 768px) {
     .site-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
     
     .nav-links a {
-        font-size: 1.1rem;
+        font-size: 1rem;
         margin: 0 12px;
+    }
+    
+    .article-content {
+        padding: 25px;
     }
 }
