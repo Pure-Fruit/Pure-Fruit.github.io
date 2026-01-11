@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swin Transformer 图像分类 - Pure Fruit</title>
+    <link rel="icon" href="../Icon.png" type="image/png">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="article-container">
+        <a href="../projects.html" class="back-link">← 返回项目列表</a>
+        
+        <article>
+            <header class="article-header">
+                <span class="post-tag tag-cv">计算机视觉</span>
+                <span class="post-tag tag-dl">深度学习</span>
+                <h1>Swin Transformer 图像分类</h1>
+                <div class="post-meta">
+                    <i class="fab fa-github"></i> 
+                    <a href="https://github.com/PeachPure/Swin-Transformer-in-Classifications" target="_blank">查看源码</a>
+                    • PyTorch
+                </div>
+            </header>
+            
+            <div class="article-content">
+                <h2>项目简介</h2>
+                <p>本项目使用 PyTorch 实现了 Swin Transformer 图像分类任务。Swin Transformer 是一种层次化的 Vision Transformer，通过移位窗口机制实现高效的自注意力计算。</p>
+                
+                <h2>主要特性</h2>
+                <ul>
+                    <li>完整的 Swin Transformer 实现（Tiny/Small/Base/Large 变体）</li>
+                    <li>支持 ImageNet 预训练权重迁移学习</li>
+                    <li>训练、验证、预测完整流程</li>
+                    <li>混淆矩阵可视化</li>
+                    <li>TensorBoard 日志记录</li>
+                    <li>错误样本分析工具</li>
+                </ul>
+                
+                <h2>项目结构</h2>
+                <pre><code>swin_transformer/
+├── model.py                    # 模型架构
+├── train.py                    # 训练脚本
+├── predict.py                  # 单张图片预测
+├── my_dataset.py               # 自定义数据集类
+├── utils.py                    # 工具函数
+├── create_confusion_matrix.py  # 混淆矩阵可视化
+├── select_incorrect_samples.py # 错误样本分析
+└── weights/                    # 模型权重</code></pre>
+                
+                <h2>快速开始</h2>
+                <p>安装依赖：</p>
+                <pre><code>pip install torch torchvision tqdm matplotlib prettytable tensorboard pillow</code></pre>
+                
+                <p>训练模型：</p>
+                <pre><code>python train.py --data-path ./flower_photos --weights ./swin_tiny_patch4_window7_224.pth --epochs 10</code></pre>
+                
+                <h2>训练效果</h2>
+                <p>在花卉数据集（5类）上使用 Swin-Tiny 训练，10 轮后验证集准确率可达 <strong>95%+</strong>。</p>
+                
+                <h2>参考</h2>
+                <ul>
+                    <li><a href="https://arxiv.org/abs/2103.14030" target="_blank" style="color: #e8758f;">论文：Swin Transformer: Hierarchical Vision Transformer using Shifted Windows</a></li>
+                    <li><a href="https://github.com/microsoft/Swin-Transformer" target="_blank" style="color: #e8758f;">微软官方实现</a></li>
+                </ul>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Pure Fruit Team. Leader: Pure Tao</p>
+    </footer>
+</body>
+</html>

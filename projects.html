@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>博客 - Pure Fruit</title>
+    <title>项目 - Pure Fruit</title>
     <link rel="icon" href="Icon.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -14,8 +14,8 @@
         <h1 class="site-title">Pure Fruit</h1>
         <nav class="nav-links">
             <a href="index.html">首页</a>
-            <a href="projects.html">项目</a>
-            <a href="blog.html" class="active">博客</a>
+            <a href="projects.html" class="active">项目</a>
+            <a href="blog.html">博客</a>
             <a href="about.html">关于</a>
         </nav>
     </header>
@@ -23,34 +23,30 @@
     <div class="divider"></div>
 
     <section class="section">
-        <h2>文章列表</h2>
+        <h2>开源项目</h2>
         
         <!-- 筛选器 -->
         <div class="filter-bar">
             <button class="filter-btn active" data-filter="all">全部</button>
-            <button class="filter-btn" data-filter="note">学习笔记</button>
-            <button class="filter-btn" data-filter="tutorial">教程</button>
-            <button class="filter-btn" data-filter="thought">随想</button>
+            <button class="filter-btn" data-filter="cv">计算机视觉</button>
+            <button class="filter-btn" data-filter="dl">深度学习</button>
+            <button class="filter-btn" data-filter="tool">工具</button>
         </div>
         
-        <!-- 2026年1月 -->
-        <h3 style="color: #808080; font-size: 0.9rem; margin: 25px 0 15px; font-weight: normal;">2026年1月</h3>
-        
-        <article class="post-card" data-category="note">
-            <span class="post-tag tag-note">学习笔记</span>
-            <h3><a href="posts/swin-transformer-intro.html">Swin Transformer 论文解读</a></h3>
-            <div class="post-meta">2026-01-12 • Pure Tao</div>
-            <p>深入解析 Swin Transformer 的核心思想：层次化结构与移位窗口自注意力机制，以及它如何解决 ViT 的计算复杂度问题。</p>
-            <a href="posts/swin-transformer-intro.html" class="read-more">阅读全文 →</a>
+        <article class="post-card" data-category="cv dl">
+            <span class="post-tag tag-cv">计算机视觉</span>
+            <span class="post-tag tag-dl">深度学习</span>
+            <h3><a href="projects/swin-transformer.html">Swin Transformer 图像分类</a></h3>
+            <div class="post-meta">
+                <i class="fab fa-github"></i> <a href="https://github.com/PeachPure/Swin-Transformer-in-Classifications" target="_blank">GitHub</a>
+                • PyTorch • 2026-01
+            </div>
+            <p>基于 Swin Transformer 的图像分类项目。实现了完整的训练、验证、预测流程，支持 ImageNet 预训练权重迁移学习，包含混淆矩阵可视化和错误样本分析工具。</p>
+            <p><strong>特性：</strong>Swin-Tiny/Small/Base/Large 变体 • TensorBoard 日志 • 95%+ 准确率</p>
+            <a href="projects/swin-transformer.html" class="read-more">查看详情 →</a>
         </article>
         
-        <article class="post-card" data-category="tutorial">
-            <span class="post-tag tag-tutorial">教程</span>
-            <h3><a href="posts/github-pages-setup.html">如何搭建 GitHub Pages 博客</a></h3>
-            <div class="post-meta">2026-01-12 • Pure Tao</div>
-            <p>从零开始搭建个人博客网站，包括 GitHub Pages 配置、自定义域名设置和 Cloudflare DNS 配置。</p>
-            <a href="posts/github-pages-setup.html" class="read-more">阅读全文 →</a>
-        </article>
+        <!-- 更多项目可以在这里添加 -->
     </section>
 
     <footer>
@@ -58,6 +54,7 @@
     </footer>
 
     <script>
+        // 简单的筛选功能
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));

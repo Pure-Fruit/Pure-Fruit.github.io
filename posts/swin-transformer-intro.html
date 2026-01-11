@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swin Transformer 论文解读 - Pure Fruit</title>
+    <link rel="icon" href="../Icon.png" type="image/png">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="article-container">
+        <a href="../blog.html" class="back-link">← 返回博客</a>
+        
+        <article>
+            <header class="article-header">
+                <span class="post-tag tag-note">学习笔记</span>
+                <h1>Swin Transformer 论文解读</h1>
+                <div class="post-meta">2026-01-12 • Pure Tao</div>
+            </header>
+            
+            <div class="article-content">
+                <h2>背景</h2>
+                <p>Vision Transformer (ViT) 将 Transformer 架构引入计算机视觉领域，取得了很好的效果。但 ViT 存在一个问题：全局自注意力的计算复杂度是 O(n²)，当图像分辨率增大时，计算量会急剧增加。</p>
+                
+                <h2>Swin Transformer 的核心思想</h2>
+                <p>Swin Transformer 提出了两个关键创新：</p>
+                
+                <p><strong>1. 层次化结构（Hierarchical Structure）</strong></p>
+                <p>类似于 CNN，Swin Transformer 采用层次化设计，随着网络加深，特征图的分辨率逐渐降低，通道数逐渐增加。这使得它可以方便地用于密集预测任务（如目标检测、语义分割）。</p>
+                
+                <p><strong>2. 移位窗口自注意力（Shifted Window Self-Attention）</strong></p>
+                <p>不同于 ViT 的全局自注意力，Swin Transformer 在局部窗口内计算自注意力，将复杂度从 O(n²) 降低到 O(n)。通过在连续层之间移位窗口，实现了跨窗口的信息交互。</p>
+                
+                <h2>模型变体</h2>
+                <ul>
+                    <li><strong>Swin-Tiny</strong>: 28M 参数</li>
+                    <li><strong>Swin-Small</strong>: 50M 参数</li>
+                    <li><strong>Swin-Base</strong>: 88M 参数</li>
+                    <li><strong>Swin-Large</strong>: 197M 参数</li>
+                </ul>
+                
+                <h2>实验效果</h2>
+                <p>Swin Transformer 在 ImageNet 图像分类、COCO 目标检测、ADE20K 语义分割等任务上都取得了 SOTA 效果，证明了其作为通用视觉骨干网络的潜力。</p>
+                
+                <h2>总结</h2>
+                <p>Swin Transformer 通过层次化结构和移位窗口机制，成功地将 Transformer 应用于各种视觉任务，是 Vision Transformer 发展的重要里程碑。</p>
+                
+                <p>相关链接：<a href="https://arxiv.org/abs/2103.14030" target="_blank" style="color: #e8758f;">论文原文</a> | <a href="../projects/swin-transformer.html" style="color: #e8758f;">我们的实现</a></p>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Pure Fruit Team. Leader: Pure Tao</p>
+    </footer>
+</body>
+</html>

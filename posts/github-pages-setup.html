@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>如何搭建 GitHub Pages 博客 - Pure Fruit</title>
+    <link rel="icon" href="../Icon.png" type="image/png">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="article-container">
+        <a href="../blog.html" class="back-link">← 返回博客</a>
+        
+        <article>
+            <header class="article-header">
+                <span class="post-tag tag-tutorial">教程</span>
+                <h1>如何搭建 GitHub Pages 博客</h1>
+                <div class="post-meta">2026-01-12 • Pure Tao</div>
+            </header>
+            
+            <div class="article-content">
+                <p>本文记录了我们搭建这个博客网站的完整过程，包括 GitHub Pages 配置和自定义域名设置。</p>
+                
+                <h2>第一步：创建 GitHub 仓库</h2>
+                <p>创建一个名为 <code>username.github.io</code> 的仓库，其中 username 是你的 GitHub 用户名。这个仓库会自动启用 GitHub Pages。</p>
+                
+                <h2>第二步：添加网页文件</h2>
+                <p>在仓库中添加你的 HTML、CSS 文件。至少需要一个 <code>index.html</code> 作为首页。</p>
+                <p>你可以直接在 GitHub 网页上点击 "Add file" → "Upload files" 上传文件。</p>
+                
+                <h2>第三步：配置自定义域名</h2>
+                <p>如果你有自己的域名，需要做两件事：</p>
+                
+                <p><strong>1. 在仓库中创建 CNAME 文件</strong></p>
+                <p>文件内容就是你的域名，比如：</p>
+                <pre><code>puretao.icu</code></pre>
+                
+                <p><strong>2. 配置 DNS 记录</strong></p>
+                <p>在你的域名服务商（如 Cloudflare）添加以下记录：</p>
+                <pre><code>类型: A    | 名称: @   | 内容: 185.199.108.153
+类型: A    | 名称: @   | 内容: 185.199.109.153
+类型: A    | 名称: @   | 内容: 185.199.110.153
+类型: A    | 名称: @   | 内容: 185.199.111.153
+类型: CNAME | 名称: www | 内容: username.github.io</code></pre>
+                
+                <p>注意：如果使用 Cloudflare，代理状态要选择 "仅 DNS"（灰色云朵）。</p>
+                
+                <h2>第四步：启用 HTTPS</h2>
+                <p>在仓库 Settings → Pages 中：</p>
+                <ol>
+                    <li>填入你的自定义域名</li>
+                    <li>勾选 "Enforce HTTPS"</li>
+                </ol>
+                <p>等待几分钟，GitHub 会自动为你的域名配置 SSL 证书。</p>
+                
+                <h2>完成</h2>
+                <p>现在访问你的域名，就能看到博客了！以后更新内容只需要上传新文件到 GitHub 仓库即可。</p>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Pure Fruit Team. Leader: Pure Tao</p>
+    </footer>
+</body>
+</html>
