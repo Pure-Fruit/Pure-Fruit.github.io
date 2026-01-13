@@ -77,38 +77,27 @@
     <section class="section">
         <h2>最新文章</h2>
         
-        <!-- 排序控制 -->
-        <div class="sort-bar">
-            <span class="sort-label">排序：</span>
-            <select id="sortSelect" onchange="sortArticles()">
-                <option value="date-desc">时间 ↓ 最新</option>
-                <option value="date-asc">时间 ↑ 最早</option>
-                <option value="views-desc">访问量 ↓ 最多</option>
-                <option value="views-asc">访问量 ↑ 最少</option>
-            </select>
-        </div>
-        
         <div id="articleList">
-            <article class="post-card" data-date="2026-01-14" data-views="156">
+            <article class="post-card" data-date="2026-01-14">
                 <span class="post-tag tag-nlp">自然语言处理</span>
                 <h3><a href="projects/ner.html">BERT-NER 中文命名实体识别</a></h3>
-                <div class="post-meta">2026-01-14 • Pure Tao • <i class="fas fa-eye"></i> 156</div>
+                <div class="post-meta">2026-01-14 • Pure Tao</div>
                 <p>基于 BERT 的中文命名实体识别项目，使用 CLUENER 数据集训练，支持 10 种实体类型识别。</p>
                 <a href="projects/ner.html" class="read-more">阅读全文 →</a>
             </article>
             
-            <article class="post-card" data-date="2026-01-12" data-views="328">
+            <article class="post-card" data-date="2026-01-12">
                 <span class="post-tag tag-note">学习笔记</span>
                 <h3><a href="posts/swin-transformer-intro.html">Swin Transformer 论文解读</a></h3>
-                <div class="post-meta">2026-01-12 • Pure Tao • <i class="fas fa-eye"></i> 328</div>
+                <div class="post-meta">2026-01-12 • Pure Tao</div>
                 <p>深入解析 Swin Transformer 的核心思想：层次化结构与移位窗口自注意力机制。</p>
                 <a href="posts/swin-transformer-intro.html" class="read-more">阅读全文 →</a>
             </article>
             
-            <article class="post-card" data-date="2026-01-12" data-views="245">
+            <article class="post-card" data-date="2026-01-12">
                 <span class="post-tag tag-tutorial">教程</span>
                 <h3><a href="posts/github-pages-setup.html">如何搭建 GitHub Pages 博客</a></h3>
-                <div class="post-meta">2026-01-12 • Pure Tao • <i class="fas fa-eye"></i> 245</div>
+                <div class="post-meta">2026-01-12 • Pure Tao</div>
                 <p>从零开始搭建个人博客，包括自定义域名配置和 DNS 设置。</p>
                 <a href="posts/github-pages-setup.html" class="read-more">阅读全文 →</a>
             </article>
@@ -145,29 +134,6 @@
         if (localStorage.getItem('theme') === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
             document.querySelector('.theme-toggle i').className = 'fas fa-sun';
-        }
-        
-        // 文章排序功能
-        function sortArticles() {
-            const select = document.getElementById('sortSelect');
-            const list = document.getElementById('articleList');
-            const articles = Array.from(list.querySelectorAll('.post-card'));
-            const sortType = select.value;
-            
-            articles.sort((a, b) => {
-                if (sortType === 'date-desc') {
-                    return new Date(b.dataset.date) - new Date(a.dataset.date);
-                } else if (sortType === 'date-asc') {
-                    return new Date(a.dataset.date) - new Date(b.dataset.date);
-                } else if (sortType === 'views-desc') {
-                    return parseInt(b.dataset.views) - parseInt(a.dataset.views);
-                } else if (sortType === 'views-asc') {
-                    return parseInt(a.dataset.views) - parseInt(b.dataset.views);
-                }
-                return 0;
-            });
-            
-            articles.forEach(article => list.appendChild(article));
         }
     </script>
 </body>
