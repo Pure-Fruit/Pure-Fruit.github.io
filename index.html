@@ -57,6 +57,18 @@
             <p>基于 Swin Transformer（ICCV 2021 Best Paper）的图像分类项目，支持迁移学习、混淆矩阵可视化、TensorBoard 日志等功能。在花卉数据集上达到 95%+ 准确率。</p>
             <a href="projects/swin-transformer.html" class="read-more">查看详情 →</a>
         </article>
+        
+        <article class="post-card project-card">
+            <span class="post-tag tag-nlp">自然语言处理</span>
+            <span class="post-tag tag-dl">深度学习</span>
+            <h3><a href="projects/ner.html">BERT-NER 中文命名实体识别</a></h3>
+            <div class="post-meta">
+                <i class="fab fa-github"></i> <a href="https://github.com/PeachPure/NER" target="_blank">GitHub</a>
+                • PyTorch
+            </div>
+            <p>基于 BERT 的中文命名实体识别项目，使用 CLUENER 数据集训练，支持 10 种实体类型识别。</p>
+            <a href="projects/ner.html" class="read-more">查看详情 →</a>
+        </article>
     </section>
 
     <div class="divider"></div>
@@ -65,26 +77,55 @@
     <section class="section">
         <h2>最新文章</h2>
         
-        <article class="post-card">
-            <span class="post-tag tag-note">学习笔记</span>
-            <h3><a href="posts/swin-transformer-intro.html">Swin Transformer 论文解读</a></h3>
-            <div class="post-meta">2026-01-12 • Pure Tao</div>
-            <p>深入解析 Swin Transformer 的核心思想：层次化结构与移位窗口自注意力机制。</p>
-            <a href="posts/swin-transformer-intro.html" class="read-more">阅读全文 →</a>
-        </article>
+        <!-- 排序控制 -->
+        <div class="sort-bar">
+            <span class="sort-label">排序：</span>
+            <select id="sortSelect" onchange="sortArticles()">
+                <option value="date-desc">时间 ↓ 最新</option>
+                <option value="date-asc">时间 ↑ 最早</option>
+                <option value="views-desc">访问量 ↓ 最多</option>
+                <option value="views-asc">访问量 ↑ 最少</option>
+            </select>
+        </div>
         
-        <article class="post-card">
-            <span class="post-tag tag-tutorial">教程</span>
-            <h3><a href="posts/github-pages-setup.html">如何搭建 GitHub Pages 博客</a></h3>
-            <div class="post-meta">2026-01-12 • Pure Tao</div>
-            <p>从零开始搭建个人博客，包括自定义域名配置和 DNS 设置。</p>
-            <a href="posts/github-pages-setup.html" class="read-more">阅读全文 →</a>
-        </article>
+        <div id="articleList">
+            <article class="post-card" data-date="2026-01-14" data-views="156">
+                <span class="post-tag tag-nlp">自然语言处理</span>
+                <h3><a href="projects/ner.html">BERT-NER 中文命名实体识别</a></h3>
+                <div class="post-meta">2026-01-14 • Pure Tao • <i class="fas fa-eye"></i> 156</div>
+                <p>基于 BERT 的中文命名实体识别项目，使用 CLUENER 数据集训练，支持 10 种实体类型识别。</p>
+                <a href="projects/ner.html" class="read-more">阅读全文 →</a>
+            </article>
+            
+            <article class="post-card" data-date="2026-01-12" data-views="328">
+                <span class="post-tag tag-note">学习笔记</span>
+                <h3><a href="posts/swin-transformer-intro.html">Swin Transformer 论文解读</a></h3>
+                <div class="post-meta">2026-01-12 • Pure Tao • <i class="fas fa-eye"></i> 328</div>
+                <p>深入解析 Swin Transformer 的核心思想：层次化结构与移位窗口自注意力机制。</p>
+                <a href="posts/swin-transformer-intro.html" class="read-more">阅读全文 →</a>
+            </article>
+            
+            <article class="post-card" data-date="2026-01-12" data-views="245">
+                <span class="post-tag tag-tutorial">教程</span>
+                <h3><a href="posts/github-pages-setup.html">如何搭建 GitHub Pages 博客</a></h3>
+                <div class="post-meta">2026-01-12 • Pure Tao • <i class="fas fa-eye"></i> 245</div>
+                <p>从零开始搭建个人博客，包括自定义域名配置和 DNS 设置。</p>
+                <a href="posts/github-pages-setup.html" class="read-more">阅读全文 →</a>
+            </article>
+        </div>
     </section>
 
     <footer>
+        <p>
+            <span id="busuanzi_container_site_pv">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+            &nbsp;|&nbsp;
+            <span id="busuanzi_container_site_uv">访客数 <span id="busuanzi_value_site_uv"></span> 人</span>
+        </p>
         <p>&copy; 2026 Pure Fruit Team. Leader: Pure Tao</p>
     </footer>
+
+    <!-- 不蒜子统计 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
     <script>
         function toggleTheme() {
@@ -104,6 +145,29 @@
         if (localStorage.getItem('theme') === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
             document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+        
+        // 文章排序功能
+        function sortArticles() {
+            const select = document.getElementById('sortSelect');
+            const list = document.getElementById('articleList');
+            const articles = Array.from(list.querySelectorAll('.post-card'));
+            const sortType = select.value;
+            
+            articles.sort((a, b) => {
+                if (sortType === 'date-desc') {
+                    return new Date(b.dataset.date) - new Date(a.dataset.date);
+                } else if (sortType === 'date-asc') {
+                    return new Date(a.dataset.date) - new Date(b.dataset.date);
+                } else if (sortType === 'views-desc') {
+                    return parseInt(b.dataset.views) - parseInt(a.dataset.views);
+                } else if (sortType === 'views-asc') {
+                    return parseInt(a.dataset.views) - parseInt(b.dataset.views);
+                }
+                return 0;
+            });
+            
+            articles.forEach(article => list.appendChild(article));
         }
     </script>
 </body>
