@@ -6,8 +6,13 @@
     <title>Swin Transformer 论文解读 - Pure Fruit</title>
     <link rel="icon" href="../Icon.png" type="image/png">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()" title="切换日间/夜间模式">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <div class="article-container">
         <a href="../blog.html" class="back-link">← 返回博客</a>
         
@@ -47,7 +52,7 @@
                 <h2>总结</h2>
                 <p>Swin Transformer 通过层次化结构和移位窗口机制，成功地将 Transformer 应用于各种视觉任务，是 Vision Transformer 发展的重要里程碑。</p>
                 
-                <p>相关链接：<a href="https://arxiv.org/abs/2103.14030" target="_blank" style="color: #e8758f;">论文原文</a> | <a href="../projects/swin-transformer.html" style="color: #e8758f;">我们的实现</a></p>
+                <p>相关链接：<a href="https://arxiv.org/abs/2103.14030" target="_blank" style="color: var(--accent);">论文原文</a> | <a href="../projects/swin-transformer.html" style="color: var(--accent);">我们的实现</a></p>
             </div>
         </article>
     </div>
@@ -55,5 +60,25 @@
     <footer>
         <p>&copy; 2026 Pure Fruit Team. Leader: Pure Tao</p>
     </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const btn = document.querySelector('.theme-toggle i');
+            if (html.getAttribute('data-theme') === 'light') {
+                html.removeAttribute('data-theme');
+                btn.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light');
+                btn.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+    </script>
 </body>
 </html>

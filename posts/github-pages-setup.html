@@ -6,8 +6,13 @@
     <title>如何搭建 GitHub Pages 博客 - Pure Fruit</title>
     <link rel="icon" href="../Icon.png" type="image/png">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()" title="切换日间/夜间模式">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <div class="article-container">
         <a href="../blog.html" class="back-link">← 返回博客</a>
         
@@ -62,5 +67,25 @@
     <footer>
         <p>&copy; 2026 Pure Fruit Team. Leader: Pure Tao</p>
     </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const btn = document.querySelector('.theme-toggle i');
+            if (html.getAttribute('data-theme') === 'light') {
+                html.removeAttribute('data-theme');
+                btn.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light');
+                btn.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+    </script>
 </body>
 </html>

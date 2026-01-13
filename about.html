@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()" title="切换日间/夜间模式">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <header class="hero">
         <img src="Icon.png" alt="Pure Fruit Logo" class="site-logo">
         <h1 class="site-title">Pure Fruit</h1>
@@ -28,8 +32,8 @@
         <div class="about-content">
             <p>Pure Fruit 是一个致力于多领域发展的技术探索小团队，专注于探索世界的美妙。</p>
             
-            <h3 style="color: #e8758f; font-size: 1.2rem; margin: 30px 0 20px;">研究方向</h3>
-            <ul style="color: #b0b0b0; margin-left: 20px;">
+            <h3 style="color: var(--accent); font-size: 1.2rem; margin: 30px 0 20px;">研究方向</h3>
+            <ul style="color: var(--text-muted); margin-left: 20px;">
                 <li>深度学习 (Deep Learning)</li>
                 <li>计算机视觉 (Computer Vision)</li>
                 <li>自然语言处理 (NLP)</li>
@@ -40,7 +44,7 @@
             
             <p style="margin-top: 20px;">我们的目标是通过互相学习，分享学习心得与实践经验，早日达到自己的目标。</p>
             
-            <h3 style="color: #e8758f; font-size: 1.2rem; margin: 30px 0 20px;">团队成员</h3>
+            <h3 style="color: var(--accent); font-size: 1.2rem; margin: 30px 0 20px;">团队成员</h3>
             
             <div class="team-member">
                 <div class="member-info">
@@ -49,15 +53,15 @@
                 </div>
             </div>
             
-            <h3 style="color: #e8758f; font-size: 1.2rem; margin: 30px 0 20px;">联系我们</h3>
+            <h3 style="color: var(--accent); font-size: 1.2rem; margin: 30px 0 20px;">联系我们</h3>
             
             <p>
-                <i class="fab fa-github" style="color: #e8758f;"></i> 
-                GitHub: <a href="https://github.com/PeachPure" target="_blank" style="color: #e8758f;">github.com/PeachPure</a>
+                <i class="fab fa-github" style="color: var(--accent);"></i> 
+                GitHub: <a href="https://github.com/PeachPure" target="_blank" style="color: var(--accent);">github.com/PeachPure</a>
             </p>
             <p>
-                <i class="fas fa-envelope" style="color: #e8758f;"></i> 
-                Email: <a href="mailto:TH.Tao1@outlook.com" style="color: #e8758f;">TH.Tao1@outlook.com</a>
+                <i class="fas fa-envelope" style="color: var(--accent);"></i> 
+                Email: <a href="mailto:TH.Tao1@outlook.com" style="color: var(--accent);">TH.Tao1@outlook.com</a>
             </p>
         </div>
     </section>
@@ -65,5 +69,25 @@
     <footer>
         <p>&copy; 2026 Pure Fruit Team. Leader: Pure Tao</p>
     </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const btn = document.querySelector('.theme-toggle i');
+            if (html.getAttribute('data-theme') === 'light') {
+                html.removeAttribute('data-theme');
+                btn.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light');
+                btn.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+    </script>
 </body>
 </html>

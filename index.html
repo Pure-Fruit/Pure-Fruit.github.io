@@ -9,15 +9,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header class="hero">
+    <!-- 主题切换按钮 -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="切换日间/夜间模式">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <header class="hero"></header>
         <img src="Icon.png" alt="Pure Fruit Logo" class="site-logo">
         <h1 class="site-title">Pure Fruit</h1>
         
         <nav class="nav-links">
-            <a href="index.html" class="active">首页</a>
-            <a href="projects.html">项目</a>
-            <a href="blog.html">博客</a>
-            <a href="about.html">关于</a>
+            <a href="index.html" class="active">Home</a>
+            <a href="projects.html">Project</a>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">About</a>
         </nav>
         
         <p class="tagline">不要熄灭你的灵感及想象
@@ -79,5 +84,26 @@
     <footer>
         <p>&copy; 2026 Pure Fruit Team. Leader: Pure Tao</p>
     </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const btn = document.querySelector('.theme-toggle i');
+            if (html.getAttribute('data-theme') === 'light') {
+                html.removeAttribute('data-theme');
+                btn.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light');
+                btn.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        // 读取保存的主题
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+    </script>
 </body>
 </html>
