@@ -159,6 +159,7 @@ body {
 
 .tag-cv { background: #2d4a3e; color: #7dd3a8; }
 .tag-dl { background: #3d3a5a; color: #a8a0d3; }
+.tag-nlp { background: #4a3a3a; color: #d3a87d; }
 .tag-note { background: #4a3a2d; color: #d3b87d; }
 .tag-tutorial { background: #2d3a4a; color: #7db8d3; }
 .tag-project { background: #4a2d3a; color: #d37da8; }
@@ -166,6 +167,7 @@ body {
 /* 日间模式标签颜色 */
 [data-theme="light"] .tag-cv { background: #eafaf2; color: #0d5a3a; }
 [data-theme="light"] .tag-dl { background: #f5f3fc; color: #4a3a7a; }
+[data-theme="light"] .tag-nlp { background: #fef5eb; color: #7a4a1a; }
 [data-theme="light"] .tag-note { background: #fef8eb; color: #7a5a1a; }
 [data-theme="light"] .tag-tutorial { background: #ebf6fc; color: #1a4a6a; }
 [data-theme="light"] .tag-project { background: #fcebf5; color: #7a1a4a; }
