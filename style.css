@@ -163,6 +163,13 @@ body {
 .tag-tutorial { background: #2d3a4a; color: #7db8d3; }
 .tag-project { background: #4a2d3a; color: #d37da8; }
 
+/* 日间模式标签颜色 */
+[data-theme="light"] .tag-cv { background: #d4f0e3; color: #1a6b4a; }
+[data-theme="light"] .tag-dl { background: #e8e6f5; color: #5a4a8a; }
+[data-theme="light"] .tag-note { background: #f5ead4; color: #8a6a2a; }
+[data-theme="light"] .tag-tutorial { background: #d4e8f5; color: #2a5a7a; }
+[data-theme="light"] .tag-project { background: #f5d4e8; color: #8a2a5a; }
+
 /* 文章卡片 */
 .post-card {
     background: var(--bg-card);
