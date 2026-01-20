@@ -59,6 +59,31 @@ body {
     transform: scale(1.1);
 }
 
+/* 语言切换按钮 */
+.lang-toggle {
+    position: fixed;
+    top: 20px;
+    right: 75px;
+    background: var(--bg-card);
+    border: 1px solid var(--divider);
+    color: var(--accent);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.lang-toggle:hover {
+    transform: scale(1.1);
+}
+
 /* 头部 */
 .hero {
     text-align: center;
@@ -163,6 +188,7 @@ body {
 .tag-note { background: #4a3a2d; color: #d3b87d; }
 .tag-tutorial { background: #2d3a4a; color: #7db8d3; }
 .tag-project { background: #4a2d3a; color: #d37da8; }
+.tag-thought { background: #3a3a4a; color: #b8a8d3; }
 
 /* 日间模式标签颜色 */
 [data-theme="light"] .tag-cv { background: #eafaf2; color: #0d5a3a; }
@@ -171,6 +197,7 @@ body {
 [data-theme="light"] .tag-note { background: #fef8eb; color: #7a5a1a; }
 [data-theme="light"] .tag-tutorial { background: #ebf6fc; color: #1a4a6a; }
 [data-theme="light"] .tag-project { background: #fcebf5; color: #7a1a4a; }
+[data-theme="light"] .tag-thought { background: #f0ebfc; color: #5a3a7a; }
 
 /* 文章卡片 */
 .post-card {

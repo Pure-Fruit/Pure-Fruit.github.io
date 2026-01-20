@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>当一个人不知道自己要往哪里走 - Pure Fruit</title>
+    <link rel="icon" href="../Icon.png" type="image/png">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()" title="切换日间/夜间模式">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- 语言切换按钮 -->
+    <button class="lang-toggle" onclick="toggleLanguage()" title="切换中英文">
+        <span id="langText">EN</span>
+    </button>
+
+    <div class="article-container">
+        <a href="../blog.html" class="back-link">← 返回博客</a>
+        
+        <article>
+            <header class="article-header">
+                <span class="post-tag tag-thought">随想</span>
+                <h1 id="title-zh">当一个人不知道自己要往哪里走</h1>
+                <h1 id="title-en" style="display: none;">When One Doesn't Know Where to Go</h1>
+                <div class="post-meta">2026-01-18 • Pure Tao</div>
+            </header>
+            
+            <div class="article-content" id="content-zh">
+                <p>我常常觉得，许多人之所以迷茫，并不是因为缺乏目标，而是从未找到真正属于自己的方向。</p>
+                
+                <p>在成长的过程中，我们接受了太多来自外界的指令：要努力、要成功、要与别人保持同样的节奏。目标像是被放入我们手中的现成模板，随手拿起就用，似乎谁都差不多。久而久之，许多人以为那就是自己的道路。于是生活成了跟随。</p>
+                
+                <p>跟随大多数人的步调，跟随大众的期待，在一阵又一阵的流行取向里被带着走。人忙得精疲力尽，却很难说清自己真正想要什么。外在的喧嚣越强，内心就越安静；安静到连自己的声音都听不见，只剩机械的重复。</p>
+                
+                <p>如果要摆脱这种麻木的状态，大概只能从"夺回时间"开始。</p>
+                
+                <p>把时间从无意义的社交和廉价的刺激里抽出来，再小心地分配回给生活本身。给身体充足的睡眠，让思维不至于被疲惫压垮；给书籍一些空白，让别人的思想补充自己的空洞；给运动与自然留点余地，让风、树、阳光、水面重新唤醒沉睡的感官。这些东西虽然微小，却能让人重新认识自己。</p>
+                
+                <p>在清晨的空气里，在翻页的间隙里，在肌肉拉伸的疼痛里，你会慢慢发现自己真正被什么吸引，对哪些事情有耐心，愿意投入时间。没有任何宏大的宣言，只是日常生活在悄悄重塑你。当我们开始成为时间的主人，也就重新成为自己的主人。</p>
+                
+                <p>焦虑和不安不会立刻消失，但它们会在清晰的节奏与稳定的生活里逐渐减弱。取而代之的，是一种不起眼却坚实的力量——一种来自普通生活的平静感。方向往往不是"想出来"的，而是在这样的生活里自然显现。</p>
+                
+                <p>只要你愿意给自己一点空间，它会以非常安静的方式出现。</p>
+            </div>
+            
+            <div class="article-content" id="content-en" style="display: none;">
+                <p>I often feel that many people are lost not because they lack goals, but because they have never found a direction that truly belongs to them.</p>
+                
+                <p>In the process of growing up, we have received too many instructions from the outside world: work hard, succeed, keep pace with others. Goals are like ready-made templates placed in our hands, picked up and used casually, as if everyone is the same. Over time, many people think that is their path. So life becomes following.</p>
+                
+                <p>Following the pace of most people, following public expectations, being carried away in wave after wave of popular trends. People are exhausted, but it's hard to say what they really want. The stronger the external noise, the quieter the heart becomes; so quiet that one can't even hear their own voice, leaving only mechanical repetition.</p>
+                
+                <p>If we want to break free from this numb state, we probably can only start by "reclaiming time."</p>
+                
+                <p>Extract time from meaningless socializing and cheap stimulation, and carefully redistribute it back to life itself. Give the body sufficient sleep so that thinking is not crushed by fatigue; give books some space so that others' thoughts can fill one's own emptiness; leave room for exercise and nature, let wind, trees, sunlight, and water reawaken dormant senses. These things, though small, can help one rediscover themselves.</p>
+                
+                <p>In the morning air, in the gaps between turning pages, in the pain of muscle stretching, you will slowly discover what truly attracts you, what you have patience for, and are willing to invest time in. There are no grand declarations, just daily life quietly reshaping you. When we become masters of time, we also become masters of ourselves again.</p>
+                
+                <p>Anxiety and unease won't disappear immediately, but they will gradually weaken in clear rhythms and stable life. In their place is an inconspicuous yet solid strength—a sense of calm from ordinary life. Direction is often not "thought out," but naturally emerges in such a life.</p>
+                
+                <p>As long as you are willing to give yourself a little space, it will appear in a very quiet way.</p>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+        <p>
+            本文阅读量 <span id="busuanzi_value_page_pv"></span> 次
+        </p>
+        <p>&copy; 2026 Pure Fruit Team. Leader: Pure Tao</p>
+    </footer>
+
+    <!-- 不蒜子统计 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const btn = document.querySelector('.theme-toggle i');
+            if (html.getAttribute('data-theme') === 'light') {
+                html.removeAttribute('data-theme');
+                btn.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light');
+                btn.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+        
+        // 语言切换功能
+        let currentLang = 'zh';
+        function toggleLanguage() {
+            const titleZh = document.getElementById('title-zh');
+            const titleEn = document.getElementById('title-en');
+            const contentZh = document.getElementById('content-zh');
+            const contentEn = document.getElementById('content-en');
+            const langText = document.getElementById('langText');
+            
+            if (currentLang === 'zh') {
+                titleZh.style.display = 'none';
+                titleEn.style.display = 'block';
+                contentZh.style.display = 'none';
+                contentEn.style.display = 'block';
+                langText.textContent = '中';
+                currentLang = 'en';
+            } else {
+                titleZh.style.display = 'block';
+                titleEn.style.display = 'none';
+                contentZh.style.display = 'block';
+                contentEn.style.display = 'none';
+                langText.textContent = 'EN';
+                currentLang = 'zh';
+            }
+        }
+    </script>
+</body>
+</html>
