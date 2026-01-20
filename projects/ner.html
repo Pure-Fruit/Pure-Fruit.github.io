@@ -18,6 +18,9 @@
         <button class="theme-toggle" onclick="toggleTheme()" title="切换日间/夜间模式">
             <i class="fas fa-moon"></i>
         </button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="切换中英文">
+            <span id="langText">EN</span>
+        </button>
     </div>
 
     <div class="article-container">
@@ -27,15 +30,16 @@
             <header class="article-header">
                 <span class="post-tag tag-nlp">自然语言处理</span>
                 <span class="post-tag tag-dl">深度学习</span>
-                <h1>BERT-NER 中文命名实体识别</h1>
+                <h1 id="title-zh">BERT-NER 中文命名实体识别</h1>
+                <h1 id="title-en" style="display: none;">BERT-NER Chinese Named Entity Recognition</h1>
                 <div class="post-meta">
                     <i class="fab fa-github"></i> 
-                    <a href="https://github.com/PeachPure/NER" target="_blank">查看源码</a>
+                    <a href="https://github.com/PeachPure/NER" target="_blank"><span id="github-zh">查看源码</span><span id="github-en" style="display: none;">View Source</span></a>
                     • PyTorch
                 </div>
             </header>
             
-            <div class="article-content">
+            <div class="article-content" id="content-zh">
                 <h2>项目简介</h2>
                 <p>本项目使用 BERT 在 CLUENER 数据集上实现中文命名实体识别（NER）。NER 是一种序列标注任务，用于识别文本中的命名实体（人名、机构名、地名等）。</p>
                 
@@ -115,6 +119,87 @@ for entity in entities:
                     <li><a href="https://huggingface.co/bert-base-chinese" target="_blank" style="color: var(--accent);">bert-base-chinese</a></li>
                 </ul>
             </div>
+            
+            <div class="article-content" id="content-en" style="display: none;">
+                <h2>Project Overview</h2>
+                <p>This project implements Chinese Named Entity Recognition (NER) using BERT on the CLUENER dataset. NER is a sequence labeling task used to identify named entities (person names, organization names, locations, etc.) in text.</p>
+                
+                <h2>Key Features</h2>
+                <ul>
+                    <li>BERT-based Chinese NER model</li>
+                    <li>Supports 10 entity types from CLUENER dataset</li>
+                    <li>BIO tagging scheme implementation</li>
+                    <li>Simple and easy-to-use prediction API</li>
+                    <li>Comprehensive evaluation using seqeval</li>
+                </ul>
+                
+                <h2>Supported Entity Types</h2>
+                <ul>
+                    <li><strong>Person Name (name)</strong>: Zhang San, Li Bai</li>
+                    <li><strong>Address (address)</strong>: Haidian District, Beijing</li>
+                    <li><strong>Company (company)</strong>: Alibaba, Tencent</li>
+                    <li><strong>Government (government)</strong>: State Council, Ministry of Education</li>
+                    <li><strong>Organization (organization)</strong>: Tsinghua University, United Nations</li>
+                    <li><strong>Book (book)</strong>: Dream of the Red Chamber, Romance of the Three Kingdoms</li>
+                    <li><strong>Movie (movie)</strong>: The Wandering Earth</li>
+                    <li><strong>Game (game)</strong>: Honor of Kings</li>
+                    <li><strong>Position (position)</strong>: General Manager, Professor</li>
+                    <li><strong>Scene (scene)</strong>: Forbidden City, Great Wall</li>
+                </ul>
+                
+                <h2>Project Structure</h2>
+                <pre><code>BERT-NER/
+├── bert_ner.py          # Training script
+├── predict.py           # Prediction script
+├── download_data.py     # Data and model download script
+├── requirements.txt     # Dependencies
+├── data/                # CLUENER dataset (auto-download)
+└── bert-base-chinese/   # BERT model (auto-download)</code></pre>
+                
+                <h2>Quick Start</h2>
+                <p>Install dependencies:</p>
+                <pre><code>pip install -r requirements.txt</code></pre>
+                
+                <p>Download data and model:</p>
+                <pre><code>python download_data.py</code></pre>
+                
+                <p>Train model:</p>
+                <pre><code>python bert_ner.py</code></pre>
+                
+                <p>Predict:</p>
+                <pre><code>python predict.py</code></pre>
+                
+                <h2>Usage Example</h2>
+                <pre><code>from predict import NERPredictor
+
+# Initialize predictor
+predictor = NERPredictor('./bert_ner_model')
+
+# Predict entities
+text = "Zhang San studies at Peking University"
+entities = predictor.predict(text)
+
+for entity in entities:
+    print(f"{entity['text']} - {entity['type']}")
+# Output:
+# Zhang San - name
+# Peking University - organization</code></pre>
+                
+                <h2>BIO Tagging Scheme</h2>
+                <pre><code>Text: Zhang San at Peking University studies
+Tags: B-name I-name O B-organization I-organization I-organization O</code></pre>
+                <ul>
+                    <li><code>B-XXX</code>: Beginning of entity</li>
+                    <li><code>I-XXX</code>: Inside entity</li>
+                    <li><code>O</code>: Outside entity</li>
+                </ul>
+                
+                <h2>References</h2>
+                <ul>
+                    <li><a href="https://github.com/CLUEbenchmark/CLUENER2020" target="_blank" style="color: var(--accent);">CLUE Benchmark - CLUENER2020</a></li>
+                    <li><a href="https://huggingface.co/bert-base-chinese" target="_blank" style="color: var(--accent);">bert-base-chinese</a></li>
+                </ul>
+            </div>
         </article>
     </div>
 
@@ -145,6 +230,38 @@ for entity in entities:
         if (localStorage.getItem('theme') === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
             document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+        
+        // 语言切换功能
+        let currentLang = 'zh';
+        function toggleLanguage() {
+            const titleZh = document.getElementById('title-zh');
+            const titleEn = document.getElementById('title-en');
+            const githubZh = document.getElementById('github-zh');
+            const githubEn = document.getElementById('github-en');
+            const contentZh = document.getElementById('content-zh');
+            const contentEn = document.getElementById('content-en');
+            const langText = document.getElementById('langText');
+            
+            if (currentLang === 'zh') {
+                titleZh.style.display = 'none';
+                titleEn.style.display = 'block';
+                githubZh.style.display = 'none';
+                githubEn.style.display = 'inline';
+                contentZh.style.display = 'none';
+                contentEn.style.display = 'block';
+                langText.textContent = '中';
+                currentLang = 'en';
+            } else {
+                titleZh.style.display = 'block';
+                titleEn.style.display = 'none';
+                githubZh.style.display = 'inline';
+                githubEn.style.display = 'none';
+                contentZh.style.display = 'block';
+                contentEn.style.display = 'none';
+                langText.textContent = 'EN';
+                currentLang = 'zh';
+            }
         }
     </script>
 </body>

@@ -18,6 +18,9 @@
         <button class="theme-toggle" onclick="toggleTheme()" title="切换日间/夜间模式">
             <i class="fas fa-moon"></i>
         </button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="切换中英文">
+            <span id="langText">EN</span>
+        </button>
     </div>
 
     <div class="article-container">
@@ -27,15 +30,16 @@
             <header class="article-header">
                 <span class="post-tag tag-cv">计算机视觉</span>
                 <span class="post-tag tag-dl">深度学习</span>
-                <h1>Swin Transformer 图像分类</h1>
+                <h1 id="title-zh">Swin Transformer 图像分类</h1>
+                <h1 id="title-en" style="display: none;">Swin Transformer Image Classification</h1>
                 <div class="post-meta">
                     <i class="fab fa-github"></i> 
-                    <a href="https://github.com/PeachPure/Swin-Transformer-in-Classifications" target="_blank">查看源码</a>
+                    <a href="https://github.com/PeachPure/Swin-Transformer-in-Classifications" target="_blank"><span id="github-zh">查看源码</span><span id="github-en" style="display: none;">View Source</span></a>
                     • PyTorch
                 </div>
             </header>
             
-            <div class="article-content">
+            <div class="article-content" id="content-zh">
                 <h2>项目简介</h2>
                 <p>本项目使用 PyTorch 实现了 Swin Transformer 图像分类任务。Swin Transformer 是 ICCV 2021 Best Paper，一种层次化的 Vision Transformer，通过移位窗口机制实现高效的自注意力计算。</p>
                 
@@ -76,6 +80,48 @@
                     <li><a href="https://github.com/microsoft/Swin-Transformer" target="_blank" style="color: var(--accent);">微软官方实现</a></li>
                 </ul>
             </div>
+            
+            <div class="article-content" id="content-en" style="display: none;">
+                <h2>Project Overview</h2>
+                <p>This project implements Swin Transformer for image classification using PyTorch. Swin Transformer is the ICCV 2021 Best Paper, a hierarchical Vision Transformer that achieves efficient self-attention computation through shifted window mechanism.</p>
+                
+                <h2>Key Features</h2>
+                <ul>
+                    <li>Complete Swin Transformer implementation (Tiny/Small/Base/Large variants)</li>
+                    <li>Support for ImageNet pretrained weights transfer learning</li>
+                    <li>Complete training, validation, and prediction pipeline</li>
+                    <li>Confusion matrix visualization</li>
+                    <li>TensorBoard logging</li>
+                    <li>Error sample analysis tools</li>
+                </ul>
+                
+                <h2>Project Structure</h2>
+                <pre><code>swin_transformer/
+├── model.py                    # Model architecture
+├── train.py                    # Training script
+├── predict.py                  # Single image prediction
+├── my_dataset.py               # Custom dataset class
+├── utils.py                    # Utility functions
+├── create_confusion_matrix.py  # Confusion matrix visualization
+├── select_incorrect_samples.py # Error sample analysis
+└── weights/                    # Model weights</code></pre>
+                
+                <h2>Quick Start</h2>
+                <p>Install dependencies:</p>
+                <pre><code>pip install torch torchvision tqdm matplotlib prettytable tensorboard pillow</code></pre>
+                
+                <p>Train model:</p>
+                <pre><code>python train.py --data-path ./flower_photos --weights ./swin_tiny_patch4_window7_224.pth --epochs 10</code></pre>
+                
+                <h2>Training Results</h2>
+                <p>Using Swin-Tiny on flower dataset (5 classes), validation accuracy reaches <strong>95%+</strong> after 10 epochs.</p>
+                
+                <h2>References</h2>
+                <ul>
+                    <li><a href="https://arxiv.org/abs/2103.14030" target="_blank" style="color: var(--accent);">Paper: Swin Transformer: Hierarchical Vision Transformer using Shifted Windows</a></li>
+                    <li><a href="https://github.com/microsoft/Swin-Transformer" target="_blank" style="color: var(--accent);">Microsoft Official Implementation</a></li>
+                </ul>
+            </div>
         </article>
     </div>
 
@@ -106,6 +152,38 @@
         if (localStorage.getItem('theme') === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
             document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+        
+        // 语言切换功能
+        let currentLang = 'zh';
+        function toggleLanguage() {
+            const titleZh = document.getElementById('title-zh');
+            const titleEn = document.getElementById('title-en');
+            const githubZh = document.getElementById('github-zh');
+            const githubEn = document.getElementById('github-en');
+            const contentZh = document.getElementById('content-zh');
+            const contentEn = document.getElementById('content-en');
+            const langText = document.getElementById('langText');
+            
+            if (currentLang === 'zh') {
+                titleZh.style.display = 'none';
+                titleEn.style.display = 'block';
+                githubZh.style.display = 'none';
+                githubEn.style.display = 'inline';
+                contentZh.style.display = 'none';
+                contentEn.style.display = 'block';
+                langText.textContent = '中';
+                currentLang = 'en';
+            } else {
+                titleZh.style.display = 'block';
+                titleEn.style.display = 'none';
+                githubZh.style.display = 'inline';
+                githubEn.style.display = 'none';
+                contentZh.style.display = 'block';
+                contentEn.style.display = 'none';
+                langText.textContent = 'EN';
+                currentLang = 'zh';
+            }
         }
     </script>
 </body>
