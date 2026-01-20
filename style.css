@@ -460,10 +460,235 @@ footer {
     font-size: 0.85rem;
 }
 
-/* 响应式 */
+/* 响应式设计 */
+
+/* 平板端 (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .section {
+        max-width: 90%;
+    }
+    
+    .article-container {
+        max-width: 90%;
+    }
+    
+    .toggle-buttons {
+        top: 15px;
+        right: 15px;
+    }
+}
+
+/* 平板竖屏和大屏手机 (481px - 768px) */
 @media (max-width: 768px) {
-    .site-title { font-size: 2rem; }
-    .nav-links a { font-size: 0.95rem; margin: 0 10px; }
-    .article-content { padding: 22px; }
-    .filter-bar { gap: 8px; }
+    .site-title { 
+        font-size: 2rem; 
+    }
+    
+    .nav-links a { 
+        font-size: 0.95rem; 
+        margin: 0 10px; 
+    }
+    
+    .article-content { 
+        padding: 22px; 
+    }
+    
+    .filter-bar { 
+        gap: 8px; 
+    }
+    
+    .section {
+        padding: 35px 15px;
+    }
+    
+    .article-container {
+        padding: 35px 15px;
+    }
+    
+    .post-card {
+        padding: 20px;
+    }
+    
+    .toggle-buttons {
+        top: 15px;
+        right: 15px;
+        gap: 8px;
+    }
+    
+    .home-toggle,
+    .theme-toggle,
+    .lang-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .theme-toggle {
+        font-size: 1.1rem;
+    }
+}
+
+/* 手机端 (最大 480px) */
+@media (max-width: 480px) {
+    .hero {
+        padding: 40px 15px 30px;
+    }
+    
+    .site-logo {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .site-title { 
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+    
+    .nav-links {
+        margin-bottom: 25px;
+    }
+    
+    .nav-links a { 
+        font-size: 0.9rem; 
+        margin: 0 8px;
+        display: inline-block;
+    }
+    
+    .tagline {
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
+    
+    .social-icons a {
+        font-size: 1.2rem;
+    }
+    
+    .section {
+        padding: 30px 12px;
+    }
+    
+    .section h2 {
+        font-size: 1.4rem;
+        margin-bottom: 25px;
+    }
+    
+    .article-container {
+        padding: 30px 12px;
+    }
+    
+    .article-header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .article-content {
+        padding: 20px 15px;
+        font-size: 0.95rem;
+    }
+    
+    .article-content h2 {
+        font-size: 1.2rem;
+        margin: 20px 0 10px;
+    }
+    
+    .article-content pre {
+        padding: 12px;
+        font-size: 0.85rem;
+        overflow-x: auto;
+    }
+    
+    .post-card {
+        padding: 18px;
+        margin-bottom: 15px;
+    }
+    
+    .post-card h3 a {
+        font-size: 1.1rem;
+    }
+    
+    .post-card p {
+        font-size: 0.9rem;
+    }
+    
+    .post-tag {
+        font-size: 0.7rem;
+        padding: 2px 8px;
+    }
+    
+    .filter-bar {
+        gap: 6px;
+    }
+    
+    .filter-btn {
+        font-size: 0.8rem;
+        padding: 5px 12px;
+    }
+    
+    .toggle-buttons {
+        top: 12px;
+        right: 12px;
+        gap: 6px;
+    }
+    
+    .home-toggle,
+    .theme-toggle,
+    .lang-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+    
+    .theme-toggle {
+        font-size: 1rem;
+    }
+    
+    .lang-toggle {
+        font-size: 0.75rem;
+    }
+    
+    footer {
+        padding: 25px 15px;
+        font-size: 0.8rem;
+    }
+    
+    .about-content {
+        padding: 25px 20px;
+    }
+    
+    .team-member {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+}
+
+/* 超小屏幕 (最大 360px) */
+@media (max-width: 360px) {
+    .site-title { 
+        font-size: 1.6rem;
+    }
+    
+    .nav-links a { 
+        font-size: 0.85rem; 
+        margin: 0 6px;
+    }
+    
+    .article-header h1 {
+        font-size: 1.4rem;
+    }
+    
+    .post-card h3 a {
+        font-size: 1rem;
+    }
+    
+    .toggle-buttons {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .home-toggle,
+    .theme-toggle,
+    .lang-toggle {
+        width: 34px;
+        height: 34px;
+    }
 }

@@ -18,6 +18,9 @@
         <button class="theme-toggle" onclick="toggleTheme()" title="切换日间/夜间模式">
             <i class="fas fa-moon"></i>
         </button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="切换中英文">
+            <span id="langText">EN</span>
+        </button>
     </div>
 
     <header class="hero">
@@ -31,9 +34,12 @@
             <a href="about.html">About</a>
         </nav>
         
-        <p class="tagline">不要熄灭你的灵感及想象
+        <p class="tagline" id="tagline-zh">不要熄灭你的灵感及想象
             不要消灭你对生活的激情
             不要成为你楷模的奴隶</p>
+        <p class="tagline" id="tagline-en" style="display: none;">Don't extinguish your inspiration and imagination
+            Don't kill your passion for life
+            Don't become a slave to your role models</p>
         
         <div class="social-icons">
             <a href="https://github.com/PeachPure" target="_blank" title="GitHub">
@@ -49,30 +55,33 @@
 
     <!-- 精选项目 -->
     <section class="section">
-        <h2>精选项目</h2>
+        <h2 id="featured-zh">精选项目</h2>
+        <h2 id="featured-en" style="display: none;">Featured Projects</h2>
         
         <article class="post-card project-card">
-            <span class="post-tag tag-cv">计算机视觉</span>
-            <span class="post-tag tag-dl">深度学习</span>
-            <h3><a href="projects/swin-transformer.html">Swin Transformer 图像分类</a></h3>
+            <span class="post-tag tag-cv" data-zh="计算机视觉" data-en="Computer Vision">计算机视觉</span>
+            <span class="post-tag tag-dl" data-zh="深度学习" data-en="Deep Learning">深度学习</span>
+            <h3><a href="projects/swin-transformer.html"><span class="text-zh">Swin Transformer 图像分类</span><span class="text-en" style="display: none;">Swin Transformer Image Classification</span></a></h3>
             <div class="post-meta">
                 <i class="fab fa-github"></i> <a href="https://github.com/PeachPure/Swin-Transformer-in-Classifications" target="_blank">GitHub</a>
                 • PyTorch
             </div>
-            <p>基于 Swin Transformer（ICCV 2021 Best Paper）的图像分类项目，支持迁移学习、混淆矩阵可视化、TensorBoard 日志等功能。在花卉数据集上达到 95%+ 准确率。</p>
-            <a href="projects/swin-transformer.html" class="read-more">查看详情 →</a>
+            <p class="text-zh">基于 Swin Transformer（ICCV 2021 Best Paper）的图像分类项目，支持迁移学习、混淆矩阵可视化、TensorBoard 日志等功能。在花卉数据集上达到 95%+ 准确率。</p>
+            <p class="text-en" style="display: none;">Image classification project based on Swin Transformer (ICCV 2021 Best Paper), supporting transfer learning, confusion matrix visualization, TensorBoard logging, etc. Achieves 95%+ accuracy on flower dataset.</p>
+            <a href="projects/swin-transformer.html" class="read-more"><span class="text-zh">查看详情 →</span><span class="text-en" style="display: none;">View Details →</span></a>
         </article>
         
         <article class="post-card project-card">
-            <span class="post-tag tag-nlp">自然语言处理</span>
-            <span class="post-tag tag-dl">深度学习</span>
-            <h3><a href="projects/ner.html">BERT-NER 中文命名实体识别</a></h3>
+            <span class="post-tag tag-nlp" data-zh="自然语言处理" data-en="Natural Language Processing">自然语言处理</span>
+            <span class="post-tag tag-dl" data-zh="深度学习" data-en="Deep Learning">深度学习</span>
+            <h3><a href="projects/ner.html"><span class="text-zh">BERT-NER 中文命名实体识别</span><span class="text-en" style="display: none;">BERT-NER Chinese Named Entity Recognition</span></a></h3>
             <div class="post-meta">
                 <i class="fab fa-github"></i> <a href="https://github.com/PeachPure/NER" target="_blank">GitHub</a>
                 • PyTorch
             </div>
-            <p>基于 BERT 的中文命名实体识别项目，使用 CLUENER 数据集训练，支持 10 种实体类型识别。</p>
-            <a href="projects/ner.html" class="read-more">查看详情 →</a>
+            <p class="text-zh">基于 BERT 的中文命名实体识别项目，使用 CLUENER 数据集训练，支持 10 种实体类型识别。</p>
+            <p class="text-en" style="display: none;">Chinese Named Entity Recognition project based on BERT, trained on CLUENER dataset, supporting 10 entity types recognition.</p>
+            <a href="projects/ner.html" class="read-more"><span class="text-zh">查看详情 →</span><span class="text-en" style="display: none;">View Details →</span></a>
         </article>
     </section>
 
@@ -80,38 +89,42 @@
 
     <!-- 最新文章 -->
     <section class="section">
-        <h2>最新文章</h2>
+        <h2 id="latest-zh">最新文章</h2>
+        <h2 id="latest-en" style="display: none;">Latest Articles</h2>
         
         <div id="articleList">
             <article class="post-card" data-date="2026-01-20">
-                <span class="post-tag tag-thought">随想</span>
-                <h3><a href="posts/when-lost.html">当一个人不知道自己要往哪里走</a></h3>
+                <span class="post-tag tag-thought" data-zh="随想" data-en="Thoughts">随想</span>
+                <h3><a href="posts/when-lost.html"><span class="text-zh">当一个人不知道自己要往哪里走</span><span class="text-en" style="display: none;">When One Doesn't Know Where to Go</span></a></h3>
                 <div class="post-meta">2026-01-20 • Pure Tao</div>
-                <p>许多人之所以迷茫，并不是因为缺乏目标，而是从未找到真正属于自己的方向。</p>
-                <a href="posts/when-lost.html" class="read-more">阅读全文 →</a>
+                <p class="text-zh">许多人之所以迷茫，并不是因为缺乏目标，而是从未找到真正属于自己的方向。</p>
+                <p class="text-en" style="display: none;">Many people are lost not because they lack goals, but because they have never found a direction that truly belongs to them.</p>
+                <a href="posts/when-lost.html" class="read-more"><span class="text-zh">阅读全文 →</span><span class="text-en" style="display: none;">Read More →</span></a>
             </article>
             
             <article class="post-card" data-date="2026-01-17">
-                <span class="post-tag tag-note">学习笔记</span>
-                <h3><a href="posts/adjugate-matrix.html">伴随矩阵的性质与证明</a></h3>
+                <span class="post-tag tag-note" data-zh="学习笔记" data-en="Study Notes">学习笔记</span>
+                <h3><a href="posts/adjugate-matrix.html"><span class="text-zh">伴随矩阵的性质与证明</span><span class="text-en" style="display: none;">Properties and Proofs of Adjugate Matrix</span></a></h3>
                 <div class="post-meta">2026-01-17 • Pure Tao</div>
-                <p>系统总结伴随矩阵的 10 个核心性质及其完整证明，包括核心恒等式、行列式性质、秩的结论等。</p>
-                <a href="posts/adjugate-matrix.html" class="read-more">阅读全文 →</a>
+                <p class="text-zh">系统总结伴随矩阵的 10 个核心性质及其完整证明，包括核心恒等式、行列式性质、秩的结论等。</p>
+                <p class="text-en" style="display: none;">Systematic summary of 10 core properties of adjugate matrix with complete proofs, including core identities, determinant properties, rank conclusions, etc.</p>
+                <a href="posts/adjugate-matrix.html" class="read-more"><span class="text-zh">阅读全文 →</span><span class="text-en" style="display: none;">Read More →</span></a>
             </article>
             
             <article class="post-card" data-date="2026-01-14">
-                <span class="post-tag tag-nlp">自然语言处理</span>
-                <h3><a href="projects/ner.html">BERT-NER 中文命名实体识别</a></h3>
+                <span class="post-tag tag-nlp" data-zh="自然语言处理" data-en="Natural Language Processing">自然语言处理</span>
+                <h3><a href="projects/ner.html"><span class="text-zh">BERT-NER 中文命名实体识别</span><span class="text-en" style="display: none;">BERT-NER Chinese Named Entity Recognition</span></a></h3>
                 <div class="post-meta">2026-01-14 • Pure Tao</div>
-                <p>基于 BERT 的中文命名实体识别项目，使用 CLUENER 数据集训练，支持 10 种实体类型识别。</p>
-                <a href="projects/ner.html" class="read-more">阅读全文 →</a>
+                <p class="text-zh">基于 BERT 的中文命名实体识别项目，使用 CLUENER 数据集训练，支持 10 种实体类型识别。</p>
+                <p class="text-en" style="display: none;">Chinese Named Entity Recognition project based on BERT, trained on CLUENER dataset, supporting 10 entity types recognition.</p>
+                <a href="projects/ner.html" class="read-more"><span class="text-zh">阅读全文 →</span><span class="text-en" style="display: none;">Read More →</span></a>
             </article>
         </div>
     </section>
 
     <footer>
         <p>
-            <span id="busuanzi_container_site_pv">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+            <span id="busuanzi_container_site_pv"><span class="text-zh">本站总访问量</span><span class="text-en" style="display: none;">Total Visits</span> <span id="busuanzi_value_site_pv"></span> <span class="text-zh">次</span><span class="text-en" style="display: none;">times</span></span>
         </p>
         <p>&copy; 2026 Pure Fruit Team. Leader: Pure Tao</p>
     </footer>
@@ -137,6 +150,57 @@
         if (localStorage.getItem('theme') === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
             document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+        
+        // 语言切换功能
+        let currentLang = 'zh';
+        function toggleLanguage() {
+            const langText = document.getElementById('langText');
+            
+            if (currentLang === 'zh') {
+                // 切换到英文
+                document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.text-en').forEach(el => el.style.display = 'inline');
+                document.querySelectorAll('h2#featured-zh, h2#latest-zh').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('h2#featured-en, h2#latest-en').forEach(el => el.style.display = 'block');
+                document.getElementById('tagline-zh').style.display = 'none';
+                document.getElementById('tagline-en').style.display = 'block';
+                
+                // 切换标签文本
+                document.querySelectorAll('.post-tag').forEach(tag => {
+                    if (tag.dataset.en) {
+                        tag.textContent = tag.dataset.en;
+                    }
+                });
+                
+                langText.textContent = '中';
+                currentLang = 'en';
+                localStorage.setItem('language', 'en');
+            } else {
+                // 切换到中文
+                document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'inline');
+                document.querySelectorAll('.text-en').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('h2#featured-zh, h2#latest-zh').forEach(el => el.style.display = 'block');
+                document.querySelectorAll('h2#featured-en, h2#latest-en').forEach(el => el.style.display = 'none');
+                document.getElementById('tagline-zh').style.display = 'block';
+                document.getElementById('tagline-en').style.display = 'none';
+                
+                // 切换标签文本
+                document.querySelectorAll('.post-tag').forEach(tag => {
+                    if (tag.dataset.zh) {
+                        tag.textContent = tag.dataset.zh;
+                    }
+                });
+                
+                langText.textContent = 'EN';
+                currentLang = 'zh';
+                localStorage.setItem('language', 'zh');
+            }
+        }
+        
+        // 读取保存的语言设置
+        if (localStorage.getItem('language') === 'en') {
+            toggleLanguage();
         }
     </script>
 </body>
