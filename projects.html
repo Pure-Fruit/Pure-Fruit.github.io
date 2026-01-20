@@ -117,6 +117,7 @@
             
             if (currentLang === 'zh') {
                 // 切换到英文
+                document.title = 'Projects - Pure Fruit';
                 document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'none');
                 document.querySelectorAll('.text-en').forEach(el => el.style.display = 'inline');
                 document.getElementById('title-zh').style.display = 'none';
@@ -134,6 +135,7 @@
                 localStorage.setItem('language', 'en');
             } else {
                 // 切换到中文
+                document.title = '项目 - Pure Fruit';
                 document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'inline');
                 document.querySelectorAll('.text-en').forEach(el => el.style.display = 'none');
                 document.getElementById('title-zh').style.display = 'block';

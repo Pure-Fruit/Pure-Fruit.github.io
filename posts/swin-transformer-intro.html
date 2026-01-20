@@ -139,20 +139,33 @@
             const langText = document.getElementById('langText');
             
             if (currentLang === 'zh') {
+                document.title = 'Swin Transformer Paper Review - Pure Fruit';
                 titleZh.style.display = 'none';
                 titleEn.style.display = 'block';
                 contentZh.style.display = 'none';
                 contentEn.style.display = 'block';
+                document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.text-en').forEach(el => el.style.display = 'inline');
                 langText.textContent = '中';
                 currentLang = 'en';
+                localStorage.setItem('language', 'en');
             } else {
+                document.title = 'Swin Transformer 论文解读 - Pure Fruit';
                 titleZh.style.display = 'block';
                 titleEn.style.display = 'none';
                 contentZh.style.display = 'block';
                 contentEn.style.display = 'none';
+                document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'inline');
+                document.querySelectorAll('.text-en').forEach(el => el.style.display = 'none');
                 langText.textContent = 'EN';
                 currentLang = 'zh';
+                localStorage.setItem('language', 'zh');
             }
+        }
+        
+        // 读取保存的语言设置
+        if (localStorage.getItem('language') === 'en') {
+            toggleLanguage();
         }
     </script>
 </body>

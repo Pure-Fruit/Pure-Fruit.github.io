@@ -163,6 +163,7 @@
             
             if (currentLang === 'zh') {
                 // 切换到英文
+                document.title = 'Pure Fruit - Peach Paradise';
                 document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'none');
                 document.querySelectorAll('.text-en').forEach(el => el.style.display = 'inline');
                 document.querySelectorAll('h2#featured-zh, h2#latest-zh').forEach(el => el.style.display = 'none');
@@ -182,6 +183,7 @@
                 localStorage.setItem('language', 'en');
             } else {
                 // 切换到中文
+                document.title = 'Pure Fruit - 小桃源';
                 document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'inline');
                 document.querySelectorAll('.text-en').forEach(el => el.style.display = 'none');
                 document.querySelectorAll('h2#featured-zh, h2#latest-zh').forEach(el => el.style.display = 'block');

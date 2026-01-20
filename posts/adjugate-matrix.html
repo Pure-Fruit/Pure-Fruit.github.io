@@ -204,20 +204,33 @@
             const langText = document.getElementById('langText');
             
             if (currentLang === 'zh') {
+                document.title = 'Properties and Proofs of Adjugate Matrix - Pure Fruit';
                 titleZh.style.display = 'none';
                 titleEn.style.display = 'block';
                 noteZh.style.display = 'none';
                 noteEn.style.display = 'block';
+                document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.text-en').forEach(el => el.style.display = 'inline');
                 langText.textContent = '中';
                 currentLang = 'en';
+                localStorage.setItem('language', 'en');
             } else {
+                document.title = '伴随矩阵的性质与证明 - Pure Fruit';
                 titleZh.style.display = 'block';
                 titleEn.style.display = 'none';
                 noteZh.style.display = 'block';
                 noteEn.style.display = 'none';
+                document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'inline');
+                document.querySelectorAll('.text-en').forEach(el => el.style.display = 'none');
                 langText.textContent = 'EN';
                 currentLang = 'zh';
+                localStorage.setItem('language', 'zh');
             }
+        }
+        
+        // 读取保存的语言设置
+        if (localStorage.getItem('language') === 'en') {
+            toggleLanguage();
         }
     </script>
 </body>

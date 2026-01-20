@@ -153,6 +153,7 @@
             
             if (currentLang === 'zh') {
                 // 切换到英文
+                document.title = 'About - Pure Fruit';
                 document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'none');
                 document.querySelectorAll('.text-en').forEach(el => el.style.display = 'inline');
                 titleZh.style.display = 'none';
@@ -165,6 +166,7 @@
                 localStorage.setItem('language', 'en');
             } else {
                 // 切换到中文
+                document.title = '关于 - Pure Fruit';
                 document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'inline');
                 document.querySelectorAll('.text-en').forEach(el => el.style.display = 'none');
                 titleZh.style.display = 'block';
