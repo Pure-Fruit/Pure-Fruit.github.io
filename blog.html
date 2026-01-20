@@ -18,6 +18,9 @@
         <button class="theme-toggle" onclick="toggleTheme()" title="切换日间/夜间模式">
             <i class="fas fa-moon"></i>
         </button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="切换中英文">
+            <span id="langText">EN</span>
+        </button>
     </div>
 
     <header class="hero">
@@ -34,55 +37,60 @@
     <div class="divider"></div>
 
     <section class="section">
-        <h2>文章列表</h2>
+        <h2 id="title-zh">文章列表</h2>
+        <h2 id="title-en" style="display: none;">Article List</h2>
         
         <!-- 筛选器 -->
         <div class="filter-bar">
-            <button class="filter-btn active" data-filter="all">全部</button>
-            <button class="filter-btn" data-filter="note">学习笔记</button>
-            <button class="filter-btn" data-filter="tutorial">教程</button>
-            <button class="filter-btn" data-filter="thought">随想</button>
+            <button class="filter-btn active" data-filter="all"><span class="text-zh">全部</span><span class="text-en" style="display: none;">All</span></button>
+            <button class="filter-btn" data-filter="note"><span class="text-zh">学习笔记</span><span class="text-en" style="display: none;">Study Notes</span></button>
+            <button class="filter-btn" data-filter="tutorial"><span class="text-zh">教程</span><span class="text-en" style="display: none;">Tutorial</span></button>
+            <button class="filter-btn" data-filter="thought"><span class="text-zh">随想</span><span class="text-en" style="display: none;">Thoughts</span></button>
         </div>
         
         <!-- 2026年1月 -->
-        <h3 style="color: var(--text-meta); font-size: 0.9rem; margin: 25px 0 15px; font-weight: normal;">2026年1月</h3>
+        <h3 style="color: var(--text-meta); font-size: 0.9rem; margin: 25px 0 15px; font-weight: normal;"><span class="text-zh">2026年1月</span><span class="text-en" style="display: none;">January 2026</span></h3>
         
         <article class="post-card" data-category="thought">
-            <span class="post-tag tag-thought">随想</span>
-            <h3><a href="posts/when-lost.html">当一个人不知道自己要往哪里走</a></h3>
+            <span class="post-tag tag-thought" data-zh="随想" data-en="Thoughts">随想</span>
+            <h3><a href="posts/when-lost.html"><span class="text-zh">当一个人不知道自己要往哪里走</span><span class="text-en" style="display: none;">When One Doesn't Know Where to Go</span></a></h3>
             <div class="post-meta">2026-01-20 • Pure Tao</div>
-            <p>许多人之所以迷茫，并不是因为缺乏目标，而是从未找到真正属于自己的方向。</p>
-            <a href="posts/when-lost.html" class="read-more">阅读全文 →</a>
+            <p class="text-zh">许多人之所以迷茫，并不是因为缺乏目标，而是从未找到真正属于自己的方向。</p>
+            <p class="text-en" style="display: none;">Many people are lost not because they lack goals, but because they have never found a direction that truly belongs to them.</p>
+            <a href="posts/when-lost.html" class="read-more"><span class="text-zh">阅读全文 →</span><span class="text-en" style="display: none;">Read More →</span></a>
         </article>
         
         <article class="post-card" data-category="note">
-            <span class="post-tag tag-note">学习笔记</span>
-            <h3><a href="posts/adjugate-matrix.html">伴随矩阵的性质与证明</a></h3>
+            <span class="post-tag tag-note" data-zh="学习笔记" data-en="Study Notes">学习笔记</span>
+            <h3><a href="posts/adjugate-matrix.html"><span class="text-zh">伴随矩阵的性质与证明</span><span class="text-en" style="display: none;">Properties and Proofs of Adjugate Matrix</span></a></h3>
             <div class="post-meta">2026-01-17 • Pure Tao</div>
-            <p>系统总结伴随矩阵的 10 个核心性质及其完整证明，包括核心恒等式、行列式性质、秩的结论等。</p>
-            <a href="posts/adjugate-matrix.html" class="read-more">阅读全文 →</a>
+            <p class="text-zh">系统总结伴随矩阵的 10 个核心性质及其完整证明，包括核心恒等式、行列式性质、秩的结论等。</p>
+            <p class="text-en" style="display: none;">Systematic summary of 10 core properties of adjugate matrix with complete proofs, including core identities, determinant properties, rank conclusions, etc.</p>
+            <a href="posts/adjugate-matrix.html" class="read-more"><span class="text-zh">阅读全文 →</span><span class="text-en" style="display: none;">Read More →</span></a>
         </article>
         
         <article class="post-card" data-category="note">
-            <span class="post-tag tag-note">学习笔记</span>
-            <h3><a href="posts/swin-transformer-intro.html">Swin Transformer 论文解读</a></h3>
+            <span class="post-tag tag-note" data-zh="学习笔记" data-en="Study Notes">学习笔记</span>
+            <h3><a href="posts/swin-transformer-intro.html"><span class="text-zh">Swin Transformer 论文解读</span><span class="text-en" style="display: none;">Swin Transformer Paper Review</span></a></h3>
             <div class="post-meta">2026-01-12 • Pure Tao</div>
-            <p>深入解析 Swin Transformer 的核心思想：层次化结构与移位窗口自注意力机制，以及它如何解决 ViT 的计算复杂度问题。</p>
-            <a href="posts/swin-transformer-intro.html" class="read-more">阅读全文 →</a>
+            <p class="text-zh">深入解析 Swin Transformer 的核心思想：层次化结构与移位窗口自注意力机制，以及它如何解决 ViT 的计算复杂度问题。</p>
+            <p class="text-en" style="display: none;">In-depth analysis of Swin Transformer's core ideas: hierarchical structure and shifted window self-attention mechanism, and how it solves ViT's computational complexity problem.</p>
+            <a href="posts/swin-transformer-intro.html" class="read-more"><span class="text-zh">阅读全文 →</span><span class="text-en" style="display: none;">Read More →</span></a>
         </article>
         
         <article class="post-card" data-category="tutorial">
-            <span class="post-tag tag-tutorial">教程</span>
-            <h3><a href="posts/github-pages-setup.html">如何搭建 GitHub Pages 博客</a></h3>
+            <span class="post-tag tag-tutorial" data-zh="教程" data-en="Tutorial">教程</span>
+            <h3><a href="posts/github-pages-setup.html"><span class="text-zh">如何搭建 GitHub Pages 博客</span><span class="text-en" style="display: none;">How to Build a GitHub Pages Blog</span></a></h3>
             <div class="post-meta">2026-01-12 • Pure Tao</div>
-            <p>从零开始搭建个人博客网站，包括 GitHub Pages 配置、自定义域名设置和 Cloudflare DNS 配置。</p>
-            <a href="posts/github-pages-setup.html" class="read-more">阅读全文 →</a>
+            <p class="text-zh">从零开始搭建个人博客网站，包括 GitHub Pages 配置、自定义域名设置和 Cloudflare DNS 配置。</p>
+            <p class="text-en" style="display: none;">Build a personal blog website from scratch, including GitHub Pages configuration, custom domain setup, and Cloudflare DNS configuration.</p>
+            <a href="posts/github-pages-setup.html" class="read-more"><span class="text-zh">阅读全文 →</span><span class="text-en" style="display: none;">Read More →</span></a>
         </article>
     </section>
 
     <footer>
         <p>
-            <span id="busuanzi_container_site_pv">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+            <span id="busuanzi_container_site_pv"><span class="text-zh">本站总访问量</span><span class="text-en" style="display: none;">Total Visits</span> <span id="busuanzi_value_site_pv"></span> <span class="text-zh">次</span><span class="text-en" style="display: none;">times</span></span>
         </p>
         <p>&copy; 2026 Pure Fruit Team. Leader: Pure Tao</p>
     </footer>
@@ -108,6 +116,53 @@
         if (localStorage.getItem('theme') === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
             document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+        
+        // 语言切换功能
+        let currentLang = 'zh';
+        function toggleLanguage() {
+            const langText = document.getElementById('langText');
+            
+            if (currentLang === 'zh') {
+                // 切换到英文
+                document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.text-en').forEach(el => el.style.display = 'inline');
+                document.getElementById('title-zh').style.display = 'none';
+                document.getElementById('title-en').style.display = 'block';
+                
+                // 切换标签文本
+                document.querySelectorAll('.post-tag').forEach(tag => {
+                    if (tag.dataset.en) {
+                        tag.textContent = tag.dataset.en;
+                    }
+                });
+                
+                langText.textContent = '中';
+                currentLang = 'en';
+                localStorage.setItem('language', 'en');
+            } else {
+                // 切换到中文
+                document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'inline');
+                document.querySelectorAll('.text-en').forEach(el => el.style.display = 'none');
+                document.getElementById('title-zh').style.display = 'block';
+                document.getElementById('title-en').style.display = 'none';
+                
+                // 切换标签文本
+                document.querySelectorAll('.post-tag').forEach(tag => {
+                    if (tag.dataset.zh) {
+                        tag.textContent = tag.dataset.zh;
+                    }
+                });
+                
+                langText.textContent = 'EN';
+                currentLang = 'zh';
+                localStorage.setItem('language', 'zh');
+            }
+        }
+        
+        // 读取保存的语言设置
+        if (localStorage.getItem('language') === 'en') {
+            toggleLanguage();
         }
 
         // 筛选器

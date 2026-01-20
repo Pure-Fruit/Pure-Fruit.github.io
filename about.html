@@ -18,6 +18,9 @@
         <button class="theme-toggle" onclick="toggleTheme()" title="切换日间/夜间模式">
             <i class="fas fa-moon"></i>
         </button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="切换中英文">
+            <span id="langText">EN</span>
+        </button>
     </div>
 
     <header class="hero">
@@ -34,9 +37,10 @@
     <div class="divider"></div>
 
     <section class="section">
-        <h2>关于我们</h2>
+        <h2 id="title-zh">关于我们</h2>
+        <h2 id="title-en" style="display: none;">About Us</h2>
         
-        <div class="about-content">
+        <div class="about-content" id="content-zh">
             <p>Pure Fruit 是一个致力于多领域发展的技术探索小团队，专注于探索世界的美妙。</p>
             
             <h3 style="color: var(--accent); font-size: 1.2rem; margin: 30px 0 20px;">研究方向</h3>
@@ -71,11 +75,47 @@
                 Email: <a href="mailto:TH.Tao1@outlook.com" style="color: var(--accent);">TH.Tao1@outlook.com</a>
             </p>
         </div>
+        
+        <div class="about-content" id="content-en" style="display: none;">
+            <p>Pure Fruit is a technology exploration team dedicated to multi-domain development, focusing on exploring the wonders of the world.</p>
+            
+            <h3 style="color: var(--accent); font-size: 1.2rem; margin: 30px 0 20px;">Research Areas</h3>
+            <ul style="color: var(--text-muted); margin-left: 20px;">
+                <li>Deep Learning</li>
+                <li>Computer Vision</li>
+                <li>Natural Language Processing (NLP)</li>
+                <li>Multimodal Learning</li>
+                <li>Large Language Model Fine-tuning (LLM Fine-tuning)</li>
+                <li>Embedded Systems and Engineering Applications</li>
+            </ul>
+            
+            <p style="margin-top: 20px;">Our goal is to learn from each other, share learning experiences and practical insights, and achieve our goals as soon as possible.</p>
+            
+            <h3 style="color: var(--accent); font-size: 1.2rem; margin: 30px 0 20px;">Team Members</h3>
+            
+            <div class="team-member">
+                <div class="member-info">
+                    <h3>Pure Tao</h3>
+                    <p>Team Leader • Optimization Algorithms / Deep Learning / CV / NLP / Multimodal</p>
+                </div>
+            </div>
+            
+            <h3 style="color: var(--accent); font-size: 1.2rem; margin: 30px 0 20px;">Contact Us</h3>
+            
+            <p>
+                <i class="fab fa-github" style="color: var(--accent);"></i> 
+                GitHub: <a href="https://github.com/PeachPure" target="_blank" style="color: var(--accent);">github.com/PeachPure</a>
+            </p>
+            <p>
+                <i class="fas fa-envelope" style="color: var(--accent);"></i> 
+                Email: <a href="mailto:TH.Tao1@outlook.com" style="color: var(--accent);">TH.Tao1@outlook.com</a>
+            </p>
+        </div>
     </section>
 
     <footer>
         <p>
-            <span id="busuanzi_container_site_pv">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+            <span id="busuanzi_container_site_pv"><span class="text-zh">本站总访问量</span><span class="text-en" style="display: none;">Total Visits</span> <span id="busuanzi_value_site_pv"></span> <span class="text-zh">次</span><span class="text-en" style="display: none;">times</span></span>
         </p>
         <p>&copy; 2026 Pure Fruit Team. Leader: Pure Tao</p>
     </footer>
@@ -100,6 +140,47 @@
         if (localStorage.getItem('theme') === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
             document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+        
+        // 语言切换功能
+        let currentLang = 'zh';
+        function toggleLanguage() {
+            const langText = document.getElementById('langText');
+            const titleZh = document.getElementById('title-zh');
+            const titleEn = document.getElementById('title-en');
+            const contentZh = document.getElementById('content-zh');
+            const contentEn = document.getElementById('content-en');
+            
+            if (currentLang === 'zh') {
+                // 切换到英文
+                document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.text-en').forEach(el => el.style.display = 'inline');
+                titleZh.style.display = 'none';
+                titleEn.style.display = 'block';
+                contentZh.style.display = 'none';
+                contentEn.style.display = 'block';
+                
+                langText.textContent = '中';
+                currentLang = 'en';
+                localStorage.setItem('language', 'en');
+            } else {
+                // 切换到中文
+                document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'inline');
+                document.querySelectorAll('.text-en').forEach(el => el.style.display = 'none');
+                titleZh.style.display = 'block';
+                titleEn.style.display = 'none';
+                contentZh.style.display = 'block';
+                contentEn.style.display = 'none';
+                
+                langText.textContent = 'EN';
+                currentLang = 'zh';
+                localStorage.setItem('language', 'zh');
+            }
+        }
+        
+        // 读取保存的语言设置
+        if (localStorage.getItem('language') === 'en') {
+            toggleLanguage();
         }
     </script>
 </body>
