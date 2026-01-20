@@ -35,11 +35,18 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* 主题切换按钮 */
-.theme-toggle {
+/* 切换按钮组容器 */
+.toggle-buttons {
     position: fixed;
     top: 20px;
     right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+/* 主题切换按钮 */
+.theme-toggle {
     background: var(--bg-card);
     border: 1px solid var(--divider);
     color: var(--accent);
@@ -52,7 +59,6 @@ body {
     align-items: center;
     justify-content: center;
     transition: all 0.3s;
-    z-index: 1000;
 }
 
 .theme-toggle:hover {
@@ -61,9 +67,6 @@ body {
 
 /* 语言切换按钮 */
 .lang-toggle {
-    position: fixed;
-    top: 20px;
-    right: 75px;
     background: var(--bg-card);
     border: 1px solid var(--divider);
     color: var(--accent);
@@ -77,7 +80,6 @@ body {
     align-items: center;
     justify-content: center;
     transition: all 0.3s;
-    z-index: 1000;
 }
 
 .lang-toggle:hover {

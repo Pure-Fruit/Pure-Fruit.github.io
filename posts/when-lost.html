@@ -10,14 +10,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <button class="theme-toggle" onclick="toggleTheme()" title="切换日间/夜间模式">
-        <i class="fas fa-moon"></i>
-    </button>
-
-    <!-- 语言切换按钮 -->
-    <button class="lang-toggle" onclick="toggleLanguage()" title="切换中英文">
-        <span id="langText">EN</span>
-    </button>
+    <!-- 主题和语言切换按钮组 -->
+    <div class="toggle-buttons">
+        <button class="lang-toggle" onclick="toggleLanguage()" title="切换中英文">
+            <span id="langText">EN</span>
+        </button>
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换日间/夜间模式">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
 
     <div class="article-container">
         <a href="../blog.html" class="back-link">← 返回博客</a>
@@ -27,7 +28,7 @@
                 <span class="post-tag tag-thought">随想</span>
                 <h1 id="title-zh">当一个人不知道自己要往哪里走</h1>
                 <h1 id="title-en" style="display: none;">When One Doesn't Know Where to Go</h1>
-                <div class="post-meta">2026-01-18 • Pure Tao</div>
+                <div class="post-meta">2026-01-20 • Pure Tao</div>
             </header>
             
             <div class="article-content" id="content-zh">
