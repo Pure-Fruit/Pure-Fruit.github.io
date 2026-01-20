@@ -10,9 +10,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <button class="theme-toggle" onclick="toggleTheme()" title="切换日间/夜间模式">
-        <i class="fas fa-moon"></i>
-    </button>
+    <!-- 右侧功能按钮组 -->
+    <div class="toggle-buttons">
+        <a href="../index.html" class="home-toggle" title="返回主页">
+            <i class="fas fa-home"></i>
+        </a>
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换日间/夜间模式">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="切换中英文">
+            <span id="langText">EN</span>
+        </button>
+    </div>
 
     <div class="article-container">
         <a href="../blog.html" class="back-link">← 返回博客</a>
@@ -20,11 +29,12 @@
         <article>
             <header class="article-header">
                 <span class="post-tag tag-note">学习笔记</span>
-                <h1>Swin Transformer 论文解读</h1>
+                <h1 id="title-zh">Swin Transformer 论文解读</h1>
+                <h1 id="title-en" style="display: none;">Swin Transformer Paper Review</h1>
                 <div class="post-meta">2026-01-12 • Pure Tao</div>
             </header>
             
-            <div class="article-content">
+            <div class="article-content" id="content-zh">
                 <h2>背景</h2>
                 <p>Vision Transformer (ViT) 将 Transformer 架构引入计算机视觉领域，取得了很好的效果。但 ViT 存在一个问题：全局自注意力的计算复杂度是 O(n²)，当图像分辨率增大时，计算量会急剧增加。</p>
                 
@@ -54,6 +64,38 @@
                 <p>Swin Transformer 通过层次化结构和移位窗口机制，成功地将 Transformer 应用于各种视觉任务，是 Vision Transformer 发展的重要里程碑。</p>
                 
                 <p>相关链接：<a href="https://arxiv.org/abs/2103.14030" target="_blank" style="color: var(--accent);">论文原文</a> | <a href="../projects/swin-transformer.html" style="color: var(--accent);">我们的实现</a></p>
+            </div>
+            
+            <div class="article-content" id="content-en" style="display: none;">
+                <h2>Background</h2>
+                <p>Vision Transformer (ViT) introduced the Transformer architecture to computer vision and achieved excellent results. However, ViT has a problem: the computational complexity of global self-attention is O(n²), which increases dramatically as image resolution grows.</p>
+                
+                <p>Swin Transformer, as the <strong>ICCV 2021 Best Paper</strong>, proposed an elegant solution.</p>
+                
+                <h2>Core Ideas of Swin Transformer</h2>
+                <p>Swin Transformer introduces two key innovations:</p>
+                
+                <p><strong>1. Hierarchical Structure</strong></p>
+                <p>Similar to CNNs, Swin Transformer adopts a hierarchical design where feature map resolution gradually decreases and channel numbers gradually increase as the network deepens. This makes it convenient for dense prediction tasks (such as object detection and semantic segmentation).</p>
+                
+                <p><strong>2. Shifted Window Self-Attention</strong></p>
+                <p>Unlike ViT's global self-attention, Swin Transformer computes self-attention within local windows, reducing complexity from O(n²) to O(n). By shifting windows between consecutive layers, it enables cross-window information interaction.</p>
+                
+                <h2>Model Variants</h2>
+                <ul>
+                    <li><strong>Swin-Tiny</strong>: 28M parameters</li>
+                    <li><strong>Swin-Small</strong>: 50M parameters</li>
+                    <li><strong>Swin-Base</strong>: 88M parameters</li>
+                    <li><strong>Swin-Large</strong>: 197M parameters</li>
+                </ul>
+                
+                <h2>Experimental Results</h2>
+                <p>Swin Transformer achieved SOTA results on ImageNet image classification, COCO object detection, ADE20K semantic segmentation, and other tasks, demonstrating its potential as a general vision backbone.</p>
+                
+                <h2>Conclusion</h2>
+                <p>Through hierarchical structure and shifted window mechanism, Swin Transformer successfully applied Transformer to various vision tasks, marking an important milestone in Vision Transformer development.</p>
+                
+                <p>Related Links: <a href="https://arxiv.org/abs/2103.14030" target="_blank" style="color: var(--accent);">Paper</a> | <a href="../projects/swin-transformer.html" style="color: var(--accent);">Our Implementation</a></p>
             </div>
         </article>
     </div>
@@ -85,6 +127,32 @@
         if (localStorage.getItem('theme') === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
             document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+        
+        // 语言切换功能
+        let currentLang = 'zh';
+        function toggleLanguage() {
+            const titleZh = document.getElementById('title-zh');
+            const titleEn = document.getElementById('title-en');
+            const contentZh = document.getElementById('content-zh');
+            const contentEn = document.getElementById('content-en');
+            const langText = document.getElementById('langText');
+            
+            if (currentLang === 'zh') {
+                titleZh.style.display = 'none';
+                titleEn.style.display = 'block';
+                contentZh.style.display = 'none';
+                contentEn.style.display = 'block';
+                langText.textContent = '中';
+                currentLang = 'en';
+            } else {
+                titleZh.style.display = 'block';
+                titleEn.style.display = 'none';
+                contentZh.style.display = 'block';
+                contentEn.style.display = 'none';
+                langText.textContent = 'EN';
+                currentLang = 'zh';
+            }
         }
     </script>
 </body>

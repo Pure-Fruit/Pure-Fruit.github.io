@@ -10,9 +10,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <button class="theme-toggle" onclick="toggleTheme()" title="切换日间/夜间模式">
-        <i class="fas fa-moon"></i>
-    </button>
+    <!-- 右侧功能按钮组 -->
+    <div class="toggle-buttons">
+        <a href="../index.html" class="home-toggle" title="返回主页">
+            <i class="fas fa-home"></i>
+        </a>
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换日间/夜间模式">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="切换中英文">
+            <span id="langText">EN</span>
+        </button>
+    </div>
 
     <div class="article-container">
         <a href="../blog.html" class="back-link">← 返回博客</a>
@@ -20,11 +29,12 @@
         <article>
             <header class="article-header">
                 <span class="post-tag tag-tutorial">教程</span>
-                <h1>如何搭建 GitHub Pages 博客</h1>
+                <h1 id="title-zh">如何搭建 GitHub Pages 博客</h1>
+                <h1 id="title-en" style="display: none;">How to Build a GitHub Pages Blog</h1>
                 <div class="post-meta">2026-01-12 • Pure Tao</div>
             </header>
             
-            <div class="article-content">
+            <div class="article-content" id="content-zh">
                 <p>本文记录了我们搭建这个博客网站的完整过程，包括 GitHub Pages 配置和自定义域名设置。</p>
                 
                 <h2>第一步：创建 GitHub 仓库</h2>
@@ -62,6 +72,45 @@
                 <h2>完成</h2>
                 <p>现在访问你的域名，就能看到博客了！以后更新内容只需要上传新文件到 GitHub 仓库即可。</p>
             </div>
+            
+            <div class="article-content" id="content-en" style="display: none;">
+                <p>This article documents the complete process of building this blog website, including GitHub Pages configuration and custom domain setup.</p>
+                
+                <h2>Step 1: Create GitHub Repository</h2>
+                <p>Create a repository named <code>username.github.io</code>, where username is your GitHub username. This repository will automatically enable GitHub Pages.</p>
+                
+                <h2>Step 2: Add Web Files</h2>
+                <p>Add your HTML and CSS files to the repository. You need at least one <code>index.html</code> as the homepage.</p>
+                <p>You can directly click "Add file" → "Upload files" on the GitHub webpage to upload files.</p>
+                
+                <h2>Step 3: Configure Custom Domain</h2>
+                <p>If you have your own domain, you need to do two things:</p>
+                
+                <p><strong>1. Create CNAME file in repository</strong></p>
+                <p>The file content is your domain name, for example:</p>
+                <pre><code>puretao.icu</code></pre>
+                
+                <p><strong>2. Configure DNS Records</strong></p>
+                <p>Add the following records in your domain service provider (such as Cloudflare):</p>
+                <pre><code>Type: A     | Name: @   | Content: 185.199.108.153
+Type: A     | Name: @   | Content: 185.199.109.153
+Type: A     | Name: @   | Content: 185.199.110.153
+Type: A     | Name: @   | Content: 185.199.111.153
+Type: CNAME | Name: www | Content: username.github.io</code></pre>
+                
+                <p>Note: If using Cloudflare, the proxy status should be set to "DNS only" (gray cloud).</p>
+                
+                <h2>Step 4: Enable HTTPS</h2>
+                <p>In repository Settings → Pages:</p>
+                <ol>
+                    <li>Enter your custom domain name</li>
+                    <li>Check "Enforce HTTPS"</li>
+                </ol>
+                <p>Wait a few minutes, GitHub will automatically configure SSL certificate for your domain.</p>
+                
+                <h2>Done</h2>
+                <p>Now visit your domain and you'll see the blog! To update content in the future, just upload new files to the GitHub repository.</p>
+            </div>
         </article>
     </div>
 
@@ -92,6 +141,32 @@
         if (localStorage.getItem('theme') === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
             document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+        
+        // 语言切换功能
+        let currentLang = 'zh';
+        function toggleLanguage() {
+            const titleZh = document.getElementById('title-zh');
+            const titleEn = document.getElementById('title-en');
+            const contentZh = document.getElementById('content-zh');
+            const contentEn = document.getElementById('content-en');
+            const langText = document.getElementById('langText');
+            
+            if (currentLang === 'zh') {
+                titleZh.style.display = 'none';
+                titleEn.style.display = 'block';
+                contentZh.style.display = 'none';
+                contentEn.style.display = 'block';
+                langText.textContent = '中';
+                currentLang = 'en';
+            } else {
+                titleZh.style.display = 'block';
+                titleEn.style.display = 'none';
+                contentZh.style.display = 'block';
+                contentEn.style.display = 'none';
+                langText.textContent = 'EN';
+                currentLang = 'zh';
+            }
         }
     </script>
 </body>
