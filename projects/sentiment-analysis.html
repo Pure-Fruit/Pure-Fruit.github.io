@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BERT 中文情感分析 - Pure Fruit</title>
+    <link rel="icon" href="../Icon.png" type="image/png">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 右侧功能按钮组 -->
+    <div class="toggle-buttons">
+        <a href="../index.html" class="home-toggle" title="返回主页">
+            <i class="fas fa-home"></i>
+        </a>
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换日间/夜间模式">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="切换中英文">
+            <span id="langText">EN</span>
+        </button>
+    </div>
+
+    <div class="article-container">
+        <a href="../projects.html" class="back-link">← 返回项目列表</a>
+        
+        <article>
+            <header class="article-header">
+                <span class="post-tag tag-nlp">自然语言处理</span>
+                <span class="post-tag tag-dl">深度学习</span>
+                <h1 id="title-zh">BERT 中文情感分析</h1>
+                <h1 id="title-en" style="display: none;">BERT Chinese Sentiment Analysis</h1>
+                <div class="post-meta">
+                    <i class="fab fa-github"></i> 
+                    <a href="https://github.com/PeachPure/BERT-Sentiment-Analysis" target="_blank"><span id="github-zh">查看源码</span><span id="github-en" style="display: none;">View Source</span></a>
+                    • PyTorch
+                </div>
+            </header>
+            
+            <div class="article-content" id="content-zh">
+                <h2>项目简介</h2>
+                <p>本项目使用 BERT 在 ChnSentiCorp 数据集上实现中文情感分析。模型将中文评论分类为正面或负面情感，适用于商品评论、用户反馈等场景的情感倾向判断。</p>
+                
+                <h2>主要特性</h2>
+                <ul>
+                    <li>基于 BERT 的中文情感分类模型</li>
+                    <li>二分类任务（正面/负面）</li>
+                    <li>简单易用的预测 API</li>
+                    <li>支持批量预测</li>
+                    <li>全面的评估指标（准确率、精确率、召回率、F1分数）</li>
+                    <li>混淆矩阵可视化</li>
+                </ul>
+                
+                <h2>模型架构</h2>
+                <pre><code>输入文本 → BERT分词器 → BERT编码器 → [CLS]向量 → 线性层 → Softmax → 情感(0/1)</code></pre>
+                
+                <h2>项目结构</h2>
+                <pre><code>BERT-Sentiment-Analysis/
+├── bert_sentiment_analysis.py  # 训练脚本
+├── predict.py                  # 预测脚本
+├── download_model.py           # 模型下载脚本
+├── requirements.txt            # 依赖列表
+├── README.md                   # 文档
+├── bert-base-chinese/          # BERT模型（自动下载）
+└── chnsenticorp/               # 数据集
+    ├── train/
+    └── test/</code></pre>
+                
+                <h2>快速开始</h2>
+                <p><strong>1. 安装依赖：</strong></p>
+                <pre><code>pip install -r requirements.txt</code></pre>
+                
+                <p><strong>2. 下载 BERT 模型：</strong></p>
+                <pre><code>python download_model.py</code></pre>
+                
+                <p>或使用 HuggingFace transformers（推荐）：</p>
+                <pre><code>from transformers import BertTokenizer, BertModel
+tokenizer = BertTokenizer.from_pretrained('bert-base-chinese')
+model = BertModel.from_pretrained('bert-base-chinese')</code></pre>
+                
+                <p><strong>3. 准备数据集：</strong></p>
+                <p>下载 ChnSentiCorp 数据集，数据格式为：<code>文本\t标签</code>（制表符分隔）</p>
+                <ul>
+                    <li>标签 0：负面</li>
+                    <li>标签 1：正面</li>
+                </ul>
+                
+                <p><strong>4. 训练模型：</strong></p>
+                <pre><code>python bert_sentiment_analysis.py</code></pre>
+                
+                <p><strong>5. 预测：</strong></p>
+                <pre><code>python predict.py</code></pre>
+                
+                <h2>使用示例</h2>
+                <pre><code>from predict import SentimentPredictor
+
+# 初始化预测器
+predictor = SentimentPredictor('./bert_sentiment_model')
+
+# 预测单条文本
+text = "这个酒店非常好，服务态度很棒！"
+label, confidence = predictor.predict(text)
+print(f"情感: {'正面' if label == 1 else '负面'}")
+print(f"置信度: {confidence:.4f}")
+
+# 批量预测
+texts = ["很好", "太差了"]
+results = predictor.predict_batch(texts)
+for result in results:
+    print(result)</code></pre>
+                
+                <h2>模型参数</h2>
+                <ul>
+                    <li><strong>模型：</strong>bert-base-chinese</li>
+                    <li><strong>最大序列长度：</strong>128</li>
+                    <li><strong>批次大小：</strong>16</li>
+                    <li><strong>学习率：</strong>2e-5</li>
+                    <li><strong>训练轮数：</strong>3</li>
+                    <li><strong>优化器：</strong>AdamW</li>
+                </ul>
+                
+                <h2>评估指标</h2>
+                <p>模型在测试集上报告以下指标：</p>
+                <ul>
+                    <li>准确率（Accuracy）</li>
+                    <li>精确率（Precision）</li>
+                    <li>召回率（Recall）</li>
+                    <li>F1分数（F1-Score）</li>
+                    <li>混淆矩阵（Confusion Matrix）</li>
+                </ul>
+                
+                <h2>应用场景</h2>
+                <ul>
+                    <li>电商平台商品评论情感分析</li>
+                    <li>社交媒体舆情监测</li>
+                    <li>用户反馈自动分类</li>
+                    <li>客户满意度评估</li>
+                </ul>
+            </div>
+            
+            <div class="article-content" id="content-en" style="display: none;">
+                <h2>Introduction</h2>
+                <p>This project implements BERT-based sentiment analysis for Chinese text using the ChnSentiCorp dataset. The model classifies Chinese reviews into positive or negative sentiment, suitable for product reviews, user feedback, and other sentiment analysis scenarios.</p>
+                
+                <h2>Features</h2>
+                <ul>
+                    <li>BERT fine-tuning for Chinese sentiment classification</li>
+                    <li>Binary classification (positive/negative)</li>
+                    <li>Easy-to-use prediction API</li>
+                    <li>Support for batch prediction</li>
+                    <li>Comprehensive evaluation metrics (Accuracy, Precision, Recall, F1-Score)</li>
+                    <li>Confusion matrix visualization</li>
+                </ul>
+                
+                <h2>Model Architecture</h2>
+                <pre><code>Input Text → BERT Tokenizer → BERT Encoder → [CLS] Token → Linear Layer → Softmax → Sentiment (0/1)</code></pre>
+                
+                <h2>Project Structure</h2>
+                <pre><code>BERT-Sentiment-Analysis/
+├── bert_sentiment_analysis.py  # Training script
+├── predict.py                  # Prediction script
+├── download_model.py           # Model downloader
+├── requirements.txt            # Dependencies
+├── README.md                   # Documentation
+├── bert-base-chinese/          # BERT model (auto-downloaded)
+└── chnsenticorp/               # Dataset
+    ├── train/
+    └── test/</code></pre>
+                
+                <h2>Quick Start</h2>
+                <p><strong>1. Install dependencies:</strong></p>
+                <pre><code>pip install -r requirements.txt</code></pre>
+                
+                <p><strong>2. Download BERT model:</strong></p>
+                <pre><code>python download_model.py</code></pre>
+                
+                <p>Or use HuggingFace transformers (recommended):</p>
+                <pre><code>from transformers import BertTokenizer, BertModel
+tokenizer = BertTokenizer.from_pretrained('bert-base-chinese')
+model = BertModel.from_pretrained('bert-base-chinese')</code></pre>
+                
+                <p><strong>3. Prepare dataset:</strong></p>
+                <p>Download ChnSentiCorp dataset. Data format: <code>text\tlabel</code> (tab-separated)</p>
+                <ul>
+                    <li>Label 0: Negative</li>
+                    <li>Label 1: Positive</li>
+                </ul>
+                
+                <p><strong>4. Train model:</strong></p>
+                <pre><code>python bert_sentiment_analysis.py</code></pre>
+                
+                <p><strong>5. Predict:</strong></p>
+                <pre><code>python predict.py</code></pre>
+                
+                <h2>Usage Example</h2>
+                <pre><code>from predict import SentimentPredictor
+
+# Initialize predictor
+predictor = SentimentPredictor('./bert_sentiment_model')
+
+# Predict single text
+text = "这个酒店非常好，服务态度很棒！"
+label, confidence = predictor.predict(text)
+print(f"Sentiment: {'Positive' if label == 1 else 'Negative'}")
+print(f"Confidence: {confidence:.4f}")
+
+# Batch prediction
+texts = ["很好", "太差了"]
+results = predictor.predict_batch(texts)
+for result in results:
+    print(result)</code></pre>
+                
+                <h2>Model Parameters</h2>
+                <ul>
+                    <li><strong>Model:</strong> bert-base-chinese</li>
+                    <li><strong>Max sequence length:</strong> 128</li>
+                    <li><strong>Batch size:</strong> 16</li>
+                    <li><strong>Learning rate:</strong> 2e-5</li>
+                    <li><strong>Epochs:</strong> 3</li>
+                    <li><strong>Optimizer:</strong> AdamW</li>
+                </ul>
+                
+                <h2>Evaluation Metrics</h2>
+                <p>The model reports the following metrics on the test set:</p>
+                <ul>
+                    <li>Accuracy</li>
+                    <li>Precision</li>
+                    <li>Recall</li>
+                    <li>F1-Score</li>
+                    <li>Confusion Matrix</li>
+                </ul>
+                
+                <h2>Application Scenarios</h2>
+                <ul>
+                    <li>E-commerce product review sentiment analysis</li>
+                    <li>Social media sentiment monitoring</li>
+                    <li>Automatic user feedback classification</li>
+                    <li>Customer satisfaction assessment</li>
+                </ul>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+        <p>
+            <span class="text-zh">本文阅读量</span><span class="text-en" style="display: none;">Page Views</span> <span id="busuanzi_value_page_pv"></span> <span class="text-zh">次</span><span class="text-en" style="display: none;">times</span>
+        </p>
+        <p>&copy; 2026 Pure Fruit Team</p>
+    </footer>
+
+    <!-- 不蒜子统计 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const btn = document.querySelector('.theme-toggle i');
+            if (html.getAttribute('data-theme') === 'light') {
+                html.removeAttribute('data-theme');
+                btn.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light');
+                btn.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+        
+        // 语言切换功能
+        let currentLang = 'zh';
+        function toggleLanguage() {
+            const titleZh = document.getElementById('title-zh');
+            const titleEn = document.getElementById('title-en');
+            const githubZh = document.getElementById('github-zh');
+            const githubEn = document.getElementById('github-en');
+            const contentZh = document.getElementById('content-zh');
+            const contentEn = document.getElementById('content-en');
+            const langText = document.getElementById('langText');
+            
+            if (currentLang === 'zh') {
+                document.title = 'BERT Chinese Sentiment Analysis - Pure Fruit';
+                titleZh.style.display = 'none';
+                titleEn.style.display = 'block';
+                githubZh.style.display = 'none';
+                githubEn.style.display = 'inline';
+                contentZh.style.display = 'none';
+                contentEn.style.display = 'block';
+                document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.text-en').forEach(el => el.style.display = 'inline');
+                langText.textContent = '中';
+                currentLang = 'en';
+                localStorage.setItem('language', 'en');
+            } else {
+                document.title = 'BERT 中文情感分析 - Pure Fruit';
+                titleZh.style.display = 'block';
+                titleEn.style.display = 'none';
+                githubZh.style.display = 'inline';
+                githubEn.style.display = 'none';
+                contentZh.style.display = 'block';
+                contentEn.style.display = 'none';
+                document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'inline');
+                document.querySelectorAll('.text-en').forEach(el => el.style.display = 'none');
+                langText.textContent = 'EN';
+                currentLang = 'zh';
+                localStorage.setItem('language', 'zh');
+            }
+        }
+        
+        // 读取保存的语言设置
+        if (localStorage.getItem('language') === 'en') {
+            toggleLanguage();
+        }
+    </script>
+</body>
+</html>
