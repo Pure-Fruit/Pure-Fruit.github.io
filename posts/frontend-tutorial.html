@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <script>if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>从零开始学前端开发 - Pure Fruit</title>
+    <link rel="icon" href="../Icon.png" type="image/png">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 代码高亮增强 */
+        .code-block {
+            position: relative;
+            margin: 18px 0;
+        }
+        .code-block .lang-label {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent);
+            color: var(--bg-color);
+            padding: 2px 10px;
+            border-radius: 0 8px 0 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .tip-box {
+            background: linear-gradient(135deg, rgba(232,117,143,0.1), rgba(232,117,143,0.05));
+            border-left: 4px solid var(--accent);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .tip-box strong {
+            color: var(--accent);
+        }
+        .warning-box {
+            background: linear-gradient(135deg, rgba(255,193,7,0.1), rgba(255,193,7,0.05));
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .warning-box strong {
+            color: #ffc107;
+        }
+        .demo-preview {
+            background: var(--bg-code);
+            border: 1px solid var(--divider);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 18px 0;
+        }
+        .demo-preview .demo-title {
+            font-size: 0.8rem;
+            color: var(--text-meta);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--divider);
+        }
+        /* 效果演示样式 */
+        .demo-button {
+            background: linear-gradient(135deg, #e8758f, #d64d6a);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(232,117,143,0.4);
+        }
+        .demo-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 300px;
+        }
+        .demo-card h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .demo-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        .flex-demo {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .flex-item {
+            background: var(--accent);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        .grid-demo {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .grid-item {
+            background: var(--divider);
+            color: var(--text-color);
+            padding: 20px;
+            text-align: center;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+        .toc {
+            background: var(--bg-code);
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .toc h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        .toc ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .toc li {
+            margin: 8px 0;
+        }
+        .toc a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        .toc a:hover {
+            color: var(--accent);
+        }
+        .toc .sub-item {
+            margin-left: 20px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 右侧功能按钮组 -->
+    <div class="toggle-buttons">
+        <a href="../index.html" class="home-toggle" title="返回主页">
+            <i class="fas fa-home"></i>
+        </a>
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换日间/夜间模式">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="切换中英文">
+            <span id="langText">EN</span>
+        </button>
+    </div>
+
+    <div class="article-container">
+        <a href="../blog.html" class="back-link">← 返回博客</a>
+        
+        <article>
+            <header class="article-header">
+                <span class="post-tag tag-tutorial">教程</span>
+                <h1 id="title-zh">从零开始学前端开发</h1>
+                <h1 id="title-en" style="display: none;">Frontend Development from Scratch</h1>
+                <div class="post-meta">2026-01-29 • Pure Tao</div>
+                <p id="note-zh" style="font-size: 0.9rem; color: var(--text-muted); margin-top: 10px;">一篇面向初学者的完整前端入门指南</p>
+                <p id="note-en" style="display: none; font-size: 0.9rem; color: var(--text-muted); margin-top: 10px;">A complete beginner's guide to frontend development</p>
+            </header>
+            
+            <div class="article-content">
+                <!-- 中文内容 -->
+                <div class="lang-zh">
+                    <!-- 目录 -->
+                    <div class="toc">
+                        <h3>目录</h3>
+                        <ul>
+                            <li><a href="#intro">前言：什么是前端开发？</a></li>
+                            <li><a href="#html">一、HTML - 网页的骨架</a></li>
+                            <li class="sub-item"><a href="#html-basic">1.1 HTML 基础结构</a></li>
+                            <li class="sub-item"><a href="#html-tags">1.2 常用标签</a></li>
+                            <li class="sub-item"><a href="#html-semantic">1.3 语义化标签</a></li>
+                            <li><a href="#css">二、CSS - 网页的皮肤</a></li>
+                            <li class="sub-item"><a href="#css-basic">2.1 CSS 基础语法</a></li>
+                            <li class="sub-item"><a href="#css-selector">2.2 选择器</a></li>
+                            <li class="sub-item"><a href="#css-box">2.3 盒模型</a></li>
+                            <li class="sub-item"><a href="#css-layout">2.4 现代布局</a></li>
+                            <li><a href="#js">三、JavaScript - 网页的灵魂</a></li>
+                            <li class="sub-item"><a href="#js-basic">3.1 基础语法</a></li>
+                            <li class="sub-item"><a href="#js-dom">3.2 DOM 操作</a></li>
+                            <li class="sub-item"><a href="#js-event">3.3 事件处理</a></li>
+                            <li><a href="#practice">四、实战：制作个人主页</a></li>
+                            <li><a href="#tips">五、开发技巧与最佳实践</a></li>
+                            <li><a href="#resources">六、学习资源推荐</a></li>
+                        </ul>
+                    </div>
+
+                    <h2 id="intro">前言：什么是前端开发？</h2>
+                    <p>前端开发是指创建网站或 Web 应用程序中用户可以直接看到和交互的部分。简单来说，当你打开一个网页看到的所有内容——文字、图片、按钮、动画——都是前端开发的成果。</p>
+                    
+                    <p>前端开发的三大核心技术：</p>
+                    <ul>
+                        <li><strong>HTML</strong>：定义网页的结构和内容（骨架）</li>
+                        <li><strong>CSS</strong>：控制网页的样式和布局（皮肤）</li>
+                        <li><strong>JavaScript</strong>：实现网页的交互和动态效果（灵魂）</li>
+                    </ul>
+
+                    <div class="tip-box">
+                        <strong>小贴士：</strong>学习前端就像盖房子。HTML 搭建房屋框架，CSS 负责装修美化，JavaScript 让房子里的电器能运转起来。
+                    </div>
+
+                    <h2 id="html">一、HTML - 网页的骨架</h2>
+                    
+                    <h3 id="html-basic">1.1 HTML 基础结构</h3>
+                    <p>每个 HTML 文件都有标准的基础结构：</p>
+                    
+                    <div class="code-block">
+                        <span class="lang-label">HTML</span>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;我的第一个网页&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;欢迎来到我的网站&lt;/h1&gt;
+    &lt;p&gt;这是我的第一个网页！&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+
+                    <p>各部分解释：</p>
+                    <ul>
+                        <li><code>&lt;!DOCTYPE html&gt;</code>：声明文档类型为 HTML5</li>
+                        <li><code>&lt;html&gt;</code>：根元素，包含整个页面</li>
+                        <li><code>&lt;head&gt;</code>：头部，包含元数据（标题、编码、样式链接等）</li>
+                        <li><code>&lt;body&gt;</code>：主体，包含页面可见内容</li>
+                    </ul>
+
+                    <h3 id="html-tags">1.2 常用标签</h3>
+                    
+                    <p><strong>文本类标签：</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">HTML</span>
+<pre><code>&lt;!-- 标题：h1 最大，h6 最小 --&gt;
+&lt;h1&gt;一级标题&lt;/h1&gt;
+&lt;h2&gt;二级标题&lt;/h2&gt;
+&lt;h3&gt;三级标题&lt;/h3&gt;
+
+&lt;!-- 段落 --&gt;
+&lt;p&gt;这是一个段落&lt;/p&gt;
+
+&lt;!-- 强调 --&gt;
+&lt;strong&gt;加粗文本&lt;/strong&gt;
+&lt;em&gt;斜体文本&lt;/em&gt;
+
+&lt;!-- 换行和水平线 --&gt;
+&lt;br&gt;  &lt;!-- 换行 --&gt;
+&lt;hr&gt;  &lt;!-- 水平分隔线 --&gt;</code></pre>
+                    </div>
+
+                    <p><strong>链接和图片：</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">HTML</span>
+<pre><code>&lt;!-- 链接 --&gt;
+&lt;a href="https://example.com"&gt;点击访问&lt;/a&gt;
+&lt;a href="about.html"&gt;关于我们&lt;/a&gt;
+&lt;a href="#section1"&gt;跳转到页面内锚点&lt;/a&gt;
+
+&lt;!-- 图片 --&gt;
+&lt;img src="photo.jpg" alt="图片描述"&gt;
+&lt;img src="logo.png" alt="Logo" width="100" height="100"&gt;</code></pre>
+                    </div>
+
+                    <p><strong>列表：</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">HTML</span>
+<pre><code>&lt;!-- 无序列表 --&gt;
+&lt;ul&gt;
+    &lt;li&gt;苹果&lt;/li&gt;
+    &lt;li&gt;香蕉&lt;/li&gt;
+    &lt;li&gt;橙子&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- 有序列表 --&gt;
+&lt;ol&gt;
+    &lt;li&gt;第一步&lt;/li&gt;
+    &lt;li&gt;第二步&lt;/li&gt;
+    &lt;li&gt;第三步&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                    </div>
+
+                    <p><strong>容器标签：</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">HTML</span>
+<pre><code>&lt;!-- div：通用块级容器 --&gt;
+&lt;div class="container"&gt;
+    &lt;p&gt;这是容器内的内容&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- span：通用行内容器 --&gt;
+&lt;p&gt;这是&lt;span style="color: red;"&gt;红色&lt;/span&gt;文字&lt;/p&gt;</code></pre>
+                    </div>
+
+                    <h3 id="html-semantic">1.3 语义化标签</h3>
+                    <p>HTML5 引入了语义化标签，让代码更易读，也有助于 SEO：</p>
+                    
+                    <div class="code-block">
+                        <span class="lang-label">HTML</span>
+<pre><code>&lt;header&gt;
+    &lt;nav&gt;导航栏&lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+    &lt;article&gt;
+        &lt;h1&gt;文章标题&lt;/h1&gt;
+        &lt;section&gt;
+            &lt;h2&gt;章节一&lt;/h2&gt;
+            &lt;p&gt;内容...&lt;/p&gt;
+        &lt;/section&gt;
+    &lt;/article&gt;
+    
+    &lt;aside&gt;侧边栏&lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;页脚&lt;/footer&gt;</code></pre>
+                    </div>
+
+                    <h2 id="css">二、CSS - 网页的皮肤</h2>
+                    
+                    <h3 id="css-basic">2.1 CSS 基础语法</h3>
+                    <p>CSS 的基本语法由选择器和声明块组成：</p>
+                    
+                    <div class="code-block">
+                        <span class="lang-label">CSS</span>
+<pre><code>/* 基本语法 */
+选择器 {
+    属性: 值;
+    属性: 值;
+}
+
+/* 示例 */
+h1 {
+    color: #e8758f;           /* 文字颜色 */
+    font-size: 2rem;          /* 字体大小 */
+    text-align: center;       /* 文本居中 */
+    margin-bottom: 20px;      /* 下边距 */
+}</code></pre>
+                    </div>
+
+                    <p><strong>CSS 的三种引入方式：</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">HTML</span>
+<pre><code>&lt;!-- 1. 行内样式（不推荐） --&gt;
+&lt;p style="color: red; font-size: 16px;"&gt;红色文字&lt;/p&gt;
+
+&lt;!-- 2. 内部样式表 --&gt;
+&lt;head&gt;
+    &lt;style&gt;
+        p { color: blue; }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;!-- 3. 外部样式表（推荐） --&gt;
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;</code></pre>
+                    </div>
+
+                    <h3 id="css-selector">2.2 选择器</h3>
+                    <div class="code-block">
+                        <span class="lang-label">CSS</span>
+<pre><code>/* 元素选择器 */
+p { color: gray; }
+
+/* 类选择器（最常用） */
+.highlight { background: yellow; }
+
+/* ID 选择器 */
+#header { height: 60px; }
+
+/* 后代选择器 */
+.container p { margin: 10px; }
+
+/* 子元素选择器 */
+.nav > li { display: inline-block; }
+
+/* 伪类选择器 */
+a:hover { color: red; }
+button:active { transform: scale(0.98); }
+input:focus { border-color: blue; }
+
+/* 伪元素选择器 */
+p::first-line { font-weight: bold; }
+.quote::before { content: '"'; }</code></pre>
+                    </div>
+
+                    <h3 id="css-box">2.3 盒模型</h3>
+                    <p>每个 HTML 元素都是一个矩形盒子，由内到外依次是：</p>
+                    <ul>
+                        <li><strong>content</strong>：内容区域</li>
+                        <li><strong>padding</strong>：内边距</li>
+                        <li><strong>border</strong>：边框</li>
+                        <li><strong>margin</strong>：外边距</li>
+                    </ul>
+
+                    <div class="code-block">
+                        <span class="lang-label">CSS</span>
+<pre><code>.box {
+    /* 内容尺寸 */
+    width: 200px;
+    height: 100px;
+    
+    /* 内边距 */
+    padding: 20px;              /* 四边相同 */
+    padding: 10px 20px;         /* 上下 左右 */
+    padding: 10px 20px 15px 25px; /* 上 右 下 左 */
+    
+    /* 边框 */
+    border: 1px solid #ccc;
+    border-radius: 8px;         /* 圆角 */
+    
+    /* 外边距 */
+    margin: 20px auto;          /* 上下20px，水平居中 */
+    
+    /* 推荐：让 width 包含 padding 和 border */
+    box-sizing: border-box;
+}</code></pre>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>推荐做法：</strong>在 CSS 开头添加 <code>* { box-sizing: border-box; }</code>，这样设置 width 时会更直观。
+                    </div>
+
+                    <h3 id="css-layout">2.4 现代布局</h3>
+                    
+                    <p><strong>Flexbox（弹性布局）- 一维布局神器：</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">CSS</span>
+<pre><code>.flex-container {
+    display: flex;
+    
+    /* 主轴方向 */
+    flex-direction: row;        /* 水平排列（默认） */
+    
+    /* 主轴对齐 */
+    justify-content: center;    /* 居中 */
+    justify-content: space-between; /* 两端对齐 */
+    justify-content: space-around;  /* 均匀分布 */
+    
+    /* 交叉轴对齐 */
+    align-items: center;        /* 垂直居中 */
+    
+    /* 换行 */
+    flex-wrap: wrap;
+    
+    /* 间距 */
+    gap: 20px;
+}
+
+.flex-item {
+    flex: 1;                    /* 等分剩余空间 */
+}</code></pre>
+                    </div>
+
+                    <div class="demo-preview">
+                        <div class="demo-title">Flexbox 效果演示</div>
+                        <div class="flex-demo">
+                            <div class="flex-item">Item 1</div>
+                            <div class="flex-item">Item 2</div>
+                            <div class="flex-item">Item 3</div>
+                        </div>
+                    </div>
+
+                    <p><strong>Grid（网格布局）- 二维布局利器：</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">CSS</span>
+<pre><code>.grid-container {
+    display: grid;
+    
+    /* 定义列 */
+    grid-template-columns: 1fr 1fr 1fr;     /* 三等分 */
+    grid-template-columns: repeat(3, 1fr);   /* 同上 */
+    grid-template-columns: 200px 1fr 200px;  /* 两侧固定，中间自适应 */
+    
+    /* 定义行 */
+    grid-template-rows: auto 1fr auto;
+    
+    /* 间距 */
+    gap: 20px;
+}
+
+/* 子元素可以跨行/列 */
+.grid-item {
+    grid-column: 1 / 3;         /* 跨第1到第3列 */
+    grid-row: span 2;           /* 跨2行 */
+}</code></pre>
+                    </div>
+
+                    <div class="demo-preview">
+                        <div class="demo-title">Grid 效果演示</div>
+                        <div class="grid-demo">
+                            <div class="grid-item">1</div>
+                            <div class="grid-item">2</div>
+                            <div class="grid-item">3</div>
+                            <div class="grid-item">4</div>
+                            <div class="grid-item">5</div>
+                            <div class="grid-item">6</div>
+                        </div>
+                    </div>
+
+                    <p><strong>响应式设计 - 媒体查询：</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">CSS</span>
+<pre><code>/* 默认样式（移动优先） */
+.container {
+    padding: 15px;
+}
+
+/* 平板端 */
+@media (min-width: 768px) {
+    .container {
+        padding: 30px;
+        max-width: 720px;
+    }
+}
+
+/* 桌面端 */
+@media (min-width: 1024px) {
+    .container {
+        max-width: 960px;
+    }
+}</code></pre>
+                    </div>
+
+                    <h2 id="js">三、JavaScript - 网页的灵魂</h2>
+                    
+                    <h3 id="js-basic">3.1 基础语法</h3>
+                    
+                    <p><strong>变量声明：</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">JavaScript</span>
+<pre><code>// 使用 let 声明可变变量
+let name = '小明';
+let age = 18;
+name = '小红';  // 可以重新赋值
+
+// 使用 const 声明常量
+const PI = 3.14159;
+const API_URL = 'https://api.example.com';
+// PI = 3.14;  // 错误！常量不能重新赋值
+
+// 不推荐使用 var（作用域问题）</code></pre>
+                    </div>
+
+                    <p><strong>数据类型：</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">JavaScript</span>
+<pre><code>// 基本类型
+let str = '字符串';
+let num = 42;
+let bool = true;
+let empty = null;
+let notDefined = undefined;
+
+// 数组
+let fruits = ['苹果', '香蕉', '橙子'];
+console.log(fruits[0]);  // '苹果'
+console.log(fruits.length);  // 3
+
+// 对象
+let person = {
+    name: '小明',
+    age: 18,
+    sayHello: function() {
+        console.log('你好！');
+    }
+};
+console.log(person.name);  // '小明'
+person.sayHello();  // '你好！'</code></pre>
+                    </div>
+
+                    <p><strong>函数：</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">JavaScript</span>
+<pre><code>// 函数声明
+function greet(name) {
+    return '你好，' + name + '！';
+}
+
+// 箭头函数（推荐）
+const greet = (name) => {
+    return `你好，${name}！`;  // 模板字符串
+};
+
+// 简写形式
+const double = x => x * 2;
+
+// 调用函数
+console.log(greet('世界'));  // '你好，世界！'
+console.log(double(5));  // 10</code></pre>
+                    </div>
+
+                    <p><strong>条件和循环：</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">JavaScript</span>
+<pre><code>// 条件判断
+if (age >= 18) {
+    console.log('成年人');
+} else if (age >= 12) {
+    console.log('青少年');
+} else {
+    console.log('儿童');
+}
+
+// 三元运算符
+const status = age >= 18 ? '成年' : '未成年';
+
+// 循环
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+
+// 遍历数组
+const fruits = ['苹果', '香蕉', '橙子'];
+
+// forEach
+fruits.forEach(fruit => {
+    console.log(fruit);
+});
+
+// for...of
+for (const fruit of fruits) {
+    console.log(fruit);
+}</code></pre>
+                    </div>
+
+                    <h3 id="js-dom">3.2 DOM 操作</h3>
+                    <p>DOM（文档对象模型）让 JavaScript 能够操作网页元素：</p>
+                    
+                    <div class="code-block">
+                        <span class="lang-label">JavaScript</span>
+<pre><code>// 获取元素
+const title = document.getElementById('title');
+const buttons = document.querySelectorAll('.btn');
+const firstBtn = document.querySelector('.btn');
+
+// 修改内容
+title.textContent = '新标题';
+title.innerHTML = '&lt;span&gt;带HTML的标题&lt;/span&gt;';
+
+// 修改样式
+title.style.color = 'red';
+title.style.fontSize = '24px';
+
+// 修改类名
+title.classList.add('active');
+title.classList.remove('hidden');
+title.classList.toggle('highlight');
+
+// 修改属性
+const link = document.querySelector('a');
+link.setAttribute('href', 'https://new-url.com');
+link.getAttribute('href');
+
+// 创建和添加元素
+const newDiv = document.createElement('div');
+newDiv.textContent = '新创建的元素';
+newDiv.className = 'new-element';
+document.body.appendChild(newDiv);
+
+// 删除元素
+const oldElement = document.querySelector('.old');
+oldElement.remove();</code></pre>
+                    </div>
+
+                    <h3 id="js-event">3.3 事件处理</h3>
+                    <div class="code-block">
+                        <span class="lang-label">JavaScript</span>
+<pre><code>const button = document.querySelector('#myButton');
+
+// 添加点击事件
+button.addEventListener('click', () => {
+    alert('按钮被点击了！');
+});
+
+// 常用事件类型
+// click - 点击
+// dblclick - 双击
+// mouseenter / mouseleave - 鼠标进入/离开
+// keydown / keyup - 键盘按下/抬起
+// submit - 表单提交
+// change - 值改变
+// scroll - 滚动
+// load - 加载完成
+
+// 事件对象
+button.addEventListener('click', (event) => {
+    console.log(event.target);  // 触发事件的元素
+    event.preventDefault();      // 阻止默认行为
+    event.stopPropagation();     // 阻止事件冒泡
+});
+
+// 表单处理示例
+const form = document.querySelector('form');
+form.addEventListener('submit', (e) => {
+    e.preventDefault();  // 阻止页面刷新
+    const formData = new FormData(form);
+    console.log(formData.get('username'));
+});</code></pre>
+                    </div>
+
+                    <div class="demo-preview">
+                        <div class="demo-title">交互效果演示</div>
+                        <button class="demo-button" onclick="this.textContent = this.textContent === '点击我！' ? '已点击' : '点击我！'">点击我！</button>
+                    </div>
+
+                    <h2 id="practice">四、实战：制作个人主页</h2>
+                    <p>现在让我们把学到的知识综合起来，制作一个简单的个人主页：</p>
+
+                    <div class="code-block">
+                        <span class="lang-label">HTML</span>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;我的个人主页&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header class="hero"&gt;
+        &lt;img src="avatar.jpg" alt="头像" class="avatar"&gt;
+        &lt;h1&gt;你好，我是小明&lt;/h1&gt;
+        &lt;p class="tagline"&gt;一个热爱编程的前端开发者&lt;/p&gt;
+        &lt;nav class="nav-links"&gt;
+            &lt;a href="#about"&gt;关于我&lt;/a&gt;
+            &lt;a href="#projects"&gt;项目&lt;/a&gt;
+            &lt;a href="#contact"&gt;联系&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section id="about" class="section"&gt;
+            &lt;h2&gt;关于我&lt;/h2&gt;
+            &lt;p&gt;我是一名前端开发爱好者，喜欢用代码创造美好的事物。&lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;section id="projects" class="section"&gt;
+            &lt;h2&gt;我的项目&lt;/h2&gt;
+            &lt;div class="project-grid"&gt;
+                &lt;article class="project-card"&gt;
+                    &lt;h3&gt;项目一&lt;/h3&gt;
+                    &lt;p&gt;一个很酷的项目描述&lt;/p&gt;
+                &lt;/article&gt;
+                &lt;article class="project-card"&gt;
+                    &lt;h3&gt;项目二&lt;/h3&gt;
+                    &lt;p&gt;另一个精彩的项目&lt;/p&gt;
+                &lt;/article&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2026 小明. All rights reserved.&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <span class="lang-label">CSS</span>
+<pre><code>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid white;
+    margin-bottom: 20px;
+}
+
+.tagline {
+    opacity: 0.9;
+    margin-bottom: 30px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background 0.3s;
+}
+
+.nav-links a:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #667eea;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #333;
+    color: #999;
+}</code></pre>
+                    </div>
+
+                    <h2 id="tips">五、开发技巧与最佳实践</h2>
+                    
+                    <p><strong>1. 代码规范</strong></p>
+                    <ul>
+                        <li>使用一致的缩进（推荐 2 或 4 个空格）</li>
+                        <li>命名要有意义：<code>userName</code> 而不是 <code>x</code></li>
+                        <li>CSS 类名使用短横线：<code>nav-links</code> 而不是 <code>navLinks</code></li>
+                        <li>添加必要的注释</li>
+                    </ul>
+
+                    <p><strong>2. 性能优化</strong></p>
+                    <ul>
+                        <li>压缩图片，使用适当的格式（WebP、SVG）</li>
+                        <li>CSS 放在 <code>&lt;head&gt;</code>，JS 放在 <code>&lt;/body&gt;</code> 前</li>
+                        <li>减少 HTTP 请求</li>
+                        <li>使用浏览器缓存</li>
+                    </ul>
+
+                    <p><strong>3. 开发者工具</strong></p>
+                    <ul>
+                        <li>按 <code>F12</code> 或右键"检查"打开开发者工具</li>
+                        <li>Elements 面板：查看和修改 HTML/CSS</li>
+                        <li>Console 面板：查看日志和错误</li>
+                        <li>Network 面板：查看网络请求</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <strong>常见错误：</strong>
+                        <ul>
+                            <li>忘记关闭标签</li>
+                            <li>CSS 选择器拼写错误</li>
+                            <li>JavaScript 变量未声明</li>
+                            <li>路径错误（相对路径 vs 绝对路径）</li>
+                        </ul>
+                    </div>
+
+                    <h2 id="resources">六、学习资源推荐</h2>
+                    <ul>
+                        <li><strong>MDN Web Docs</strong>：最权威的 Web 技术文档</li>
+                        <li><strong>freeCodeCamp</strong>：免费的交互式学习平台</li>
+                        <li><strong>CSS-Tricks</strong>：CSS 技巧和教程</li>
+                        <li><strong>JavaScript.info</strong>：现代 JavaScript 教程</li>
+                        <li><strong>Can I Use</strong>：查看浏览器兼容性</li>
+                    </ul>
+
+                    <div class="tip-box">
+                        <strong>学习建议：</strong>最好的学习方式是动手实践。从简单的项目开始，比如个人简历页面、待办事项应用，逐步挑战更复杂的项目。遇到问题多查文档、多问搜索引擎，这也是开发者的必备技能！
+                    </div>
+                </div>
+
+                <!-- English Content -->
+                <div class="lang-en" style="display: none;">
+                    <!-- Table of Contents -->
+                    <div class="toc">
+                        <h3>Table of Contents</h3>
+                        <ul>
+                            <li><a href="#intro">Introduction: What is Frontend Development?</a></li>
+                            <li><a href="#html">1. HTML - The Skeleton of Web Pages</a></li>
+                            <li class="sub-item"><a href="#html-basic">1.1 Basic HTML Structure</a></li>
+                            <li class="sub-item"><a href="#html-tags">1.2 Common Tags</a></li>
+                            <li class="sub-item"><a href="#html-semantic">1.3 Semantic Tags</a></li>
+                            <li><a href="#css">2. CSS - The Skin of Web Pages</a></li>
+                            <li class="sub-item"><a href="#css-basic">2.1 CSS Basic Syntax</a></li>
+                            <li class="sub-item"><a href="#css-selector">2.2 Selectors</a></li>
+                            <li class="sub-item"><a href="#css-box">2.3 Box Model</a></li>
+                            <li class="sub-item"><a href="#css-layout">2.4 Modern Layouts</a></li>
+                            <li><a href="#js">3. JavaScript - The Soul of Web Pages</a></li>
+                            <li class="sub-item"><a href="#js-basic">3.1 Basic Syntax</a></li>
+                            <li class="sub-item"><a href="#js-dom">3.2 DOM Manipulation</a></li>
+                            <li class="sub-item"><a href="#js-event">3.3 Event Handling</a></li>
+                            <li><a href="#practice">4. Practice: Building a Personal Homepage</a></li>
+                            <li><a href="#tips">5. Development Tips & Best Practices</a></li>
+                            <li><a href="#resources">6. Recommended Learning Resources</a></li>
+                        </ul>
+                    </div>
+
+                    <h2 id="intro">Introduction: What is Frontend Development?</h2>
+                    <p>Frontend development refers to creating the part of a website or web application that users can directly see and interact with. Simply put, everything you see when you open a webpage—text, images, buttons, animations—is the result of frontend development.</p>
+                    
+                    <p>The three core technologies of frontend development:</p>
+                    <ul>
+                        <li><strong>HTML</strong>: Defines the structure and content of web pages (skeleton)</li>
+                        <li><strong>CSS</strong>: Controls the style and layout of web pages (skin)</li>
+                        <li><strong>JavaScript</strong>: Implements interactivity and dynamic effects (soul)</li>
+                    </ul>
+
+                    <div class="tip-box">
+                        <strong>Tip:</strong> Learning frontend is like building a house. HTML builds the frame, CSS handles decoration, and JavaScript makes the appliances work.
+                    </div>
+
+                    <h2 id="html">1. HTML - The Skeleton of Web Pages</h2>
+                    
+                    <h3 id="html-basic">1.1 Basic HTML Structure</h3>
+                    <p>Every HTML file has a standard basic structure:</p>
+                    
+                    <div class="code-block">
+                        <span class="lang-label">HTML</span>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My First Webpage&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+    &lt;p&gt;This is my first webpage!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+
+                    <p>Explanation of each part:</p>
+                    <ul>
+                        <li><code>&lt;!DOCTYPE html&gt;</code>: Declares the document type as HTML5</li>
+                        <li><code>&lt;html&gt;</code>: Root element containing the entire page</li>
+                        <li><code>&lt;head&gt;</code>: Header containing metadata (title, encoding, style links, etc.)</li>
+                        <li><code>&lt;body&gt;</code>: Body containing visible page content</li>
+                    </ul>
+
+                    <h3 id="html-tags">1.2 Common Tags</h3>
+                    
+                    <p><strong>Text Tags:</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">HTML</span>
+<pre><code>&lt;!-- Headings: h1 is largest, h6 is smallest --&gt;
+&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+
+&lt;!-- Paragraph --&gt;
+&lt;p&gt;This is a paragraph&lt;/p&gt;
+
+&lt;!-- Emphasis --&gt;
+&lt;strong&gt;Bold text&lt;/strong&gt;
+&lt;em&gt;Italic text&lt;/em&gt;
+
+&lt;!-- Line break and horizontal rule --&gt;
+&lt;br&gt;  &lt;!-- Line break --&gt;
+&lt;hr&gt;  &lt;!-- Horizontal divider --&gt;</code></pre>
+                    </div>
+
+                    <p><strong>Links and Images:</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">HTML</span>
+<pre><code>&lt;!-- Links --&gt;
+&lt;a href="https://example.com"&gt;Click to visit&lt;/a&gt;
+&lt;a href="about.html"&gt;About Us&lt;/a&gt;
+&lt;a href="#section1"&gt;Jump to anchor on page&lt;/a&gt;
+
+&lt;!-- Images --&gt;
+&lt;img src="photo.jpg" alt="Image description"&gt;
+&lt;img src="logo.png" alt="Logo" width="100" height="100"&gt;</code></pre>
+                    </div>
+
+                    <p><strong>Lists:</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">HTML</span>
+<pre><code>&lt;!-- Unordered list --&gt;
+&lt;ul&gt;
+    &lt;li&gt;Apple&lt;/li&gt;
+    &lt;li&gt;Banana&lt;/li&gt;
+    &lt;li&gt;Orange&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Ordered list --&gt;
+&lt;ol&gt;
+    &lt;li&gt;Step 1&lt;/li&gt;
+    &lt;li&gt;Step 2&lt;/li&gt;
+    &lt;li&gt;Step 3&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                    </div>
+
+                    <p><strong>Container Tags:</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">HTML</span>
+<pre><code>&lt;!-- div: generic block container --&gt;
+&lt;div class="container"&gt;
+    &lt;p&gt;Content inside container&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- span: generic inline container --&gt;
+&lt;p&gt;This is &lt;span style="color: red;"&gt;red&lt;/span&gt; text&lt;/p&gt;</code></pre>
+                    </div>
+
+                    <h3 id="html-semantic">1.3 Semantic Tags</h3>
+                    <p>HTML5 introduced semantic tags that make code more readable and help with SEO:</p>
+                    
+                    <div class="code-block">
+                        <span class="lang-label">HTML</span>
+<pre><code>&lt;header&gt;
+    &lt;nav&gt;Navigation bar&lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+    &lt;article&gt;
+        &lt;h1&gt;Article Title&lt;/h1&gt;
+        &lt;section&gt;
+            &lt;h2&gt;Section One&lt;/h2&gt;
+            &lt;p&gt;Content...&lt;/p&gt;
+        &lt;/section&gt;
+    &lt;/article&gt;
+    
+    &lt;aside&gt;Sidebar&lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;Footer&lt;/footer&gt;</code></pre>
+                    </div>
+
+                    <h2 id="css">2. CSS - The Skin of Web Pages</h2>
+                    
+                    <h3 id="css-basic">2.1 CSS Basic Syntax</h3>
+                    <p>CSS basic syntax consists of selectors and declaration blocks:</p>
+                    
+                    <div class="code-block">
+                        <span class="lang-label">CSS</span>
+<pre><code>/* Basic syntax */
+selector {
+    property: value;
+    property: value;
+}
+
+/* Example */
+h1 {
+    color: #e8758f;           /* Text color */
+    font-size: 2rem;          /* Font size */
+    text-align: center;       /* Center alignment */
+    margin-bottom: 20px;      /* Bottom margin */
+}</code></pre>
+                    </div>
+
+                    <p><strong>Three ways to include CSS:</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">HTML</span>
+<pre><code>&lt;!-- 1. Inline style (not recommended) --&gt;
+&lt;p style="color: red; font-size: 16px;"&gt;Red text&lt;/p&gt;
+
+&lt;!-- 2. Internal stylesheet --&gt;
+&lt;head&gt;
+    &lt;style&gt;
+        p { color: blue; }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;!-- 3. External stylesheet (recommended) --&gt;
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;</code></pre>
+                    </div>
+
+                    <h3 id="css-selector">2.2 Selectors</h3>
+                    <div class="code-block">
+                        <span class="lang-label">CSS</span>
+<pre><code>/* Element selector */
+p { color: gray; }
+
+/* Class selector (most common) */
+.highlight { background: yellow; }
+
+/* ID selector */
+#header { height: 60px; }
+
+/* Descendant selector */
+.container p { margin: 10px; }
+
+/* Child selector */
+.nav > li { display: inline-block; }
+
+/* Pseudo-class selectors */
+a:hover { color: red; }
+button:active { transform: scale(0.98); }
+input:focus { border-color: blue; }
+
+/* Pseudo-element selectors */
+p::first-line { font-weight: bold; }
+.quote::before { content: '"'; }</code></pre>
+                    </div>
+
+                    <h3 id="css-box">2.3 Box Model</h3>
+                    <p>Every HTML element is a rectangular box, from inside to outside:</p>
+                    <ul>
+                        <li><strong>content</strong>: Content area</li>
+                        <li><strong>padding</strong>: Inner spacing</li>
+                        <li><strong>border</strong>: Border</li>
+                        <li><strong>margin</strong>: Outer spacing</li>
+                    </ul>
+
+                    <div class="code-block">
+                        <span class="lang-label">CSS</span>
+<pre><code>.box {
+    /* Content dimensions */
+    width: 200px;
+    height: 100px;
+    
+    /* Padding */
+    padding: 20px;              /* Same on all sides */
+    padding: 10px 20px;         /* Top/bottom, Left/right */
+    padding: 10px 20px 15px 25px; /* Top, Right, Bottom, Left */
+    
+    /* Border */
+    border: 1px solid #ccc;
+    border-radius: 8px;         /* Rounded corners */
+    
+    /* Margin */
+    margin: 20px auto;          /* 20px top/bottom, center horizontally */
+    
+    /* Recommended: make width include padding and border */
+    box-sizing: border-box;
+}</code></pre>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>Recommended:</strong> Add <code>* { box-sizing: border-box; }</code> at the start of your CSS, making width settings more intuitive.
+                    </div>
+
+                    <h3 id="css-layout">2.4 Modern Layouts</h3>
+                    
+                    <p><strong>Flexbox - One-dimensional layout master:</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">CSS</span>
+<pre><code>.flex-container {
+    display: flex;
+    
+    /* Main axis direction */
+    flex-direction: row;        /* Horizontal (default) */
+    
+    /* Main axis alignment */
+    justify-content: center;    /* Center */
+    justify-content: space-between; /* Space between */
+    justify-content: space-around;  /* Space around */
+    
+    /* Cross axis alignment */
+    align-items: center;        /* Vertical center */
+    
+    /* Wrapping */
+    flex-wrap: wrap;
+    
+    /* Gap */
+    gap: 20px;
+}
+
+.flex-item {
+    flex: 1;                    /* Equal share of space */
+}</code></pre>
+                    </div>
+
+                    <div class="demo-preview">
+                        <div class="demo-title">Flexbox Demo</div>
+                        <div class="flex-demo">
+                            <div class="flex-item">Item 1</div>
+                            <div class="flex-item">Item 2</div>
+                            <div class="flex-item">Item 3</div>
+                        </div>
+                    </div>
+
+                    <p><strong>Grid - Two-dimensional layout powerhouse:</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">CSS</span>
+<pre><code>.grid-container {
+    display: grid;
+    
+    /* Define columns */
+    grid-template-columns: 1fr 1fr 1fr;     /* Three equal parts */
+    grid-template-columns: repeat(3, 1fr);   /* Same as above */
+    grid-template-columns: 200px 1fr 200px;  /* Fixed sides, flexible middle */
+    
+    /* Define rows */
+    grid-template-rows: auto 1fr auto;
+    
+    /* Gap */
+    gap: 20px;
+}
+
+/* Child elements can span rows/columns */
+.grid-item {
+    grid-column: 1 / 3;         /* Span columns 1 to 3 */
+    grid-row: span 2;           /* Span 2 rows */
+}</code></pre>
+                    </div>
+
+                    <div class="demo-preview">
+                        <div class="demo-title">Grid Demo</div>
+                        <div class="grid-demo">
+                            <div class="grid-item">1</div>
+                            <div class="grid-item">2</div>
+                            <div class="grid-item">3</div>
+                            <div class="grid-item">4</div>
+                            <div class="grid-item">5</div>
+                            <div class="grid-item">6</div>
+                        </div>
+                    </div>
+
+                    <p><strong>Responsive Design - Media Queries:</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">CSS</span>
+<pre><code>/* Default styles (mobile first) */
+.container {
+    padding: 15px;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .container {
+        padding: 30px;
+        max-width: 720px;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .container {
+        max-width: 960px;
+    }
+}</code></pre>
+                    </div>
+
+                    <h2 id="js">3. JavaScript - The Soul of Web Pages</h2>
+                    
+                    <h3 id="js-basic">3.1 Basic Syntax</h3>
+                    
+                    <p><strong>Variable Declaration:</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">JavaScript</span>
+<pre><code>// Use let to declare mutable variables
+let name = 'John';
+let age = 18;
+name = 'Jane';  // Can reassign
+
+// Use const to declare constants
+const PI = 3.14159;
+const API_URL = 'https://api.example.com';
+// PI = 3.14;  // Error! Constants cannot be reassigned
+
+// Avoid using var (scope issues)</code></pre>
+                    </div>
+
+                    <p><strong>Data Types:</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">JavaScript</span>
+<pre><code>// Primitive types
+let str = 'string';
+let num = 42;
+let bool = true;
+let empty = null;
+let notDefined = undefined;
+
+// Arrays
+let fruits = ['Apple', 'Banana', 'Orange'];
+console.log(fruits[0]);  // 'Apple'
+console.log(fruits.length);  // 3
+
+// Objects
+let person = {
+    name: 'John',
+    age: 18,
+    sayHello: function() {
+        console.log('Hello!');
+    }
+};
+console.log(person.name);  // 'John'
+person.sayHello();  // 'Hello!'</code></pre>
+                    </div>
+
+                    <p><strong>Functions:</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">JavaScript</span>
+<pre><code>// Function declaration
+function greet(name) {
+    return 'Hello, ' + name + '!';
+}
+
+// Arrow function (recommended)
+const greet = (name) => {
+    return `Hello, ${name}!`;  // Template literal
+};
+
+// Shorthand form
+const double = x => x * 2;
+
+// Call function
+console.log(greet('World'));  // 'Hello, World!'
+console.log(double(5));  // 10</code></pre>
+                    </div>
+
+                    <p><strong>Conditionals and Loops:</strong></p>
+                    <div class="code-block">
+                        <span class="lang-label">JavaScript</span>
+<pre><code>// Conditional statements
+if (age >= 18) {
+    console.log('Adult');
+} else if (age >= 12) {
+    console.log('Teenager');
+} else {
+    console.log('Child');
+}
+
+// Ternary operator
+const status = age >= 18 ? 'Adult' : 'Minor';
+
+// Loops
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+
+// Array iteration
+const fruits = ['Apple', 'Banana', 'Orange'];
+
+// forEach
+fruits.forEach(fruit => {
+    console.log(fruit);
+});
+
+// for...of
+for (const fruit of fruits) {
+    console.log(fruit);
+}</code></pre>
+                    </div>
+
+                    <h3 id="js-dom">3.2 DOM Manipulation</h3>
+                    <p>DOM (Document Object Model) allows JavaScript to manipulate web page elements:</p>
+                    
+                    <div class="code-block">
+                        <span class="lang-label">JavaScript</span>
+<pre><code>// Get elements
+const title = document.getElementById('title');
+const buttons = document.querySelectorAll('.btn');
+const firstBtn = document.querySelector('.btn');
+
+// Modify content
+title.textContent = 'New Title';
+title.innerHTML = '&lt;span&gt;Title with HTML&lt;/span&gt;';
+
+// Modify styles
+title.style.color = 'red';
+title.style.fontSize = '24px';
+
+// Modify classes
+title.classList.add('active');
+title.classList.remove('hidden');
+title.classList.toggle('highlight');
+
+// Modify attributes
+const link = document.querySelector('a');
+link.setAttribute('href', 'https://new-url.com');
+link.getAttribute('href');
+
+// Create and add elements
+const newDiv = document.createElement('div');
+newDiv.textContent = 'Newly created element';
+newDiv.className = 'new-element';
+document.body.appendChild(newDiv);
+
+// Remove element
+const oldElement = document.querySelector('.old');
+oldElement.remove();</code></pre>
+                    </div>
+
+                    <h3 id="js-event">3.3 Event Handling</h3>
+                    <div class="code-block">
+                        <span class="lang-label">JavaScript</span>
+<pre><code>const button = document.querySelector('#myButton');
+
+// Add click event
+button.addEventListener('click', () => {
+    alert('Button clicked!');
+});
+
+// Common event types
+// click - Click
+// dblclick - Double click
+// mouseenter / mouseleave - Mouse enter/leave
+// keydown / keyup - Key down/up
+// submit - Form submit
+// change - Value change
+// scroll - Scroll
+// load - Load complete
+
+// Event object
+button.addEventListener('click', (event) => {
+    console.log(event.target);  // Element that triggered event
+    event.preventDefault();      // Prevent default behavior
+    event.stopPropagation();     // Stop event bubbling
+});
+
+// Form handling example
+const form = document.querySelector('form');
+form.addEventListener('submit', (e) => {
+    e.preventDefault();  // Prevent page refresh
+    const formData = new FormData(form);
+    console.log(formData.get('username'));
+});</code></pre>
+                    </div>
+
+                    <div class="demo-preview">
+                        <div class="demo-title">Interactive Demo</div>
+                        <button class="demo-button" onclick="this.textContent = this.textContent === 'Click Me!' ? 'Clicked!' : 'Click Me!'">Click Me!</button>
+                    </div>
+
+                    <h2 id="practice">4. Practice: Building a Personal Homepage</h2>
+                    <p>Now let's combine everything we've learned to create a simple personal homepage:</p>
+
+                    <div class="code-block">
+                        <span class="lang-label">HTML</span>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My Personal Homepage&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header class="hero"&gt;
+        &lt;img src="avatar.jpg" alt="Avatar" class="avatar"&gt;
+        &lt;h1&gt;Hi, I'm John&lt;/h1&gt;
+        &lt;p class="tagline"&gt;A passionate frontend developer&lt;/p&gt;
+        &lt;nav class="nav-links"&gt;
+            &lt;a href="#about"&gt;About&lt;/a&gt;
+            &lt;a href="#projects"&gt;Projects&lt;/a&gt;
+            &lt;a href="#contact"&gt;Contact&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section id="about" class="section"&gt;
+            &lt;h2&gt;About Me&lt;/h2&gt;
+            &lt;p&gt;I'm a frontend enthusiast who loves creating beautiful things with code.&lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;section id="projects" class="section"&gt;
+            &lt;h2&gt;My Projects&lt;/h2&gt;
+            &lt;div class="project-grid"&gt;
+                &lt;article class="project-card"&gt;
+                    &lt;h3&gt;Project One&lt;/h3&gt;
+                    &lt;p&gt;A cool project description&lt;/p&gt;
+                &lt;/article&gt;
+                &lt;article class="project-card"&gt;
+                    &lt;h3&gt;Project Two&lt;/h3&gt;
+                    &lt;p&gt;Another amazing project&lt;/p&gt;
+                &lt;/article&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2026 John. All rights reserved.&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <span class="lang-label">CSS</span>
+<pre><code>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid white;
+    margin-bottom: 20px;
+}
+
+.tagline {
+    opacity: 0.9;
+    margin-bottom: 30px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background 0.3s;
+}
+
+.nav-links a:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #667eea;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #333;
+    color: #999;
+}</code></pre>
+                    </div>
+
+                    <h2 id="tips">5. Development Tips & Best Practices</h2>
+                    
+                    <p><strong>1. Code Standards</strong></p>
+                    <ul>
+                        <li>Use consistent indentation (recommended 2 or 4 spaces)</li>
+                        <li>Use meaningful names: <code>userName</code> not <code>x</code></li>
+                        <li>CSS class names use kebab-case: <code>nav-links</code> not <code>navLinks</code></li>
+                        <li>Add necessary comments</li>
+                    </ul>
+
+                    <p><strong>2. Performance Optimization</strong></p>
+                    <ul>
+                        <li>Compress images, use appropriate formats (WebP, SVG)</li>
+                        <li>CSS in <code>&lt;head&gt;</code>, JS before <code>&lt;/body&gt;</code></li>
+                        <li>Reduce HTTP requests</li>
+                        <li>Use browser caching</li>
+                    </ul>
+
+                    <p><strong>3. Developer Tools</strong></p>
+                    <ul>
+                        <li>Press <code>F12</code> or right-click "Inspect" to open DevTools</li>
+                        <li>Elements panel: View and modify HTML/CSS</li>
+                        <li>Console panel: View logs and errors</li>
+                        <li>Network panel: View network requests</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <strong>Common Mistakes:</strong>
+                        <ul>
+                            <li>Forgetting to close tags</li>
+                            <li>CSS selector typos</li>
+                            <li>JavaScript variables not declared</li>
+                            <li>Path errors (relative vs absolute paths)</li>
+                        </ul>
+                    </div>
+
+                    <h2 id="resources">6. Recommended Learning Resources</h2>
+                    <ul>
+                        <li><strong>MDN Web Docs</strong>: The most authoritative web technology documentation</li>
+                        <li><strong>freeCodeCamp</strong>: Free interactive learning platform</li>
+                        <li><strong>CSS-Tricks</strong>: CSS tips and tutorials</li>
+                        <li><strong>JavaScript.info</strong>: Modern JavaScript tutorial</li>
+                        <li><strong>Can I Use</strong>: Check browser compatibility</li>
+                    </ul>
+
+                    <div class="tip-box">
+                        <strong>Learning Advice:</strong> The best way to learn is by practicing. Start with simple projects like a personal resume page or todo app, then gradually challenge yourself with more complex projects. When stuck, search documentation and use search engines—this is an essential skill for developers!
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+        <p>
+            <span class="text-zh">本文阅读量</span><span class="text-en" style="display: none;">Page Views</span> <span id="busuanzi_value_page_pv"></span> <span class="text-zh">次</span><span class="text-en" style="display: none;">times</span>
+        </p>
+        <p>&copy; 2026 Pure Fruit Team</p>
+    </footer>
+
+    <!-- 不蒜子统计 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const btn = document.querySelector('.theme-toggle i');
+            if (html.getAttribute('data-theme') === 'light') {
+                html.removeAttribute('data-theme');
+                btn.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.setAttribute('data-theme', 'light');
+                btn.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+        }
+        
+        // 语言切换功能
+        let currentLang = 'zh';
+        function toggleLanguage() {
+            const titleZh = document.getElementById('title-zh');
+            const titleEn = document.getElementById('title-en');
+            const noteZh = document.getElementById('note-zh');
+            const noteEn = document.getElementById('note-en');
+            const langText = document.getElementById('langText');
+            
+            if (currentLang === 'zh') {
+                document.title = 'Frontend Development from Scratch - Pure Fruit';
+                titleZh.style.display = 'none';
+                titleEn.style.display = 'block';
+                noteZh.style.display = 'none';
+                noteEn.style.display = 'block';
+                document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.text-en').forEach(el => el.style.display = 'inline');
+                // 切换文章内容
+                document.querySelectorAll('.lang-zh').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'block');
+                langText.textContent = '中';
+                currentLang = 'en';
+                localStorage.setItem('language', 'en');
+            } else {
+                document.title = '从零开始学前端开发 - Pure Fruit';
+                titleZh.style.display = 'block';
+                titleEn.style.display = 'none';
+                noteZh.style.display = 'block';
+                noteEn.style.display = 'none';
+                document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'inline');
+                document.querySelectorAll('.text-en').forEach(el => el.style.display = 'none');
+                // 切换文章内容
+                document.querySelectorAll('.lang-zh').forEach(el => el.style.display = 'block');
+                document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'none');
+                langText.textContent = 'EN';
+                currentLang = 'zh';
+                localStorage.setItem('language', 'zh');
+            }
+        }
+        
+        // 读取保存的语言设置
+        if (localStorage.getItem('language') === 'en') {
+            toggleLanguage();
+        }
+    </script>
+</body>
+</html>
