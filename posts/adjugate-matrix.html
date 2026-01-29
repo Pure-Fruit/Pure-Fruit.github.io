@@ -40,127 +40,255 @@
             </header>
             
             <div class="article-content">
-                <h2>定义</h2>
-                <p>设 \(A = (a_{ij}) \in F^{n \times n}\) 为 \(n \times n\) 方阵。记：</p>
-                <ul>
-                    <li>\(M_{ij}\)：删去第 \(i\) 行第 \(j\) 列得到的 \((n-1) \times (n-1)\) 子式（minor）</li>
-                    <li>\(C_{ij} = (-1)^{i+j} M_{ij}\)：代数余子式（cofactor）</li>
-                </ul>
-                <p><strong>伴随矩阵</strong>（adjugate）定义为：</p>
-                <p>\[ A^* = \text{adj}(A) = (C_{ij})^T \]</p>
-                <p>即 \((A^*)_{ij} = C_{ji}\)。</p>
+                <!-- 中文内容 -->
+                <div class="lang-zh">
+                    <h2>定义</h2>
+                    <p>设 \(A = (a_{ij}) \in F^{n \times n}\) 为 \(n \times n\) 方阵。记：</p>
+                    <ul>
+                        <li>\(M_{ij}\)：删去第 \(i\) 行第 \(j\) 列得到的 \((n-1) \times (n-1)\) 子式（minor）</li>
+                        <li>\(C_{ij} = (-1)^{i+j} M_{ij}\)：代数余子式（cofactor）</li>
+                    </ul>
+                    <p><strong>伴随矩阵</strong>（adjugate）定义为：</p>
+                    <p>\[ A^* = \text{adj}(A) = (C_{ij})^T \]</p>
+                    <p>即 \((A^*)_{ij} = C_{ji}\)。</p>
 
-                <h2>1. 核心恒等式</h2>
-                <p><strong>命题：</strong></p>
-                <p>\[ AA^* = A^*A = |A|I \]</p>
-                
-                <p><strong>证明（以 \(AA^*\) 为例）：</strong></p>
-                <p>看矩阵乘积 \(AA^*\) 的第 \((i,k)\) 个元素：</p>
-                <p>\[ (AA^*)_{ik} = \sum_{j=1}^{n} a_{ij}(A^*)_{jk} = \sum_{j=1}^{n} a_{ij} C_{kj} \]</p>
-                
-                <p><strong>当 \(i = k\) 时：</strong>这是行列式对第 \(k\) 行做拉普拉斯展开：</p>
-                <p>\[ \sum_{j=1}^{n} a_{kj} C_{kj} = |A| \]</p>
-                
-                <p><strong>当 \(i \neq k\) 时：</strong>构造矩阵 \(B\)：把 \(A\) 的第 \(k\) 行替换成第 \(i\) 行，其余行不变。则 \(B\) 有两行相同，所以 \(|B| = 0\)。另一方面，\(B\) 的行列式对第 \(k\) 行展开：</p>
-                <p>\[ |B| = \sum_{j=1}^{n} b_{kj} C_{kj} = \sum_{j=1}^{n} a_{ij} C_{kj} = 0 \]</p>
-                
-                <p>综上：</p>
-                <p>\[ (AA^*)_{ik} = \begin{cases} |A|, & i = k \\ 0, & i \neq k \end{cases} \]</p>
-                <p>即 \(AA^* = |A|I\)。同理可证 \(A^*A = |A|I\)。∎</p>
+                    <h2>1. 核心恒等式</h2>
+                    <p><strong>命题：</strong></p>
+                    <p>\[ AA^* = A^*A = |A|I \]</p>
+                    
+                    <p><strong>证明（以 \(AA^*\) 为例）：</strong></p>
+                    <p>看矩阵乘积 \(AA^*\) 的第 \((i,k)\) 个元素：</p>
+                    <p>\[ (AA^*)_{ik} = \sum_{j=1}^{n} a_{ij}(A^*)_{jk} = \sum_{j=1}^{n} a_{ij} C_{kj} \]</p>
+                    
+                    <p><strong>当 \(i = k\) 时：</strong>这是行列式对第 \(k\) 行做拉普拉斯展开：</p>
+                    <p>\[ \sum_{j=1}^{n} a_{kj} C_{kj} = |A| \]</p>
+                    
+                    <p><strong>当 \(i \neq k\) 时：</strong>构造矩阵 \(B\)：把 \(A\) 的第 \(k\) 行替换成第 \(i\) 行，其余行不变。则 \(B\) 有两行相同，所以 \(|B| = 0\)。另一方面，\(B\) 的行列式对第 \(k\) 行展开：</p>
+                    <p>\[ |B| = \sum_{j=1}^{n} b_{kj} C_{kj} = \sum_{j=1}^{n} a_{ij} C_{kj} = 0 \]</p>
+                    
+                    <p>综上：</p>
+                    <p>\[ (AA^*)_{ik} = \begin{cases} |A|, & i = k \\ 0, & i \neq k \end{cases} \]</p>
+                    <p>即 \(AA^* = |A|I\)。同理可证 \(A^*A = |A|I\)。∎</p>
 
-                <h2>2. 与逆矩阵的关系</h2>
-                <p><strong>命题：</strong>若 \(|A| \neq 0\)（即 \(A\) 可逆），则：</p>
-                <p>\[ A^{-1} = \frac{1}{|A|} A^* \]</p>
-                
-                <p><strong>证明：</strong>由核心恒等式 \(AA^* = |A|I\)，两边同除以 \(|A| \neq 0\)：</p>
-                <p>\[ A \left( \frac{1}{|A|} A^* \right) = I \]</p>
-                <p>因此 \(\frac{1}{|A|} A^*\) 是 \(A\) 的右逆。方阵右逆必等于逆矩阵，故结论成立。∎</p>
+                    <h2>2. 与逆矩阵的关系</h2>
+                    <p><strong>命题：</strong>若 \(|A| \neq 0\)（即 \(A\) 可逆），则：</p>
+                    <p>\[ A^{-1} = \frac{1}{|A|} A^* \]</p>
+                    
+                    <p><strong>证明：</strong>由核心恒等式 \(AA^* = |A|I\)，两边同除以 \(|A| \neq 0\)：</p>
+                    <p>\[ A \left( \frac{1}{|A|} A^* \right) = I \]</p>
+                    <p>因此 \(\frac{1}{|A|} A^*\) 是 \(A\) 的右逆。方阵右逆必等于逆矩阵，故结论成立。∎</p>
 
-                <h2>3. 行列式性质</h2>
-                <p><strong>命题：</strong></p>
-                <p>\[ |A^*| = |A|^{n-1} \]</p>
-                
-                <p><strong>证明：</strong></p>
-                <p><strong>(1) 当 \(|A| \neq 0\) 时：</strong>由 \(A^* = |A| A^{-1}\)，取行列式：</p>
-                <p>\[ |A^*| = ||A| A^{-1}| = |A|^n \cdot |A^{-1}| = |A|^n \cdot \frac{1}{|A|} = |A|^{n-1} \]</p>
-                
-                <p><strong>(2) 当 \(|A| = 0\) 时：</strong>右边为 \(0^{n-1} = 0\)（当 \(n \geq 2\)）。此时由核心恒等式 \(AA^* = 0\)。若 \(A^*\) 可逆，则左乘 \(A^{*-1}\) 得 \(A = 0\)，但 \(A = 0\) 的伴随矩阵也为 0，不可逆，矛盾；因此 \(A^*\) 不可逆，\(|A^*| = 0\)。∎</p>
+                    <h2>3. 行列式性质</h2>
+                    <p><strong>命题：</strong></p>
+                    <p>\[ |A^*| = |A|^{n-1} \]</p>
+                    
+                    <p><strong>证明：</strong></p>
+                    <p><strong>(1) 当 \(|A| \neq 0\) 时：</strong>由 \(A^* = |A| A^{-1}\)，取行列式：</p>
+                    <p>\[ |A^*| = ||A| A^{-1}| = |A|^n \cdot |A^{-1}| = |A|^n \cdot \frac{1}{|A|} = |A|^{n-1} \]</p>
+                    
+                    <p><strong>(2) 当 \(|A| = 0\) 时：</strong>右边为 \(0^{n-1} = 0\)（当 \(n \geq 2\)）。此时由核心恒等式 \(AA^* = 0\)。若 \(A^*\) 可逆，则左乘 \(A^{*-1}\) 得 \(A = 0\)，但 \(A = 0\) 的伴随矩阵也为 0，不可逆，矛盾；因此 \(A^*\) 不可逆，\(|A^*| = 0\)。∎</p>
 
-                <h2>4. 数乘性质</h2>
-                <p><strong>命题：</strong>对标量 \(k\)：</p>
-                <p>\[ (kA)^* = k^{n-1} A^* \]</p>
-                
-                <p><strong>证明：</strong>\((kA)\) 的每个 \((n-1) \times (n-1)\) 子式都把 \(A\) 中的元素整体乘了 \(k\)，一共乘了 \(n-1\) 个元素，所以：</p>
-                <p>\[ M_{ij}(kA) = k^{n-1} M_{ij}(A) \]</p>
-                <p>代数余子式仅多了符号 \((-1)^{i+j}\)，不影响倍数，因此：</p>
-                <p>\[ C_{ij}(kA) = k^{n-1} C_{ij}(A) \]</p>
-                <p>再转置即得 \((kA)^* = k^{n-1} A^*\)。∎</p>
+                    <h2>4. 数乘性质</h2>
+                    <p><strong>命题：</strong>对标量 \(k\)：</p>
+                    <p>\[ (kA)^* = k^{n-1} A^* \]</p>
+                    
+                    <p><strong>证明：</strong>\((kA)\) 的每个 \((n-1) \times (n-1)\) 子式都把 \(A\) 中的元素整体乘了 \(k\)，一共乘了 \(n-1\) 个元素，所以：</p>
+                    <p>\[ M_{ij}(kA) = k^{n-1} M_{ij}(A) \]</p>
+                    <p>代数余子式仅多了符号 \((-1)^{i+j}\)，不影响倍数，因此：</p>
+                    <p>\[ C_{ij}(kA) = k^{n-1} C_{ij}(A) \]</p>
+                    <p>再转置即得 \((kA)^* = k^{n-1} A^*\)。∎</p>
 
-                <h2>5. 乘积性质</h2>
-                <p><strong>命题：</strong>对任意 \(n \times n\) 方阵 \(A, B\)：</p>
-                <p>\[ (AB)^* = B^* A^* \]</p>
-                <p>次序反转，与逆矩阵类似。</p>
-                
-                <p><strong>证明：</strong>对矩阵 \(AB\) 使用核心恒等式：</p>
-                <p>\[ (AB)(AB)^* = |AB|I = |A||B|I \]</p>
-                <p>另一方面：</p>
-                <p>\[ (AB)(B^*A^*) = A(BB^*)A^* = A(|B|I)A^* = |B|(AA^*) = |B|(|A|I) = |A||B|I \]</p>
-                <p>所以 \((AB)^*\) 与 \(B^*A^*\) 都满足同一恒等式。由伴随矩阵定义的唯一性，\((AB)^* = B^*A^*\)。∎</p>
+                    <h2>5. 乘积性质</h2>
+                    <p><strong>命题：</strong>对任意 \(n \times n\) 方阵 \(A, B\)：</p>
+                    <p>\[ (AB)^* = B^* A^* \]</p>
+                    <p>次序反转，与逆矩阵类似。</p>
+                    
+                    <p><strong>证明：</strong>对矩阵 \(AB\) 使用核心恒等式：</p>
+                    <p>\[ (AB)(AB)^* = |AB|I = |A||B|I \]</p>
+                    <p>另一方面：</p>
+                    <p>\[ (AB)(B^*A^*) = A(BB^*)A^* = A(|B|I)A^* = |B|(AA^*) = |B|(|A|I) = |A||B|I \]</p>
+                    <p>所以 \((AB)^*\) 与 \(B^*A^*\) 都满足同一恒等式。由伴随矩阵定义的唯一性，\((AB)^* = B^*A^*\)。∎</p>
 
-                <h2>6. 转置性质</h2>
-                <p><strong>命题：</strong></p>
-                <p>\[ (A^T)^* = (A^*)^T \]</p>
-                
-                <p><strong>证明：</strong>\(A^T\) 的 \((i,j)\) 余子式对应于 \(A\) 的 \((j,i)\) 余子式（删行删列在转置下互换），并且代数余子式的符号 \((-1)^{i+j}\) 不变，因此：</p>
-                <p>\[ C_{ij}(A^T) = C_{ji}(A) \]</p>
-                <p>于是：</p>
-                <p>\[ (A^T)^* = (C_{ij}(A^T))^T = (C_{ji}(A))^T = (A^*)^T \]</p>
-                <p>∎</p>
+                    <h2>6. 转置性质</h2>
+                    <p><strong>命题：</strong></p>
+                    <p>\[ (A^T)^* = (A^*)^T \]</p>
+                    
+                    <p><strong>证明：</strong>\(A^T\) 的 \((i,j)\) 余子式对应于 \(A\) 的 \((j,i)\) 余子式（删行删列在转置下互换），并且代数余子式的符号 \((-1)^{i+j}\) 不变，因此：</p>
+                    <p>\[ C_{ij}(A^T) = C_{ji}(A) \]</p>
+                    <p>于是：</p>
+                    <p>\[ (A^T)^* = (C_{ij}(A^T))^T = (C_{ji}(A))^T = (A^*)^T \]</p>
+                    <p>∎</p>
 
-                <h2>7. 伴随的伴随</h2>
-                <p><strong>命题：</strong></p>
-                <p>\[ (A^*)^* = |A|^{n-2} A \]</p>
-                <p>特别：若 \(|A| = 1\)，则 \((A^*)^* = A\)。</p>
-                
-                <p><strong>证明：</strong>若 \(|A| \neq 0\)，由 \(A^* = |A| A^{-1}\)，得：</p>
-                <p>\[ (A^*)^{-1} = \frac{1}{|A|} A \]</p>
-                <p>再用"伴随与逆矩阵"关系对 \(A^*\)：</p>
-                <p>\[ (A^*)^* = |A^*| (A^*)^{-1} = |A|^{n-1} \cdot \frac{1}{|A|} A = |A|^{n-2} A \]</p>
-                <p>当 \(|A| = 0\) 时，右侧为 0（若 \(n \geq 3\)），两边作为多项式函数在稠密集合上相等，因此对所有 \(A\) 成立。∎</p>
+                    <h2>7. 伴随的伴随</h2>
+                    <p><strong>命题：</strong></p>
+                    <p>\[ (A^*)^* = |A|^{n-2} A \]</p>
+                    <p>特别：若 \(|A| = 1\)，则 \((A^*)^* = A\)。</p>
+                    
+                    <p><strong>证明：</strong>若 \(|A| \neq 0\)，由 \(A^* = |A| A^{-1}\)，得：</p>
+                    <p>\[ (A^*)^{-1} = \frac{1}{|A|} A \]</p>
+                    <p>再用"伴随与逆矩阵"关系对 \(A^*\)：</p>
+                    <p>\[ (A^*)^* = |A^*| (A^*)^{-1} = |A|^{n-1} \cdot \frac{1}{|A|} A = |A|^{n-2} A \]</p>
+                    <p>当 \(|A| = 0\) 时，右侧为 0（若 \(n \geq 3\)），两边作为多项式函数在稠密集合上相等，因此对所有 \(A\) 成立。∎</p>
 
-                <h2>8. 不可逆时的秩结论</h2>
-                <p>若 \(|A| = 0\)，则 \(AA^* = A^*A = 0\)，并且有如下结论：</p>
-                <ul>
-                    <li>若 \(\text{rank}(A) = n-1\)，则 \(\text{rank}(A^*) = 1\)</li>
-                    <li>若 \(\text{rank}(A) \leq n-2\)，则 \(A^* = 0\)</li>
-                </ul>
-                
-                <p><strong>证明要点：</strong></p>
-                <p>\(\text{rank}(A) \leq n-2\) 意味着所有 \((n-1)\) 阶子式全为 0，因此所有代数余子式全为 0，从而 \(A^* = 0\)。</p>
-                <p>\(\text{rank}(A) = n-1\) 意味着至少存在一个 \((n-1)\) 阶子式非零，所以 \(A^* \neq 0\)。同时由 \(|A| = 0\) 得 \(AA^* = 0\)，于是 \(A^*\) 的每一列都在 \(A\) 的零空间中。此时 \(\dim \ker(A) = 1\)，所以 \(A^*\) 的所有列都共线，\(\text{rank}(A^*) \leq 1\)。再结合 \(A^* \neq 0\)，得 \(\text{rank}(A^*) = 1\)。∎</p>
+                    <h2>8. 不可逆时的秩结论</h2>
+                    <p>若 \(|A| = 0\)，则 \(AA^* = A^*A = 0\)，并且有如下结论：</p>
+                    <ul>
+                        <li>若 \(\text{rank}(A) = n-1\)，则 \(\text{rank}(A^*) = 1\)</li>
+                        <li>若 \(\text{rank}(A) \leq n-2\)，则 \(A^* = 0\)</li>
+                    </ul>
+                    
+                    <p><strong>证明要点：</strong></p>
+                    <p>\(\text{rank}(A) \leq n-2\) 意味着所有 \((n-1)\) 阶子式全为 0，因此所有代数余子式全为 0，从而 \(A^* = 0\)。</p>
+                    <p>\(\text{rank}(A) = n-1\) 意味着至少存在一个 \((n-1)\) 阶子式非零，所以 \(A^* \neq 0\)。同时由 \(|A| = 0\) 得 \(AA^* = 0\)，于是 \(A^*\) 的每一列都在 \(A\) 的零空间中。此时 \(\dim \ker(A) = 1\)，所以 \(A^*\) 的所有列都共线，\(\text{rank}(A^*) \leq 1\)。再结合 \(A^* \neq 0\)，得 \(\text{rank}(A^*) = 1\)。∎</p>
 
-                <h2>9. 行操作的影响</h2>
-                <ul>
-                    <li>交换两行：伴随矩阵乘以 \(-1\)</li>
-                    <li>某行乘以 \(k\)：伴随矩阵乘以 \(k\)</li>
-                    <li>一行加另一行的倍数：伴随矩阵不变</li>
-                </ul>
-                <p>这一点与代数余子式的构成一致。</p>
+                    <h2>9. 行操作的影响</h2>
+                    <ul>
+                        <li>交换两行：伴随矩阵乘以 \(-1\)</li>
+                        <li>某行乘以 \(k\)：伴随矩阵乘以 \(k\)</li>
+                        <li>一行加另一行的倍数：伴随矩阵不变</li>
+                    </ul>
+                    <p>这一点与代数余子式的构成一致。</p>
 
-                <h2>10. 特征值关系（可逆时）</h2>
-                <p>若 \(A\) 可逆且特征值为 \(\lambda_i\)，则：</p>
-                <p>\[ A^* = |A| A^{-1} \]</p>
-                <p>所以其特征值为：</p>
-                <p>\[ \mu_i = |A| \lambda_i^{-1} \]</p>
+                    <h2>10. 特征值关系（可逆时）</h2>
+                    <p>若 \(A\) 可逆且特征值为 \(\lambda_i\)，则：</p>
+                    <p>\[ A^* = |A| A^{-1} \]</p>
+                    <p>所以其特征值为：</p>
+                    <p>\[ \mu_i = |A| \lambda_i^{-1} \]</p>
 
-                <h2>简要总结</h2>
-                <ul>
-                    <li>伴随矩阵是余子式矩阵的转置</li>
-                    <li>满足 \(AA^* = A^*A = |A|I\)</li>
-                    <li>可逆矩阵满足 \(A^{-1} = \frac{A^*}{|A|}\)</li>
-                    <li>\(|A^*| = |A|^{n-1}\) 且 \((A^*)^* = |A|^{n-2}A\)</li>
-                    <li>不可逆时，伴随矩阵的秩与 \(A\) 的秩紧密相关</li>
-                </ul>
+                    <h2>简要总结</h2>
+                    <ul>
+                        <li>伴随矩阵是余子式矩阵的转置</li>
+                        <li>满足 \(AA^* = A^*A = |A|I\)</li>
+                        <li>可逆矩阵满足 \(A^{-1} = \frac{A^*}{|A|}\)</li>
+                        <li>\(|A^*| = |A|^{n-1}\) 且 \((A^*)^* = |A|^{n-2}A\)</li>
+                        <li>不可逆时，伴随矩阵的秩与 \(A\) 的秩紧密相关</li>
+                    </ul>
+                </div>
+
+                <!-- English Content -->
+                <div class="lang-en" style="display: none;">
+                    <h2>Definition</h2>
+                    <p>Let \(A = (a_{ij}) \in F^{n \times n}\) be an \(n \times n\) square matrix. Define:</p>
+                    <ul>
+                        <li>\(M_{ij}\): the \((n-1) \times (n-1)\) minor obtained by deleting row \(i\) and column \(j\)</li>
+                        <li>\(C_{ij} = (-1)^{i+j} M_{ij}\): the cofactor</li>
+                    </ul>
+                    <p>The <strong>adjugate matrix</strong> is defined as:</p>
+                    <p>\[ A^* = \text{adj}(A) = (C_{ij})^T \]</p>
+                    <p>That is, \((A^*)_{ij} = C_{ji}\).</p>
+
+                    <h2>1. Core Identity</h2>
+                    <p><strong>Proposition:</strong></p>
+                    <p>\[ AA^* = A^*A = |A|I \]</p>
+                    
+                    <p><strong>Proof (taking \(AA^*\) as example):</strong></p>
+                    <p>Consider the \((i,k)\)-th entry of the matrix product \(AA^*\):</p>
+                    <p>\[ (AA^*)_{ik} = \sum_{j=1}^{n} a_{ij}(A^*)_{jk} = \sum_{j=1}^{n} a_{ij} C_{kj} \]</p>
+                    
+                    <p><strong>When \(i = k\):</strong> This is the Laplace expansion of the determinant along row \(k\):</p>
+                    <p>\[ \sum_{j=1}^{n} a_{kj} C_{kj} = |A| \]</p>
+                    
+                    <p><strong>When \(i \neq k\):</strong> Construct matrix \(B\) by replacing row \(k\) of \(A\) with row \(i\), leaving other rows unchanged. Then \(B\) has two identical rows, so \(|B| = 0\). On the other hand, expanding the determinant of \(B\) along row \(k\):</p>
+                    <p>\[ |B| = \sum_{j=1}^{n} b_{kj} C_{kj} = \sum_{j=1}^{n} a_{ij} C_{kj} = 0 \]</p>
+                    
+                    <p>In summary:</p>
+                    <p>\[ (AA^*)_{ik} = \begin{cases} |A|, & i = k \\ 0, & i \neq k \end{cases} \]</p>
+                    <p>Thus \(AA^* = |A|I\). Similarly, \(A^*A = |A|I\). ∎</p>
+
+                    <h2>2. Relation to Inverse Matrix</h2>
+                    <p><strong>Proposition:</strong> If \(|A| \neq 0\) (i.e., \(A\) is invertible), then:</p>
+                    <p>\[ A^{-1} = \frac{1}{|A|} A^* \]</p>
+                    
+                    <p><strong>Proof:</strong> From the core identity \(AA^* = |A|I\), dividing both sides by \(|A| \neq 0\):</p>
+                    <p>\[ A \left( \frac{1}{|A|} A^* \right) = I \]</p>
+                    <p>Therefore \(\frac{1}{|A|} A^*\) is the right inverse of \(A\). For square matrices, the right inverse equals the inverse, so the conclusion holds. ∎</p>
+
+                    <h2>3. Determinant Property</h2>
+                    <p><strong>Proposition:</strong></p>
+                    <p>\[ |A^*| = |A|^{n-1} \]</p>
+                    
+                    <p><strong>Proof:</strong></p>
+                    <p><strong>(1) When \(|A| \neq 0\):</strong> From \(A^* = |A| A^{-1}\), taking determinant:</p>
+                    <p>\[ |A^*| = ||A| A^{-1}| = |A|^n \cdot |A^{-1}| = |A|^n \cdot \frac{1}{|A|} = |A|^{n-1} \]</p>
+                    
+                    <p><strong>(2) When \(|A| = 0\):</strong> The right side is \(0^{n-1} = 0\) (when \(n \geq 2\)). From the core identity \(AA^* = 0\). If \(A^*\) were invertible, multiplying on the left by \(A^{*-1}\) gives \(A = 0\), but the adjugate of \(A = 0\) is also 0, which is not invertible, a contradiction; therefore \(A^*\) is not invertible, \(|A^*| = 0\). ∎</p>
+
+                    <h2>4. Scalar Multiplication Property</h2>
+                    <p><strong>Proposition:</strong> For scalar \(k\):</p>
+                    <p>\[ (kA)^* = k^{n-1} A^* \]</p>
+                    
+                    <p><strong>Proof:</strong> Each \((n-1) \times (n-1)\) minor of \((kA)\) multiplies the elements of \(A\) by \(k\), with a total of \(n-1\) elements multiplied, so:</p>
+                    <p>\[ M_{ij}(kA) = k^{n-1} M_{ij}(A) \]</p>
+                    <p>The cofactor only adds the sign \((-1)^{i+j}\), which doesn't affect the multiplier, therefore:</p>
+                    <p>\[ C_{ij}(kA) = k^{n-1} C_{ij}(A) \]</p>
+                    <p>Transposing gives \((kA)^* = k^{n-1} A^*\). ∎</p>
+
+                    <h2>5. Product Property</h2>
+                    <p><strong>Proposition:</strong> For any \(n \times n\) square matrices \(A, B\):</p>
+                    <p>\[ (AB)^* = B^* A^* \]</p>
+                    <p>The order is reversed, similar to inverse matrices.</p>
+                    
+                    <p><strong>Proof:</strong> Applying the core identity to matrix \(AB\):</p>
+                    <p>\[ (AB)(AB)^* = |AB|I = |A||B|I \]</p>
+                    <p>On the other hand:</p>
+                    <p>\[ (AB)(B^*A^*) = A(BB^*)A^* = A(|B|I)A^* = |B|(AA^*) = |B|(|A|I) = |A||B|I \]</p>
+                    <p>So both \((AB)^*\) and \(B^*A^*\) satisfy the same identity. By the uniqueness of the adjugate matrix definition, \((AB)^* = B^*A^*\). ∎</p>
+
+                    <h2>6. Transpose Property</h2>
+                    <p><strong>Proposition:</strong></p>
+                    <p>\[ (A^T)^* = (A^*)^T \]</p>
+                    
+                    <p><strong>Proof:</strong> The \((i,j)\) cofactor of \(A^T\) corresponds to the \((j,i)\) cofactor of \(A\) (row and column deletion swap under transpose), and the sign \((-1)^{i+j}\) of the cofactor remains unchanged, therefore:</p>
+                    <p>\[ C_{ij}(A^T) = C_{ji}(A) \]</p>
+                    <p>Thus:</p>
+                    <p>\[ (A^T)^* = (C_{ij}(A^T))^T = (C_{ji}(A))^T = (A^*)^T \]</p>
+                    <p>∎</p>
+
+                    <h2>7. Adjugate of Adjugate</h2>
+                    <p><strong>Proposition:</strong></p>
+                    <p>\[ (A^*)^* = |A|^{n-2} A \]</p>
+                    <p>In particular: if \(|A| = 1\), then \((A^*)^* = A\).</p>
+                    
+                    <p><strong>Proof:</strong> If \(|A| \neq 0\), from \(A^* = |A| A^{-1}\), we get:</p>
+                    <p>\[ (A^*)^{-1} = \frac{1}{|A|} A \]</p>
+                    <p>Using the "adjugate and inverse" relation for \(A^*\):</p>
+                    <p>\[ (A^*)^* = |A^*| (A^*)^{-1} = |A|^{n-1} \cdot \frac{1}{|A|} A = |A|^{n-2} A \]</p>
+                    <p>When \(|A| = 0\), the right side is 0 (if \(n \geq 3\)), and both sides are equal as polynomial functions on a dense set, so the result holds for all \(A\). ∎</p>
+
+                    <h2>8. Rank Conclusions for Singular Matrices</h2>
+                    <p>If \(|A| = 0\), then \(AA^* = A^*A = 0\), and we have the following conclusions:</p>
+                    <ul>
+                        <li>If \(\text{rank}(A) = n-1\), then \(\text{rank}(A^*) = 1\)</li>
+                        <li>If \(\text{rank}(A) \leq n-2\), then \(A^* = 0\)</li>
+                    </ul>
+                    
+                    <p><strong>Key points of proof:</strong></p>
+                    <p>\(\text{rank}(A) \leq n-2\) means all \((n-1)\)-order minors are 0, so all cofactors are 0, thus \(A^* = 0\).</p>
+                    <p>\(\text{rank}(A) = n-1\) means at least one \((n-1)\)-order minor is nonzero, so \(A^* \neq 0\). Also from \(|A| = 0\) we have \(AA^* = 0\), so every column of \(A^*\) lies in the null space of \(A\). Since \(\dim \ker(A) = 1\), all columns of \(A^*\) are collinear, \(\text{rank}(A^*) \leq 1\). Combined with \(A^* \neq 0\), we get \(\text{rank}(A^*) = 1\). ∎</p>
+
+                    <h2>9. Effect of Row Operations</h2>
+                    <ul>
+                        <li>Swapping two rows: adjugate matrix is multiplied by \(-1\)</li>
+                        <li>Multiplying a row by \(k\): adjugate matrix is multiplied by \(k\)</li>
+                        <li>Adding a multiple of one row to another: adjugate matrix unchanged</li>
+                    </ul>
+                    <p>This is consistent with how cofactors are constructed.</p>
+
+                    <h2>10. Eigenvalue Relation (Invertible Case)</h2>
+                    <p>If \(A\) is invertible with eigenvalues \(\lambda_i\), then:</p>
+                    <p>\[ A^* = |A| A^{-1} \]</p>
+                    <p>So its eigenvalues are:</p>
+                    <p>\[ \mu_i = |A| \lambda_i^{-1} \]</p>
+
+                    <h2>Summary</h2>
+                    <ul>
+                        <li>The adjugate matrix is the transpose of the cofactor matrix</li>
+                        <li>Satisfies \(AA^* = A^*A = |A|I\)</li>
+                        <li>For invertible matrices: \(A^{-1} = \frac{A^*}{|A|}\)</li>
+                        <li>\(|A^*| = |A|^{n-1}\) and \((A^*)^* = |A|^{n-2}A\)</li>
+                        <li>For singular matrices, the rank of the adjugate is closely related to the rank of \(A\)</li>
+                    </ul>
+                </div>
             </div>
         </article>
     </div>
@@ -194,7 +322,7 @@
             document.querySelector('.theme-toggle i').className = 'fas fa-sun';
         }
         
-        // 语言切换功能（仅切换标题和说明）
+        // 语言切换功能（切换标题、说明和全部内容）
         let currentLang = 'zh';
         function toggleLanguage() {
             const titleZh = document.getElementById('title-zh');
@@ -211,9 +339,16 @@
                 noteEn.style.display = 'block';
                 document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'none');
                 document.querySelectorAll('.text-en').forEach(el => el.style.display = 'inline');
+                // 切换文章内容
+                document.querySelectorAll('.lang-zh').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'block');
                 langText.textContent = '中';
                 currentLang = 'en';
                 localStorage.setItem('language', 'en');
+                // 重新渲染MathJax公式
+                if (window.MathJax) {
+                    MathJax.typesetPromise();
+                }
             } else {
                 document.title = '伴随矩阵的性质与证明 - Pure Fruit';
                 titleZh.style.display = 'block';
@@ -222,9 +357,16 @@
                 noteEn.style.display = 'none';
                 document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'inline');
                 document.querySelectorAll('.text-en').forEach(el => el.style.display = 'none');
+                // 切换文章内容
+                document.querySelectorAll('.lang-zh').forEach(el => el.style.display = 'block');
+                document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'none');
                 langText.textContent = 'EN';
                 currentLang = 'zh';
                 localStorage.setItem('language', 'zh');
+                // 重新渲染MathJax公式
+                if (window.MathJax) {
+                    MathJax.typesetPromise();
+                }
             }
         }
         
