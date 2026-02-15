@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <script>if(localStorage.getItem('theme')==='light')document.documentElement.setAttribute('data-theme','light');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pure Fruit - 小桃源</title>
+    <title>水果园 - Pure Fruit</title>
     <link rel="icon" href="Icon.jpg" type="image/jpg">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -25,13 +25,13 @@
 
     <header class="hero">
         <img src="Icon.png" alt="Pure Fruit Logo" class="site-logo">
-        <h1 class="site-title">Pure Fruit</h1>
-        
+        <h1 class="site-title">水果园</h1>
+
         <nav class="nav-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="projects.html">Project</a>
-            <a href="blog.html">Blog</a>
-            <a href="about.html">About</a>
+            <a href="index.html" class="active">主页</a>
+            <a href="projects.html">项目</a>
+            <a href="blog.html">博客</a>
+            <a href="about.html">关于</a>
         </nav>
         
         <p class="tagline" id="tagline-zh">
@@ -196,44 +196,44 @@
         let currentLang = 'zh';
         function toggleLanguage() {
             const langText = document.getElementById('langText');
-            
+
             if (currentLang === 'zh') {
                 // 切换到英文
-                document.title = 'Pure Fruit - Peach Paradise';
+                document.title = 'Fruit Garden - Pure Fruit';
                 document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'none');
                 document.querySelectorAll('.text-en').forEach(el => el.style.display = 'inline');
                 document.querySelectorAll('h2#featured-zh, h2#latest-zh').forEach(el => el.style.display = 'none');
                 document.querySelectorAll('h2#featured-en, h2#latest-en').forEach(el => el.style.display = 'block');
                 document.getElementById('tagline-zh').style.display = 'none';
                 document.getElementById('tagline-en').style.display = 'block';
-                
+
                 // 切换标签文本
                 document.querySelectorAll('.post-tag').forEach(tag => {
                     if (tag.dataset.en) {
                         tag.textContent = tag.dataset.en;
                     }
                 });
-                
+
                 langText.textContent = '中';
                 currentLang = 'en';
                 localStorage.setItem('language', 'en');
             } else {
                 // 切换到中文
-                document.title = 'Pure Fruit - 小桃源';
+                document.title = '水果园 - Pure Fruit';
                 document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'inline');
                 document.querySelectorAll('.text-en').forEach(el => el.style.display = 'none');
                 document.querySelectorAll('h2#featured-zh, h2#latest-zh').forEach(el => el.style.display = 'block');
                 document.querySelectorAll('h2#featured-en, h2#latest-en').forEach(el => el.style.display = 'none');
                 document.getElementById('tagline-zh').style.display = 'block';
                 document.getElementById('tagline-en').style.display = 'none';
-                
+
                 // 切换标签文本
                 document.querySelectorAll('.post-tag').forEach(tag => {
                     if (tag.dataset.zh) {
                         tag.textContent = tag.dataset.zh;
                     }
                 });
-                
+
                 langText.textContent = 'EN';
                 currentLang = 'zh';
                 localStorage.setItem('language', 'zh');

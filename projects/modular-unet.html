@@ -24,13 +24,13 @@
     </div>
 
     <div class="article-container">
-        <a href="../projects.html" class="back-link">← 返回项目列表</a>
+        <a href="../projects.html" class="back-link"><span id="back-zh">← 返回项目列表</span><span id="back-en" style="display: none;">← Back to Projects</span></a>
 
         <article>
             <header class="article-header">
-                <span class="post-tag tag-cv">计算机视觉</span>
-                <span class="post-tag tag-dl">深度学习</span>
-                <span class="post-tag tag-tool">工具</span>
+                <span class="post-tag tag-cv" data-zh="计算机视觉" data-en="Computer Vision">计算机视觉</span>
+                <span class="post-tag tag-dl" data-zh="深度学习" data-en="Deep Learning">深度学习</span>
+                <span class="post-tag tag-tool" data-zh="工具" data-en="Tools">工具</span>
                 <h1 id="title-zh">ModularUNet — 模块化 U-Net 变体实验平台</h1>
                 <h1 id="title-en" style="display: none;">ModularUNet — Modular U-Net Variant Research Platform</h1>
                 <div class="post-meta">
@@ -59,13 +59,13 @@
 
                 <h2>界面截图</h2>
                 <p><strong>模型配置</strong> — 选择并测试变体组合</p>
-                <img src="https://raw.githubusercontent.com/PeachPure/ModularUNet/main/Fig/1.png" alt="模型配置" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
+                <img src="../Fig/1.png" alt="模型配置" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
                 <p><strong>训练</strong> — 实时 Loss 和 mIoU 曲线</p>
-                <img src="https://raw.githubusercontent.com/PeachPure/ModularUNet/main/Fig/2.png" alt="训练" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
+                <img src="../Fig/2.png" alt="训练" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
                 <p><strong>预测可视化</strong> — 分割结果可视化</p>
-                <img src="https://raw.githubusercontent.com/PeachPure/ModularUNet/main/Fig/3.png" alt="预测可视化" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
+                <img src="../Fig/3.png" alt="预测可视化" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
                 <p><strong>对比实验</strong> — 多变体横向对比</p>
-                <img src="https://raw.githubusercontent.com/PeachPure/ModularUNet/main/Fig/4.png" alt="对比实验" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
+                <img src="../Fig/4.png" alt="对比实验" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
 
                 <h2>可用模块</h2>
                 <h3>卷积块 (block_type)</h3>
@@ -165,13 +165,13 @@ model = FlexibleUNet(
 
                 <h2>Screenshots</h2>
                 <p><strong>Model Config</strong> — Select and test variant combinations</p>
-                <img src="https://raw.githubusercontent.com/PeachPure/ModularUNet/main/Fig/1.png" alt="Model Config" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
+                <img src="../Fig/1.png" alt="Model Config" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
                 <p><strong>Training</strong> — Real-time loss and mIoU curves</p>
-                <img src="https://raw.githubusercontent.com/PeachPure/ModularUNet/main/Fig/2.png" alt="Training" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
+                <img src="../Fig/2.png" alt="Training" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
                 <p><strong>Prediction</strong> — Visualize segmentation results</p>
-                <img src="https://raw.githubusercontent.com/PeachPure/ModularUNet/main/Fig/3.png" alt="Prediction" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
+                <img src="../Fig/3.png" alt="Prediction" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
                 <p><strong>Comparison</strong> — Multi-variant side-by-side comparison</p>
-                <img src="https://raw.githubusercontent.com/PeachPure/ModularUNet/main/Fig/4.png" alt="Comparison" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
+                <img src="../Fig/4.png" alt="Comparison" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">
 
                 <h2>Available Modules</h2>
                 <h3>Conv Blocks (block_type)</h3>
@@ -292,6 +292,8 @@ model = FlexibleUNet(
             const githubEn = document.getElementById('github-en');
             const contentZh = document.getElementById('content-zh');
             const contentEn = document.getElementById('content-en');
+            const backZh = document.getElementById('back-zh');
+            const backEn = document.getElementById('back-en');
             const langText = document.getElementById('langText');
 
             if (currentLang === 'zh') {
@@ -302,8 +304,16 @@ model = FlexibleUNet(
                 githubEn.style.display = 'inline';
                 contentZh.style.display = 'none';
                 contentEn.style.display = 'block';
+                backZh.style.display = 'none';
+                backEn.style.display = 'inline';
                 document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'none');
                 document.querySelectorAll('.text-en').forEach(el => el.style.display = 'inline');
+                // 切换标签文本
+                document.querySelectorAll('.post-tag').forEach(tag => {
+                    if (tag.dataset.en) {
+                        tag.textContent = tag.dataset.en;
+                    }
+                });
                 langText.textContent = '中';
                 currentLang = 'en';
                 localStorage.setItem('language', 'en');
@@ -315,8 +325,16 @@ model = FlexibleUNet(
                 githubEn.style.display = 'none';
                 contentZh.style.display = 'block';
                 contentEn.style.display = 'none';
+                backZh.style.display = 'inline';
+                backEn.style.display = 'none';
                 document.querySelectorAll('.text-zh').forEach(el => el.style.display = 'inline');
                 document.querySelectorAll('.text-en').forEach(el => el.style.display = 'none');
+                // 切换标签文本
+                document.querySelectorAll('.post-tag').forEach(tag => {
+                    if (tag.dataset.zh) {
+                        tag.textContent = tag.dataset.zh;
+                    }
+                });
                 langText.textContent = 'EN';
                 currentLang = 'zh';
                 localStorage.setItem('language', 'zh');
